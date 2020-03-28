@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewCake.Arrays", "InterviewCake.Arrays\InterviewCake.Arrays.csproj", "{515D6037-F6D5-41D2-BA2C-FFBF171010F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewCake.Arrays", "InterviewCake.Arrays\InterviewCake.Arrays.csproj", "{515D6037-F6D5-41D2-BA2C-FFBF171010F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewCake.Tests", "InterviewCake.Tests\InterviewCake.Tests.csproj", "{11D33C42-93E4-4C71-A08A-8C22588CBD89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewCake.Tests", "InterviewCake.Tests\InterviewCake.Tests.csproj", "{11D33C42-93E4-4C71-A08A-8C22588CBD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewCake.Scratch", "InterviewCake.Scratch\InterviewCake.Scratch.csproj", "{F0A98228-556F-4235-AC25-CA56F18851F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewCake.Scratch", "InterviewCake.Scratch\InterviewCake.Scratch.csproj", "{F0A98228-556F-4235-AC25-CA56F18851F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{515D6037-F6D5-41D2-BA2C-FFBF171010F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +55,11 @@ Global
 		{F0A98228-556F-4235-AC25-CA56F18851F8}.Release|x64.Build.0 = Release|Any CPU
 		{F0A98228-556F-4235-AC25-CA56F18851F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{F0A98228-556F-4235-AC25-CA56F18851F8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11FA0035-E8FB-4506-88C3-94AEAE002C5B}
 	EndGlobalSection
 EndGlobal
