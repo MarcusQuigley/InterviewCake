@@ -27,7 +27,7 @@ namespace InterviewCake.Arrays
 
             return result;
         }
-
+        //https://www.interviewcake.com/question/csharp/merging-ranges?course=fc1&section=array-and-string-manipulation
         public Meeting[] InHouseCalendar(Meeting[] times)
         {
             if (times == null) throw new ArgumentNullException(nameof(times));
@@ -50,9 +50,26 @@ namespace InterviewCake.Arrays
                 }
             }
             return results.ToArray();
+        }
 
-
-
+        //https://www.interviewcake.com/question/csharp/reverse-string-in-place?course=fc1&section=array-and-string-manipulation
+        public string ReverseString(string toReverse)
+        {
+            if (toReverse == null) throw new ArgumentNullException(nameof(toReverse));
+            if (toReverse.Length == 1) return toReverse;
+            
+            var charArray = toReverse.ToCharArray();
+            var first = 0;
+            var last = charArray.Length-1;
+            while(first< last)
+            {
+                var temp = charArray[first];
+                charArray[first] = charArray[last];
+                charArray[last] = temp;
+                first += 1;
+                last -= 1;
+            }
+            return new string(charArray);
         }
     }
 }

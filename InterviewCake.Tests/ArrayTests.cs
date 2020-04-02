@@ -24,7 +24,6 @@ namespace InterviewCake.Tests
         [Theory]
         [InlineData(new int[] {0,3,4,10,9 }, new int[] { 1,5,8,12,10})]
         [InlineData(new int[] { 0, 3, 4, 10, 9 }, new int[] { 1, 5, 8, 12, 15 })]
-
         public void Test_InHouseCalendar(int[] starts, int[] ends)
         {
             var times = new Meeting[starts.Length];
@@ -34,6 +33,15 @@ namespace InterviewCake.Tests
             }
             var actual = sut.InHouseCalendar(times);
             Assert.Equal(1,1 );
+        }
+
+        [Theory]
+        [InlineData("hello", "olleh")]
+        [InlineData("h", "h")]
+        public void Test_ReverseString(string toReverse, string expected)
+        {
+            var actual = sut.ReverseString(toReverse);
+            Assert.Equal(expected, actual);
         }
     }
 }
