@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InterviewCake.Arrays
 {
@@ -33,29 +34,25 @@ namespace InterviewCake.Arrays
             if (times.Length < 2) return times;
 
             Array.Sort(times, new MeetingStartComparer());
-
-            var c = 0;
-            Meeting meet1 = null;
             List<Meeting> results = new List<Meeting>();
-
-            while (c < times.Length)
+            results.Add(times[0]);
+            for (int i = 1; i < times.Length; i++)
             {
-                meet1 = times[c];
-                for (int i = c + 1; i < times.Length; i++)
+                var leftMeeting = results.Last();
+                var rightMeeting = times[i];
+                if (leftMeeting.EndTime >= rightMeeting.StartTime)
                 {
-                    var meet2 = times[i];
-                    if (meet1.EndTime >= meet2.StartTime)
-                        meet1.EndTime = meet2.EndTime;
-                    else
-                    {
-                        results.Add(meet1);
-                        c = i;
-                        break;
-                    }
+                    leftMeeting.EndTime = Math.Max(leftMeeting.EndTime, rightMeeting.EndTime);
+                }
+                else
+                {
+                    results.Add(rightMeeting);
                 }
             }
-            results.Add(meet1);
             return results.ToArray();
+
+
+
         }
     }
 }

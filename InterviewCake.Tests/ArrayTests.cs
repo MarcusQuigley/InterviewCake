@@ -23,7 +23,8 @@ namespace InterviewCake.Tests
 
         [Theory]
         [InlineData(new int[] {0,3,4,10,9 }, new int[] { 1,5,8,12,10})]
- 
+        [InlineData(new int[] { 0, 3, 4, 10, 9 }, new int[] { 1, 5, 8, 12, 15 })]
+
         public void Test_InHouseCalendar(int[] starts, int[] ends)
         {
             var times = new Meeting[starts.Length];
