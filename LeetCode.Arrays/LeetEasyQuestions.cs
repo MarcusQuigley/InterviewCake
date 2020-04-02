@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCode.Arrays
 {
@@ -10,38 +11,39 @@ namespace LeetCode.Arrays
             if (numbers == null) throw new ArgumentNullException("numbers");
             if (numbers.Length == 0) return 0;
 
-            var currentUniqueValue = numbers[0];
-            var currentUniqueIndex = 0;
+            int count = 0;
             for (int i = 1; i < numbers.Length; i++)
             {
-                if (numbers[i] > currentUniqueValue)
-                {
-                    if (i != currentUniqueIndex + 1)
-                    {
-                        currentUniqueIndex += 1;
-                        var temp = numbers[i];
-                        numbers[i] = numbers[currentUniqueIndex];
-                        numbers[currentUniqueIndex] = temp;
-                        currentUniqueValue = numbers[currentUniqueIndex];
-                    }
-                }
+                if (numbers[i] == numbers[i - 1]) 
+                    count++;
+                else 
+                    numbers[i - count] = numbers[i];
             }
-            return numbers.Length - currentUniqueIndex;
+            return numbers.Length - count;
         }
 
-        public int RemoveDuplicates2(int[] numbers)
+       
+
+        public bool HappyNumber(int number)
         {
-            if (numbers == null) throw new ArgumentNullException("numbers");
-            if (numbers.Length < 2) return numbers.Length;
-
-            int cur = 0;
-            foreach (var item in numbers)
+            Dictionary<int, bool> storage = new Dictionary<int, bool>();
+            while (number > 1)
             {
-                if (item > numbers[cur])
-                    numbers[++cur] = item;
-
+                var numToDiv = number;
+                var newNum = 0;
+                while (numToDiv > 0)
+                {
+                    var remainder = numToDiv % 10;
+                    numToDiv /= 10;
+                    newNum += remainder * remainder;
+                }
+                if (storage.ContainsKey(newNum))
+                    return false;
+                else
+                    storage.Add(newNum, true);
+                number = newNum;
             }
-            return cur + 1;
+            return true;
         }
     }
 }
