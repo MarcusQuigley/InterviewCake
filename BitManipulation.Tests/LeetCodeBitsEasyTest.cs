@@ -19,5 +19,16 @@ namespace BitManipulation.Tests
             Assert.Equal(expected, actual);
 
         }
+
+        [Theory]
+        [InlineData(new int[] { 2, 0 }, 1)]
+        //[InlineData(new int[] { 1, 3, 0 }, 2)]
+        //[InlineData(new int[] { 9, 6, 4, 2, 3, 5, 7, 0, 1 }, 8)]
+        public void Test_MissingNumber(int[] numbers, int expected)
+        {
+            var actual = sut.MissingNumber(numbers);
+            Assert.Equal(expected, actual);
+
+        }
     }
 }
