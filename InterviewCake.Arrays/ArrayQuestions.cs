@@ -87,5 +87,42 @@ namespace InterviewCake.Arrays
                 end -= 1;
             }
         }
+
+        public int[] MergeSortedArray(int[] array1, int[] array2)
+        {
+            var n = array1.Length + array2.Length;
+            var results = new int[n];
+            var leftPointer = 0;
+            var rightPointer = 0;
+            var count = 0;
+            while (leftPointer < array1.Length && rightPointer < array2.Length)
+            {
+                if (array1[leftPointer] < array2[rightPointer])
+                {
+                    results[count] = array1[leftPointer];
+                    leftPointer += 1;
+                }
+                else
+                {
+                    results[count] = array2[rightPointer];
+                    rightPointer += 1;
+                }
+                count += 1;
+            }
+            if (leftPointer == array1.Length) {
+                for (int i = rightPointer; i < array2.Length; i++)
+                {
+                    results[count++] = array2[i];
+                }
+            }
+            else
+            {
+                for (int i = leftPointer; i < array1.Length; i++)
+                {
+                    results[count++] = array1[i];
+                }
+            }
+            return results;
+        }
     }
 }
