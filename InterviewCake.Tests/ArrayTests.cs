@@ -43,5 +43,15 @@ namespace InterviewCake.Tests
             var actual = sut.ReverseString(toReverse);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("the eagle has landed", "landed has eagle the")]
+        [InlineData("hello there boys", "boys there hello")]
+        [InlineData("hello boys", "boys hello")]
+        public void Test_ReverseWords(string toReverse, string expected)
+        {
+            var actual = sut.ReverseWords(toReverse);
+            Assert.Equal(expected, actual);
+        }
     }
 }

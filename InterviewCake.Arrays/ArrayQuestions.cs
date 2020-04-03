@@ -71,5 +71,41 @@ namespace InterviewCake.Arrays
             }
             return new string(charArray);
         }
+
+        //https://www.interviewcake.com/question/csharp/reverse-words?course=fc1&section=array-and-string-manipulation
+        public string ReverseWords(string message)
+        {
+            if (message == null) throw new ArgumentNullException(nameof(message));
+            var messageArray = message.ToCharArray();
+            var n = messageArray.Length ;
+             ReverseChars(messageArray,0, n-1);
+            int index = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (messageArray[i] == ' ' )
+                {
+                    ReverseChars(messageArray, index, i-1);
+                    index = i+1;
+                }
+                else if(i == n - 1)
+                {
+                    ReverseChars(messageArray, index, i );
+                    //index = i + 1;
+                }
+            }
+            return new string(messageArray);
+        }
+
+        void ReverseChars(char[] word, int start, int end)
+        {
+            while (start < end)
+            {
+                var temp = word[start];
+                word[start] = word[end];
+                word[end] = temp;
+                start += 1;
+                end -= 1;
+            }
+        }
     }
 }
