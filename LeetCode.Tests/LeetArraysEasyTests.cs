@@ -33,6 +33,15 @@ namespace LeetCode.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 10,20,35,50,75,80},70, true)]
+        [InlineData(new int[] { 1,2,7,9 }, 7, false)]
+        public void Test_TwoPointers(int[] array, int number, bool expected)
+        {
+            var actual = sut.TwoPointers(array, number);
+            Assert.Equal(expected, actual);
+        }
         
+
     }
 }
