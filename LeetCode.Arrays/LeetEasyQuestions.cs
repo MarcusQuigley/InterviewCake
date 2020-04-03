@@ -14,9 +14,9 @@ namespace LeetCode.Arrays
             int count = 0;
             for (int i = 1; i < numbers.Length; i++)
             {
-                if (numbers[i] == numbers[i - 1]) 
+                if (numbers[i] == numbers[i - 1])
                     count++;
-                else 
+                else
                     numbers[i - count] = numbers[i];
             }
             return numbers.Length - count;
@@ -68,6 +68,34 @@ namespace LeetCode.Arrays
                     return true;
             }
             return false;
+        }
+
+        //https://leetcode.com/problems/happy-number/
+        //doesnt use O(n) space
+        public bool HappyNumberWithFloydCycle(int number)
+        {
+            int slow = number;
+            int fast = number;
+            do
+            {
+                slow = digitSquareSum(slow);
+                fast = digitSquareSum(fast);
+                fast = digitSquareSum(fast);
+                if (fast == 1) return true;
+            } while (slow != fast);
+            return false;
+        }
+
+        int digitSquareSum(int n)
+        {
+            var newNum = 0;
+            while (n > 0)
+            {
+                var remainder = n % 10;
+                n /= 10;
+                newNum += remainder * remainder;
+            }
+            return newNum;
         }
     }
 }
