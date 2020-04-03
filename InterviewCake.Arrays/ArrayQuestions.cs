@@ -6,27 +6,7 @@ namespace InterviewCake.Arrays
 {
     public class ArrayQuestions
     {
-        public int FindNumbers(int[] numbers)
-        {
-            if (numbers == null || numbers.Length == 0)
-                return -1;
-            var result = 0;
-
-            //foreach (var number in numbers){
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                var number = numbers[i];
-                var counter = 0;
-                while (number > 0)
-                {
-                    number /= 10;
-                    counter += 1;
-                }
-                if (counter % 2 == 0) result += 1;
-            }
-
-            return result;
-        }
+        
         //https://www.interviewcake.com/question/csharp/merging-ranges?course=fc1&section=array-and-string-manipulation
         public Meeting[] InHouseCalendar(Meeting[] times)
         {

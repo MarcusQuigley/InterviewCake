@@ -13,14 +13,7 @@ namespace InterviewCake.Tests
             sut = new ArrayQuestions();
         }
 
-        [Theory]
-        [InlineData(new int[]{12,345,2,6,7896},2)]
-        [InlineData(new int[]{555,901,482,1771},1)]
-        public void Test_FindNumbers(int[] numbers, int expected)
-        {
-             Assert.Equal(expected, sut.FindNumbers(numbers));
-        }
-
+       
         [Theory]
         [InlineData(new int[] {0,3,4,10,9 }, new int[] { 1,5,8,12,10})]
         [InlineData(new int[] { 0, 3, 4, 10, 9 }, new int[] { 1, 5, 8, 12, 15 })]

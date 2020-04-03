@@ -11,6 +11,15 @@ namespace LeetCode.Tests
         {
             sut = new LeetEasyQuestions();
         }
+
+        [Theory]
+        [InlineData(new int[] { 12, 345, 2, 6, 7896 }, 2)]
+        [InlineData(new int[] { 555, 901, 482, 1771 }, 1)]
+        public void Test_FindNumbers(int[] numbers, int expected)
+        {
+            Assert.Equal(expected, sut.FindNumbers(numbers));
+        }
+
         [Theory]
         [InlineData(new int[] { 0, 1, 2, 2, 3 }, 4)]
         [InlineData(new int[] { 1, 1, 2 }, 2)]
