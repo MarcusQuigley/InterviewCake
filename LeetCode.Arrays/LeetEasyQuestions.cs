@@ -169,5 +169,79 @@ namespace LeetCode.Arrays
             return result;
         }
 
+        //283. https://leetcode.com/problems/move-zeroes/
+        public void MoveZeros(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length < 2) return;
+
+            var n = nums.Length;
+            var zeroCounter = 0;
+
+            for (var index = 0; index < n; index++)
+            {
+                var item = nums[index];
+                if (item == 0)
+                    zeroCounter += 1;
+                else
+                {
+                    nums[index - zeroCounter] = item;
+                }
+            }
+
+            for (int i = (n - zeroCounter); i < n; i++)
+            {
+                nums[i] = 0;
+            }
+        }
+
+        //283.https://leetcode.com/problems/move-zeroes/
+        public void MoveZerosWithPointers(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length < 2) return;
+            var zeroPtr = 0;
+            var nonZeroPtr = 0;
+            var n = nums.Length;
+
+            while (nonZeroPtr < n && zeroPtr < n)
+            {
+                while (nums[zeroPtr] != 0)
+                {
+                    zeroPtr += 1;
+                    if (zeroPtr == n)
+                        return;
+                }
+                while (nums[nonZeroPtr] == 0)
+                {
+                    nonZeroPtr += 1;
+                    if (nonZeroPtr == n)
+                        return;
+                }
+
+                var temp = nums[zeroPtr];
+                nums[zeroPtr] = nums[nonZeroPtr];
+                nums[nonZeroPtr] = temp;
+
+            }
+        }
+
+        //283.https://leetcode.com/problems/move-zeroes/
+        public void MoveZerosShort(int[] nums)
+        {
+            var zeroIndex = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] != 0)
+                {
+                    var temp = nums[i];
+                    nums[i] = nums[zeroIndex];
+                    nums[zeroIndex] = temp;
+                    zeroIndex++;
+                }
+
+            }
+        }
+
     }
 }
