@@ -87,7 +87,7 @@ namespace InterviewCake.Arrays
                 end -= 1;
             }
         }
-
+        //https://www.interviewcake.com/question/csharp/merge-sorted-arrays?course=fc1&section=array-and-string-manipulation
         public int[] MergeSortedArray(int[] array1, int[] array2)
         {
             var n = array1.Length + array2.Length;

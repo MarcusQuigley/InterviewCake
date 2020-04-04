@@ -119,5 +119,55 @@ namespace LeetCode.Arrays
             }
             return newNum;
         }
+
+        //53. https://leetcode.com/problems/maximum-subarray/
+        public int MaxSubArrayBad(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0) throw new Exception("Need an entry");
+            if (nums.Length == 1) return nums[0];
+
+            var maxsum = int.MinValue;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var currentsum = 0;
+                for (int j = i; j < nums.Length; j++)
+                {
+                    currentsum += nums[j];
+                    //var currentsum = 0;
+                    //for(var k = i; k <= j; k++)
+                    //{
+                    //    currentsum += nums[k];
+                    //}
+                    maxsum = Math.Max(maxsum, currentsum);
+                }
+            }
+            return maxsum;
+        }
+
+        //53. https://leetcode.com/problems/maximum-subarray/
+        public int MaxSubArrayDP(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0) throw new Exception("Need an entry");
+            if (nums.Length == 1) return nums[0];
+
+            var n = nums.Length;
+
+            int[] storage = new int[n];
+            var maxvalue = nums[0];
+            var result = maxvalue;
+            storage[0] = maxvalue;
+
+            for (int i = 1; i < n; i++)
+            {
+                var current = nums[i];
+                maxvalue = Math.Max(current, maxvalue + current);
+                result = Math.Max(result, maxvalue);
+                storage[i] = maxvalue;
+            }
+            return result;
+        }
+
     }
 }

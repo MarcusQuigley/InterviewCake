@@ -59,7 +59,28 @@ namespace LeetCode.Tests
             var actual = sut.TwoPointers(array, number);
             Assert.Equal(expected, actual);
         }
-        
 
+        [Theory]
+        [InlineData(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6)]
+        [InlineData(new int[] { 1, 2, 7, 9 }, 19)]
+        [InlineData(new int[] { 1, 2, -7, 9 }, 9)]
+        public void Test_MaxSubArray(int[] array, int expected)
+        {
+            var actual = sut.MaxSubArrayBad(array);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6)]
+        [InlineData(new int[] { 1, 2, 7, 9 }, 19)]
+        [InlineData(new int[] { 1, 2, -7, 9 }, 9)]
+        [InlineData(new int[] { -2, 1 },1)]
+        public void Test_MaxSubArrayDP(int[] array, int expected)
+        {
+            var actual = sut.MaxSubArrayDP(array);
+            Assert.Equal(expected, actual);
+        }
+
+        
     }
 }
