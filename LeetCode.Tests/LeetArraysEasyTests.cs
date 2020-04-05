@@ -116,5 +116,15 @@ namespace LeetCode.Tests
             sut.MoveZerosShort(array);
             Assert.Equal(expected, array);
         }
+
+        [Theory]
+        [InlineData(new int[] { 7, 1, 5, 3, 6, 4 }, 5)]
+        [InlineData(new int[] { 7, 6, 4, 3, 1 }, 0)]
+        public void Test_BuyAndSellStock(int[] prices, int  expected)
+        {
+           var actual =  sut.BuyAndSellStock(prices);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }
