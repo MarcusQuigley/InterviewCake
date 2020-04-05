@@ -262,5 +262,36 @@ namespace LeetCode.Arrays
             }
             return maxprofit;
         }
+
+        //Leet 122 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+        public int BuyAndSellStockTwo(int[] prices)
+        {
+            if (prices == null) throw new ArgumentNullException(nameof(prices));
+            if (prices.Length <2) return 0;
+
+            var profit = 0;
+            var firstPrice = prices[0];
+            var minValue = firstPrice;
+            var maxValue = firstPrice;
+            var previousPrice = firstPrice;
+
+            for (int i = 1; i < prices.Length; i++)
+            {
+                var price = prices[i];
+                if (price < previousPrice)
+                {
+                    profit += (maxValue - minValue);
+                    maxValue = price;
+                    minValue = price;
+                }
+                else if (price > previousPrice)
+                {
+                    maxValue = price;
+                }
+                previousPrice = price;
+            }
+            profit += (maxValue - minValue);
+            return profit;
+        }
     }
 }

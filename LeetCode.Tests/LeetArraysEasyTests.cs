@@ -125,6 +125,17 @@ namespace LeetCode.Tests
            var actual =  sut.BuyAndSellStock(prices);
             Assert.Equal(expected, actual);
         }
+        [Theory]
+        [InlineData(new int[] { 7, 1, 5, 3, 6, 4 },7)]
+        [InlineData(new int[] { 7, 6, 4, 3, 1 }, 0)]
+        [InlineData(new int[] { 1,2,3,4,5 }, 4)]
+        public void Test_BuyAndSellStockTwo(int[] prices, int expected)
+        {
+            var actual = sut.BuyAndSellStockTwo(prices);
+            Assert.Equal(expected, actual);
+        }
+
         
+
     }
 }
