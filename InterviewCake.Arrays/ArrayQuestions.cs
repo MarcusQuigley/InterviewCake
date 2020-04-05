@@ -124,5 +124,38 @@ namespace InterviewCake.Arrays
             }
             return results;
         }
+
+        //https://www.interviewcake.com/question/csharp/cafe-order-checker?course=fc1&section=array-and-string-manipulation
+        public bool CafeOrderChecker(int[] takeOutOrders, int[] dineInOrders, int[] servedOrders)
+        {
+            if (takeOutOrders == null || dineInOrders == null || servedOrders == null) throw new ArgumentNullException("somethings null!!");
+            if (takeOutOrders.Length + dineInOrders.Length != servedOrders.Length) return false;
+
+            var takeOutIndex = 0;
+            var dineInIndex = 0;
+            var toValue=0;
+            var diValue = 0;
+
+            for (int servedOrdersIndex = 0; servedOrdersIndex < servedOrders.Length; servedOrdersIndex++)
+            {
+                toValue = (takeOutIndex < takeOutOrders.Length) ? takeOutOrders[takeOutIndex] : int.MaxValue;
+                diValue = (dineInIndex < dineInOrders.Length) ? dineInOrders[dineInIndex] : int.MaxValue;
+                var servedorder = servedOrders[servedOrdersIndex];
+                
+                if (toValue < diValue)
+                {
+                    if (servedorder != toValue)
+                        return false;
+                    takeOutIndex += 1;
+                }
+                else
+                {
+                    if (servedorder != diValue)
+                        return false;
+                    dineInIndex += 1;
+                }
+            }
+            return true;
+        }
     }
 }

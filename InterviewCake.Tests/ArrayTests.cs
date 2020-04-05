@@ -55,6 +55,18 @@ namespace InterviewCake.Tests
              var actual = sut.MergeSortedArray(array1, array2);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 3, 5 }, new int[] { 2, 4, 6 }, new int[] { 1, 2, 3, 4, 5, 6 }, true)]
+        [InlineData(new int[] { 1, 4, 5 }, new int[] { 2, 3, 6 }, new int[] { 1, 2, 3, 4, 5, 6 }, true)]
+        [InlineData(new int[] { }, new int[] { 2, 3, 6 }, new int[] {2, 3, 6 }, true)]
+        public void Test_CafeOrderChecker(int[] takeout , int[] dineIn, int[] servedOrders, bool expected)
+        {
+            var actual = sut.CafeOrderChecker(takeout, dineIn, servedOrders);
+            Assert.Equal(expected, actual);
+        }
+
         
+
     }
 }
