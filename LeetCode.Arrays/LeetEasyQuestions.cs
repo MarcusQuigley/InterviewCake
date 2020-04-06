@@ -267,7 +267,7 @@ namespace LeetCode.Arrays
         public int BuyAndSellStockTwo(int[] prices)
         {
             if (prices == null) throw new ArgumentNullException(nameof(prices));
-            if (prices.Length <2) return 0;
+            if (prices.Length < 2) return 0;
 
             var profit = 0;
             var firstPrice = prices[0];
@@ -293,5 +293,6 @@ namespace LeetCode.Arrays
             profit += (maxValue - minValue);
             return profit;
         }
+
     }
 }

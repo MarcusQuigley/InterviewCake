@@ -1,5 +1,4 @@
 using LeetCode.Arrays;
-using System;
 using Xunit;
 
 namespace LeetCode.Tests
@@ -31,12 +30,12 @@ namespace LeetCode.Tests
             var sut = new LeetEasyQuestions();
             var actual = sut.RemoveDuplicates(numbers);
             Assert.Equal(expected, actual);
-         }
+        }
 
         [Theory]
         [InlineData(19, true)]
         [InlineData(5, false)]
-        public void Test_HappyNumber(int  number, bool expected)
+        public void Test_HappyNumber(int number, bool expected)
         {
             var actual = sut.HappyNumber(number);
             Assert.Equal(expected, actual);
@@ -52,8 +51,8 @@ namespace LeetCode.Tests
         }
 
         [Theory]
-        [InlineData(new int[] { 10,20,35,50,75,80},70, true)]
-        [InlineData(new int[] { 1,2,7,9 }, 7, false)]
+        [InlineData(new int[] { 10, 20, 35, 50, 75, 80 }, 70, true)]
+        [InlineData(new int[] { 1, 2, 7, 9 }, 7, false)]
         public void Test_TwoPointers(int[] array, int number, bool expected)
         {
             var actual = sut.TwoPointers(array, number);
@@ -74,7 +73,7 @@ namespace LeetCode.Tests
         [InlineData(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6)]
         [InlineData(new int[] { 1, 2, 7, 9 }, 19)]
         [InlineData(new int[] { 1, 2, -7, 9 }, 9)]
-        [InlineData(new int[] { -2, 1 },1)]
+        [InlineData(new int[] { -2, 1 }, 1)]
         public void Test_MaxSubArrayDP(int[] array, int expected)
         {
             var actual = sut.MaxSubArrayDP(array);
@@ -120,22 +119,19 @@ namespace LeetCode.Tests
         [Theory]
         [InlineData(new int[] { 7, 1, 5, 3, 6, 4 }, 5)]
         [InlineData(new int[] { 7, 6, 4, 3, 1 }, 0)]
-        public void Test_BuyAndSellStock(int[] prices, int  expected)
+        public void Test_BuyAndSellStock(int[] prices, int expected)
         {
-           var actual =  sut.BuyAndSellStock(prices);
+            var actual = sut.BuyAndSellStock(prices);
             Assert.Equal(expected, actual);
         }
         [Theory]
-        [InlineData(new int[] { 7, 1, 5, 3, 6, 4 },7)]
+        [InlineData(new int[] { 7, 1, 5, 3, 6, 4 }, 7)]
         [InlineData(new int[] { 7, 6, 4, 3, 1 }, 0)]
-        [InlineData(new int[] { 1,2,3,4,5 }, 4)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 4)]
         public void Test_BuyAndSellStockTwo(int[] prices, int expected)
         {
             var actual = sut.BuyAndSellStockTwo(prices);
             Assert.Equal(expected, actual);
         }
-
-        
-
     }
 }
