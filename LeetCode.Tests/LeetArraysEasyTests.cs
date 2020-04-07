@@ -133,5 +133,20 @@ namespace LeetCode.Tests
             var actual = sut.BuyAndSellStockTwo(prices);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("anagram", "nagaram", true)]
+        [InlineData("rat", "car", false)]
+        [InlineData("", "", true)]
+        [InlineData("rat", "tar", true)]
+        [InlineData("ac", "bb", false)]
+        [InlineData("vbnxkji", "wqdtegp", false)]
+        public void Test_IsAnagram(string s, string t, bool expected)
+        {
+            var actual = sut.IsAnagram(s,t);
+            Assert.Equal(expected, actual);
+        }
+
+        
     }
 }

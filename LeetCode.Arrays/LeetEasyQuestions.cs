@@ -294,5 +294,27 @@ namespace LeetCode.Arrays
             return profit;
         }
 
+        //Leet 242 https://leetcode.com/problems/valid-anagram/
+        public bool IsAnagram(string s, string t)
+        {
+            if (s == null || t == null) throw new ArgumentNullException("One or both params was null");
+            if (s.Length != t.Length)
+                return false;
+ 
+            int[] hash = new int[26];
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                hash[s[i] - 'a'] += 1;
+                hash[t[i] - 'a'] -= 1;
+            }
+            for (int j = 0; j < hash.Length; j++)
+            {
+                if (hash[j] != 0)
+                    return false;
+            }
+            return true;
+        }
+
     }
 }
