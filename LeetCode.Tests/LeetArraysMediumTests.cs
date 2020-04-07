@@ -14,8 +14,8 @@ namespace LeetCode.Tests
             sut = new LeetMediumQuestions();
         }
         [Theory]
-        //[InlineData(new string[] { "cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc" }, 10)]
-        //[InlineData(new string[] { "eat", "tea", "tan", "ate", "nat", "bat" }, 3)]
+        [InlineData(new string[] { "cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc" }, 10)]
+        [InlineData(new string[] { "eat", "tea", "tan", "ate", "nat", "bat" }, 3)]
         [InlineData(new string[] { "duh", "ill" },2)]
         public void Test_GroupAnagrams(string[] strs, int expected)
         {
