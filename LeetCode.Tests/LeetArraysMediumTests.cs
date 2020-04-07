@@ -22,5 +22,18 @@ namespace LeetCode.Tests
             var actual = sut.GroupAnagrams(strs);
             Assert.Equal(expected, actual.Count);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3 }, 2)]
+        [InlineData(new int[] { 1, 1, 3, 3, 5, 5, 7, 7 }, 0)]
+        [InlineData(new int[] { 1, 3, 2, 3, 5, 0 }, 3)]
+        [InlineData(new int[] { 1, 1, 2, 2 }, 2)]
+        [InlineData(new int[] { 1, 1, 2,  }, 2)]
+        public void Test_CountElements(int[] elements, int expected)
+        {
+            var actual = sut.CountElements(elements);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

@@ -40,5 +40,35 @@ namespace LeetCode.Arrays
             return key;
         }
 
+        //https://leetcode.com/explore/other/card/30-day-leetcoding-challenge/528/week-1/3289/
+        public int CountElements(int[] arr)
+        {
+            Dictionary<int, int> storage = new Dictionary<int, int>(arr.Length);
+            var total = 0;
+            var lowestKey = 0;
+            var highestKey = 0;
+            
+            for (int i = 0; i < arr.Length; i++)
+            {
+                var key = arr[i];
+                if (storage.ContainsKey(key))
+                    storage[key] += 1;
+                else
+                    storage.Add(key, 1);
+                lowestKey = Math.Min(lowestKey, key);
+                highestKey = Math.Max(highestKey, key);
+            }
+
+            for (int j = lowestKey; j < highestKey; j++)
+            {
+                if (storage.ContainsKey(j) && storage.ContainsKey(j + 1))
+                {
+                    //total += (storage[j] == storage[j + 1]) ? storage[j] : Math.Abs(storage[j] - storage[j + 1]);
+                    total += storage[j];
+                }
+            }
+            return total;
+        }
+
     }
 }
