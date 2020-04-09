@@ -300,7 +300,7 @@ namespace LeetCode.Arrays
             if (s == null || t == null) throw new ArgumentNullException("One or both params was null");
             if (s.Length != t.Length)
                 return false;
- 
+
             int[] hash = new int[26];
 
             for (int i = 0; i < s.Length; i++)
@@ -316,5 +316,91 @@ namespace LeetCode.Arrays
             return true;
         }
 
+        //844 https://leetcode.com/problems/backspace-string-compare/
+        // //This uses O(n) space
+        public bool BackspaceCompareStack(string S, string T)
+        {
+            if (S == null || T == null) throw new ArgumentNullException("something is null");
+
+            var sCharArray = S.ToCharArray();
+            var tCharArray = T.ToCharArray();
+
+            var sStack = CleanArrayWithStack(sCharArray);
+            var tStack = CleanArrayWithStack(tCharArray);
+            if (sStack.Count != tStack.Count)
+                return false;
+
+            for (int i = 0; i < sStack.Count; i++)
+            {
+                if (sStack.Peek() != tStack.Peek())
+                    return false;
+            }
+            return true;
+        }
+
+        private Stack<char> CleanArrayWithStack(char[] charArray)
+        {
+            var ctr = charArray.Length - 1;
+            var stack = new Stack<char>();
+            var backspaceCounter = 0;
+            while (ctr >= 0)
+            {
+                var item = charArray[ctr];
+                if (item == '#')
+                    backspaceCounter += 1;
+                else if (backspaceCounter > 0)
+                    backspaceCounter -= 1;
+                else
+                    stack.Push(item);
+                ctr -= 1;
+            }
+            return stack;
+        }
+
+
+        //844 https://leetcode.com/problems/backspace-string-compare/
+        //This uses O(1) space
+        public bool BackspaceCompare(string S, string T)
+        {
+            if (S == null || T == null) throw new ArgumentNullException("something is null");
+
+            var sCharArray = S.ToCharArray();
+            var tCharArray = T.ToCharArray();
+
+            var sIndex = CleanArray(sCharArray);
+            var tIndex = CleanArray(tCharArray);
+            var sLength = sCharArray.Length - sIndex;
+            var tLength = tCharArray.Length - tIndex;
+            if (sLength != tLength)
+                return false;
+
+            for (int i = 0; i < sLength; i++)
+            {
+                if (sCharArray[sIndex++] != tCharArray[tIndex++])
+                    return false;
+            }
+            return true;
+        }
+
+        private int CleanArray(char[] charArray)
+        {
+            var backspaceCounter = 0;
+            var i = charArray.Length - 1;
+            var index = i;
+            while (i >= 0)
+            {
+                var item = charArray[i--];
+                if (item == '#')
+                    backspaceCounter += 1;
+                else if (backspaceCounter > 0)
+                    backspaceCounter -= 1;
+                else
+                    charArray[index--] = item;
+            }
+            return index + 1;
+
+            //if index has been decremented i need to increment it by 1.
+            //if it hasnt been decremented then it there should be nothing to show
+        }
     }
 }

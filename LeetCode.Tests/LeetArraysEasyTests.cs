@@ -147,6 +147,32 @@ namespace LeetCode.Tests
             Assert.Equal(expected, actual);
         }
 
-        
+        [Theory]
+        [InlineData("aba#c#", "ab", true)]
+        [InlineData("ab#c", "ad#c", true)]
+        [InlineData("ab##", "c#d#", true)]
+        [InlineData("a##c", "#a#c", true)]
+        [InlineData("a##c", "c", true)]
+        [InlineData("cca##", "c", true)]
+        [InlineData("a#c", "a", false)]
+        public void Test_BackspaceCompareStack(string s, string t, bool expected)
+        {
+            var actual = sut.BackspaceCompareStack(s, t);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("aba#c#", "ab", true)]
+        [InlineData("ab#c", "ad#c", true)]
+        [InlineData("ab##", "c#d#", true)]
+        [InlineData("a##c", "#a#c", true)]
+        [InlineData("a##c", "c", true)]
+        [InlineData("cca##", "c", true)]
+        [InlineData("a#c", "a", false)]
+        public void Test_BackspaceCompare(string s, string t, bool expected)
+        {
+            var actual = sut.BackspaceCompare(s, t);
+            Assert.Equal(expected, actual);
+        }
     }
 }
