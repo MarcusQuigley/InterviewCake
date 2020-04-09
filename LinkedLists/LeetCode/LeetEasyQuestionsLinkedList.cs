@@ -20,5 +20,17 @@ namespace LinkedLists.LeetCode
             }
             return Convert.ToInt32(sb.ToString(), 2);
         }
+
+        //876. https://leetcode.com/problems/middle-of-the-linked-list/
+        public ListNode MiddleNode(ListNode head)
+        {
+            var pointer2 = head;
+            while(pointer2!=null && pointer2.next != null)
+            {
+                head = head.next;
+                pointer2 = pointer2.next.next;
+            }
+            return head;
+        }
     }
 }

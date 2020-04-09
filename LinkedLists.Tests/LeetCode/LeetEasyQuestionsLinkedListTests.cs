@@ -22,6 +22,25 @@ public class LeetEasyQuestionsLinkedListTests
         [InlineData(new int[] { 0, 0 }, 0)]
         public void TestGetDecimalValue(int[] values, int expected)
         {
+           var head =  CreateLinkedList(values);
+            var actual = sut.GetDecimalValue(head);
+            Assert.Equal(expected, actual);
+        }
+        
+        [Theory]
+        [InlineData(new int[] { 1, 2,3,4,5 }, 3)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5,6 }, 4)]
+        [InlineData(new int[] { 1, 2}, 2)]
+        [InlineData(new int[] { 1}, 1)]
+        public void TestMiddleNode(int[] values, int expected)
+        {
+            var head = CreateLinkedList(values);
+            var actual = sut.MiddleNode(head);
+            Assert.Equal(expected, actual.val);
+        }
+
+        private ListNode CreateLinkedList(int[] values)
+        {
             var head = new ListNode(values[0]);
             var current = head;
             for (int i = 1; i < values.Length; i++)
@@ -30,8 +49,7 @@ public class LeetEasyQuestionsLinkedListTests
                 current.next = new ListNode(values[i]);
                 current = current.next;
             }
-            var actual = sut.GetDecimalValue(head);
-            Assert.Equal(expected, actual);
+            return head;
         }
     }
 }
