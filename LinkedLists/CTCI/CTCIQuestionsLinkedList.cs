@@ -90,5 +90,15 @@ namespace LinkedLists.CTCI
             return pointer2;
         }
 
+        public bool DeleteMiddle(CTCI_LLNode<T> node)
+        {
+            if (node == null || node.Next == null)
+                return false;
+            CTCI_LLNode<T> next = node.Next;
+            node.Value = next.Value;
+            node.Next = next.Next;
+            return true;
+        }
+
     }
 }

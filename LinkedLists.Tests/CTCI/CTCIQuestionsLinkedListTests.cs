@@ -77,5 +77,21 @@ namespace LinkedLists.Tests.CTCI
             var actual = sut.ReturnKthToLastBetter(head, k);
             Assert.Equal(expected, actual.Value);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 1, 5, 4, 2, 6 }, true)]
+        public void Test_DeleteMiddle(int[] values, bool expected)
+        {
+            var head = new CTCI_LLNode<int>(values[0]);
+            var current = head;
+            for (int i = 1; i < values.Length; i++)
+            {
+                current.Next = new CTCI_LLNode<int>(values[i]);
+                current = current.Next;
+            }
+            var actual = sut.DeleteMiddle(head);
+            Assert.Equal(expected, actual);
+        }
+         
     }
 }
