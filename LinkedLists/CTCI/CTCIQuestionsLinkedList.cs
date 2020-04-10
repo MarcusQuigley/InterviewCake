@@ -6,26 +6,49 @@ namespace LinkedLists.CTCI
 {
   public class CTCIQuestionsLinkedList<T>
     {
-        public void RemoveDuplicates(LLNode<T> head)
+        public void RemoveDuplicatesWithQueue(CTCI_LLNode<T> head)
         {
             if (head == null) throw new ArgumentNullException(nameof(head));
-            
-            var pointer2 = head.Next;
-            var prev = head;
+            var _hash = new HashSet<T>();
+            //var _stack = new Stack<T>();
+            //var _queue = new Queue<T>();
+            CTCI_LLNode<T> previous = null;
             while (head != null)
             {
-                while (pointer2 != null)
+                if (!_hash.Contains(head.Value))
                 {
-                    if (pointer2.Value.Equals(head.Value))
-                    {
-                        prev.Next = pointer2.Next;
-                    }
-                    prev = pointer2;
-                    pointer2 = pointer2.Next;
+                    _hash.Add(head.Value);
+                    previous = head;
+                }
+                else
+                {
+                    previous.Next = head.Next;
                 }
                 head = head.Next;
-                prev = head;
-                pointer2 = pointer2.Next;
+            }
+             
+        }
+
+        public void RemoveDuplicates(CTCI_LLNode<T> head)
+        {
+            if (head == null) throw new ArgumentNullException(nameof(head));
+            var pointer1 = head;
+            while (pointer1 != null)
+            {
+                var pointer2 = pointer1;
+                while (pointer2.Next != null)
+                {
+                    if (pointer2.Next.Value.Equals(pointer1.Value))
+                    {
+                        pointer2.Next = pointer2.Next.Next;
+                    }
+                    else
+                    {
+                        //prev = pointer2;
+                        pointer2 = pointer2.Next;
+                    }
+                }
+                pointer1 = pointer1.Next;
             }
         }
     }
