@@ -51,5 +51,44 @@ namespace LinkedLists.CTCI
                 pointer1 = pointer1.Next;
             }
         }
+
+        public LLNode<T> ReturnKthToLast(LLNode<T> node, int k)
+        {
+            var pointer2 = node;
+            var counter = 0;
+            while (node != null)
+            {
+                counter += 1;
+                node = node.Next;
+            }
+            var kthFromLast = counter - k;
+       
+            while (kthFromLast > 0)
+            {
+                kthFromLast -= 1;
+                pointer2 = pointer2.Next;
+            }
+            return pointer2;
+        }
+
+        public LLNode<T> ReturnKthToLastBetter(LLNode<T> node, int k)
+        {
+            var pointer2 = node;
+            var counter = 0;
+            while (counter < k)
+            {
+                if (node.Next == null)
+                    throw new InvalidOperationException("Node was null");
+                node = node.Next;
+                counter += 1;
+            }
+            while (node != null)
+            {
+                node = node.Next;
+                pointer2 = pointer2.Next;
+            }
+            return pointer2;
+        }
+
     }
 }

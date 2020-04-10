@@ -47,5 +47,35 @@ namespace LinkedLists.Tests.CTCI
             sut.RemoveDuplicates(head);
             Assert.Equal(1, 1);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 1,5,4,2,6 },3,4)]
+         public void Test_ReturnKthToLast(int[] values, int k, int expected)
+        {
+            var head = new LLNode<int>(values[0]);
+            var current = head;
+            for (int i = 1; i < values.Length; i++)
+            {
+                current.Next = new LLNode<int>(values[i]);
+                 current = current.Next;
+            }
+            var actual = sut.ReturnKthToLast(head, k);
+            Assert.Equal(expected,actual.Value);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 1, 5, 4, 2, 6 }, 3, 4)]
+        public void Test_ReturnKthToLastBetter(int[] values, int k, int expected)
+        {
+            var head = new LLNode<int>(values[0]);
+            var current = head;
+            for (int i = 1; i < values.Length; i++)
+            {
+                current.Next = new LLNode<int>(values[i]);
+                current = current.Next;
+            }
+            var actual = sut.ReturnKthToLastBetter(head, k);
+            Assert.Equal(expected, actual.Value);
+        }
     }
 }
