@@ -1,55 +1,46 @@
-﻿using LinkedLists;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Stacks.LeetCode
 {
-    public class MinStack : IMinStack
+    //155. https://leetcode.com/problems/min-stack/
+    public class MinStack
     {
         Node _head = null;
-       // Node _previousTail = null;
-        Node _tail = null;
         int _min = int.MaxValue;
         int _count = 0;
 
-        public int Count { get => _count;}
+        public MinStack()
+        {
+        }
+
+        public int Count { get => _count; }
 
         public void Push(int value)
         {
             var node = new Node(value);
-            if (_head == null)
+            if (_head != null)
             {
-                _head = node;
-             }
-            else
-            {
-                 _tail.Previous = _tail;
+                node.Next = _head;
             }
-            _tail = node;
+
+            _head = node;
 
             _count += 1;
             _min = Math.Min(_min, node.Value);
         }
 
-        public int Pop()
+        public void Pop()
         {
             if (_count == 0)
                 throw new InvalidOperationException("No items");
-            var result = _tail.Value;
-           
-            if (_tail.Previous!=null)
-            {
-                _tail.Previous.Next = null;
-            }
-            _tail = _tail.Previous;
+            var result = _head.Value;
+            _head = _head.Next;
+
             _count -= 1;
 
             if (_min == result)
                 FindMin();
-
-            return result;
-         }
+        }
 
         public int Top()
         {
@@ -69,10 +60,23 @@ namespace Stacks.LeetCode
         {
             _min = int.MaxValue;
             var current = _head;
-            while (current != null) {
+            while (current != null)
+            {
                 _min = Math.Min(_min, current.Value);
                 current = current.Next;
             }
+        }
+
+        class Node
+        {
+            public Node(int value)
+            {
+                Value = value;
+            }
+
+            public int Value { get; }
+            public Node Next { get; set; }
+            public Node Previous { get; set; }
         }
     }
 }
