@@ -26,6 +26,15 @@ namespace Trees.Tests
         }
 
         [Theory]
+        [InlineData(new int[] { 3, 5, 1, 6, 8, 4, 2 }, 7)]
+        public void TestCtrWithCount(int[] values, int expected)
+        {
+            sut = new MaxHeap<int>(values);
+            var actual = sut.Count;
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(new int[] { 3, 5, 1, 6, 8, 4, 2 }, 55)]
         public void TestAdd(int[] values, int expected)
         {
