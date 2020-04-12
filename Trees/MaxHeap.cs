@@ -13,6 +13,15 @@ namespace Trees
             values = new T[100];
         }
 
+        public MaxHeap(T[] items)
+        {
+            values = new T[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                Add(items[i]);
+             }
+        }
+
         public int Count => count;
        
         public int Parent(int index)
@@ -50,7 +59,7 @@ namespace Trees
                     break;
 
                 int maxChildIndex = MaxChildIndex(left, right);
-                if (values[maxChildIndex].CompareTo(values[index])> 0)
+                if (values[index].CompareTo(values[maxChildIndex])> 0)
                 {
                     break;
                 }

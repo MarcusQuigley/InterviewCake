@@ -23,6 +23,15 @@ namespace Trees.Tests.LeetCode
             var actual = sut.DiameterOfBinaryTree(head);
             Assert.Equal(expected, actual);
         }
+        [Theory]
+        [InlineData(new int[] { 2, 7, 4, 1, 8, 1 }, 1)]
+        public void TestLastStoneWeight(int[] values, int expected)
+        { 
+            var actual = sut.LastStoneWeight(values);
+            Assert.Equal(expected, actual);
+        }
+               
+
 
         private TreeNode<int> CreatTreeNodes(int[] values)
         {
