@@ -70,5 +70,31 @@ namespace LeetCode.Arrays
             return total;
         }
 
+        //525 https://leetcode.com/problems/contiguous-array/
+        public int FindMaxLength(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            int[] values = new int[nums.Length];
+            int result = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                values[i] = 0;
+                var ones = 0;
+                var zeroes = 0;
+                for (int j = i; j >= 0; j--)
+                {
+                    _ = (nums[j] == 0) ? zeroes += 1 : ones += 1;
+                    if ((i - j) % 2 != 0 && ones == zeroes)
+                    {
+                        values[j] = Math.Max(ones * 2, values[j]);
+                        result = Math.Max(result, values[j]);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }
