@@ -49,5 +49,19 @@ namespace LeetCode.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 0, 0 }, 0)]
+        [InlineData(new int[] { 0, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0 }, 2)]
+        [InlineData(new int[] { 0, 1, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0, 1, 1, 1, 0, 0, 0 }, 8)]
+        [InlineData(new int[] { 0, 1, 1, 1, 1, 1, 0, 0, 0 }, 6)]
+        public void Test_FindMaxLengthBetter(int[] nums, int expected)
+        {
+            var actual = sut.FindMaxLengthBetter(nums);
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

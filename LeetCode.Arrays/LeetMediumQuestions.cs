@@ -15,8 +15,8 @@ namespace LeetCode.Arrays
             for (int i = 0; i < strs.Length; i++)
             {
                 var value = strs[i];
-              
-                var asciiTotal = IdentifyValue ( value);
+
+                var asciiTotal = IdentifyValue(value);
                 if (storage.ContainsKey(asciiTotal))
                     storage[asciiTotal].Add(value);
                 else
@@ -30,7 +30,7 @@ namespace LeetCode.Arrays
             return results;
         }
 
-        string IdentifyValue( string value)
+        string IdentifyValue(string value)
         {
             var valueAsChars = value.ToCharArray();
             char[] keyArr = new char[26];
@@ -47,7 +47,7 @@ namespace LeetCode.Arrays
             var total = 0;
             var lowestKey = 0;
             var highestKey = 0;
-            
+
             for (int i = 0; i < arr.Length; i++)
             {
                 var key = arr[i];
@@ -95,6 +95,26 @@ namespace LeetCode.Arrays
             }
             return result;
         }
+        //525 https://leetcode.com/problems/contiguous-array/
+        public int FindMaxLengthBetter(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            int max = 0;
+            int currsum = 0;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map.Add(0, -1);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                currsum += (nums[i] == 0) ? -1 : 1;
 
+                if (map.ContainsKey(currsum))
+                    max = Math.Max(max, i - map[currsum]);
+                else
+                    map.Add(currsum, i);
+            }
+            return max;
+        }
     }
+
 }
