@@ -315,6 +315,31 @@ namespace LeetCode.Arrays
             }
             return true;
         }
+        //167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+        public int[] TwoSum(int[] numbers, int target)
+        {
+            if (numbers == null || numbers.Length < 2)
+                throw new ArgumentNullException(nameof(numbers));
+            int leftIndex = 0;
+            int rightIndex = numbers.Length - 1;
+            while (leftIndex < rightIndex)
+            {
+                var sum = numbers[leftIndex] + numbers[rightIndex];
+                if (sum == target)
+                    break;
+                else if (sum < target)
+                    leftIndex += 1;
+                else// (sum > target)
+                    rightIndex -= 1;
+                //if (numbers[rightIndex] > target)
+                //    rightIndex -= 1;
+                //if (numbers[leftIndex] < target)
+                //    leftIndex += 1;
+                
+            }
+            return new int[] { leftIndex + 1, rightIndex + 1 };
+        }
+    }
 
         //844 https://leetcode.com/problems/backspace-string-compare/
         // //This uses O(n) space
