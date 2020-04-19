@@ -115,6 +115,33 @@ namespace LeetCode.Arrays
             }
             return max;
         }
+
+        //238 https://leetcode.com/problems/product-of-array-except-self/
+        //FAILED
+        public int[] ProductExceptSelf(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            int n = nums.Length;
+            int[] result = new int[n];
+            int[] rights = new int[n];
+            result[0] = 1;
+            for (var i = 1; i < n; i++)
+            {
+                result[i] = result[i - 1] * nums[i - 1];
+            }
+
+            rights[n - 1] = 1;
+            for (int i = n - 2; i >= 0; i--)
+            {
+                rights[i] = rights[i + 1] * nums[i + 1];
+                result[i] *= rights[i];
+            }
+
+            return result;
+
+
+        }
     }
 
 }

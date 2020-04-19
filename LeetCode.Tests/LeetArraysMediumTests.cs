@@ -63,5 +63,14 @@ namespace LeetCode.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 24, 12, 8, 6 })]
+        public void Test_ProductExceptSelf(int[] numbers, int[] expected)
+        {
+            var actual = sut.ProductExceptSelf(numbers);
+            Assert.Equal(expected, actual);
+        }
+
+
     }
 }
