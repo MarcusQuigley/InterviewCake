@@ -139,8 +139,71 @@ namespace LeetCode.Arrays
             }
 
             return result;
+        }
 
+        //678 https://leetcode.com/problems/valid-parenthesis-string/
+        //FAILED
+        public bool CheckValidString(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length == 0)
+                return true;
+            int low = 0;
+            int hi = 0;
+            foreach (char c in s.ToCharArray())
+            {
+                if (c == '(')
+                {
+                    low += 1;
+                    hi += 1;
+                }
+                else if (c==')')
+                {
+                    low -= 1;
+                    hi -= 1;
+                }
+                else //* means it could be either (, ) or ""
+                {
+                    low -= 1; 
+                    hi += 1;
+                }
+                if (hi < 0)
+                    return false;
+                low = Math.Max(low, 0);  //low could be negative.
+            }
+            return low==0;
+        }
 
+        public bool CheckValidStringBad(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length == 0)
+                return true;
+            int left = 0;
+            int wildcard = 0;
+            var chars = s.ToCharArray();
+            foreach (char c in chars)
+            {
+                if (c == '(')
+                    left += 1;
+                else if (c == '*')
+                    wildcard += 1;
+                else
+                {
+                    if (left == 0 && wildcard == 0)
+                        return false;
+                    else if (left == 0)
+                        wildcard -= 1;
+                    else
+                        left -= 1;
+                }
+            }
+            if (left > 0)
+                if (left > wildcard)
+                    return false;
+            return true;
         }
     }
 

@@ -71,6 +71,20 @@ namespace LeetCode.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("()", true)]
+        [InlineData("(*)", true)]
+        [InlineData("(*))", true)]
+        [InlineData("(*()", true)]
+        [InlineData("(((******))", true)]
+        [InlineData("(())((())()()(*)(*()(())())())()()((()())((()))(*", false)]
 
+        public void Test_CheckValidString(string s, bool expected)
+        {
+            var actual = sut.CheckValidString(s);
+            Assert.Equal(expected, actual);
+        }
+
+        
     }
 }
