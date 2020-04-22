@@ -205,6 +205,39 @@ namespace LeetCode.Arrays
                     return false;
             return true;
         }
+
+        //200 https://leetcode.com/problems/number-of-islands/
+        public int NumIslands(char[][] grid)
+        {
+            var n = grid.Length;
+            var result = 0;
+
+            for (int row = 0; row < n; row++)
+            {
+                var m = grid[row].Length;
+                for (int col = 0; col < m; col++)
+                {
+                   if (grid[row][col] == '1')
+                    {
+                        NumIslandsBFS(grid, row, col);
+                        result += 1;
+                    }
+                }
+            }
+            return result;
+        }
+           
+        void NumIslandsBFS(char[][] grid, int r, int c)
+        {
+            if (r < 0 || r >= grid.Length || c < 0 || c >= grid[r].Length || grid[r][c] == '0')
+                return;
+            grid[r][c] = '0';
+            NumIslandsBFS(grid, r + 1, c);//down
+            NumIslandsBFS(grid, r - 1, c);//up
+            NumIslandsBFS(grid, r, c - 1);//left
+            NumIslandsBFS(grid, r, c + 1);//right
+
+        }
     }
 
 }

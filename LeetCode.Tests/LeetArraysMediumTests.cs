@@ -84,7 +84,40 @@ namespace LeetCode.Tests
             var actual = sut.CheckValidString(s);
             Assert.Equal(expected, actual);
         }
+        [Fact]
+        public void Test_NumIslands( )
+        {
+            var matrix = new char[4][];
+            matrix[0] = new char[] { '1', '1', '1', '1', '0' };
+            matrix[1] = new char[] { '1', '1', '0', '1', '0' };
+            matrix[2] = new char[] { '1', '1', '0', '0', '0' };
+            matrix[3] = new char[] { '0', '0', '0', '0', '0' };
+            var actual = sut.NumIslands(matrix);
+            Assert.Equal(1, actual);
+        }
+       
+        [Fact]
+        public void Test_NumIslands2()
+        {
+            var matrix = new char[4][];
+            matrix[0] = new char[] { '1', '1', '0', '0', '0' };
+            matrix[1] = new char[] { '1', '1', '0', '0', '0' };
+            matrix[2] = new char[] { '0', '0', '1', '0', '0' };
+            matrix[3] = new char[] { '0', '0', '0', '1', '1' };
+            var actual = sut.NumIslands(matrix);
+            Assert.Equal(3, actual);
+        }
+        [Fact]
+        public void Test_NumIslands3()
+        {
+            var matrix = new char[3][];
+            matrix[0] = new char[] { '1', '1', '1' };
+            matrix[1] = new char[] { '0', '1', '0'};
+            matrix[2] = new char[] { '1', '1', '1' };
+     ;
+            var actual = sut.NumIslands(matrix);
+            Assert.Equal(1, actual);
+        }
 
-        
     }
 }
