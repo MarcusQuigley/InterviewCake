@@ -247,7 +247,7 @@ namespace LeetCode.Arrays
                 return -1;
             int n = grid.Length;
             int m = grid[0].Length;
-            int[,] dp = new int[n, m];
+            //  int[,] dp = new int[n, m];
 
             for (int row = 0; row < n; row++)
             {
@@ -255,25 +255,23 @@ namespace LeetCode.Arrays
                 {
                     if (row == 0)
                     {
-                        if (col == 0)
-                            dp[0, 0] = grid[0][0];
-                        else
+                        if (col > 0)
                         {
-                            dp[0, col] = grid[0][col] + dp[0, col - 1];
+                            grid[0][col] = grid[0][col] + grid[0][col - 1];
                         }
                     }
                     else if (col == 0)
                     {
-                        dp[row, 0] = grid[row][0] + dp[row - 1, 0];
+                        grid[row][0] = grid[row][0] + grid[row - 1][0];
                     }
                     else
                     {
-                        var min = Math.Min(dp[row, col - 1], dp[row - 1, col]);
-                        dp[row, col] = grid[row][col] + min;
+                        var min = Math.Min(grid[row][col - 1], grid[row - 1][col]);
+                        grid[row][col] = grid[row][col] + min;
                     }
                 }
             }
-            return dp[n - 1, m - 1];
+            return grid[n - 1][m - 1];
         }
 
 
