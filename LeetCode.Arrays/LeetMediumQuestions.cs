@@ -238,6 +238,90 @@ namespace LeetCode.Arrays
             NumIslandsBFS(grid, r, c + 1);//right
 
         }
+
+
+        //64 https://leetcode.com/problems/minimum-path-sum/
+        public int MinPathSum(int[][] grid)
+        {
+            if (grid == null || grid.Length == 0)
+                return -1;
+            int n = grid.Length;
+            int m = grid[0].Length;
+            int[,] dp = new int[n, m];
+
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < m; col++)
+                {
+                    if (row == 0)
+                    {
+                        if (col == 0)
+                            dp[0, 0] = grid[0][0];
+                        else
+                        {
+                            dp[0, col] = grid[0][col] + dp[0, col - 1];
+                        }
+                    }
+                    else if (col == 0)
+                    {
+                        dp[row, 0] = grid[row][0] + dp[row - 1, 0];
+                    }
+                    else
+                    {
+                        var min = Math.Min(dp[row, col - 1], dp[row - 1, col]);
+                        dp[row, col] = grid[row][col] + min;
+                    }
+                }
+            }
+            return dp[n - 1, m - 1];
+        }
+
+
+        //64 https://leetcode.com/problems/minimum-path-sum/
+        public int MinPathSumTimesOut(int[][] grid)
+        {
+            if (grid == null)
+                throw new ArgumentNullException(nameof(grid));
+            int n = grid.Length;
+ 
+            var min = int.MaxValue;
+
+            QItem start = new QItem(0, 0, grid[0][0]);
+            Queue<QItem> q = new Queue<QItem>();
+            q.Enqueue(start);
+
+            while (q.Count > 0)
+            {
+                var current = q.Dequeue();
+                var rowLength = grid[current.Row].Length;
+                if (current.Row+1 == n && current.Col+1 == rowLength)
+                    min = Math.Min(min, current.Sum);
+        
+                //down
+                if (current.Row + 1 < n)
+                    q.Enqueue(new QItem(current.Row + 1, current.Col, current.Sum + grid[current.Row + 1][current.Col]));
+                //right
+             
+                if (current.Col + 1 < rowLength)
+                    q.Enqueue(new QItem(current.Row, current.Col + 1, current.Sum + grid[current.Row  ][current.Col + 1]));
+            }
+            return min;
+        }
+
+        private class QItem
+        {
+            public QItem(int r, int c, int sum)
+            {
+                Row = r;
+                Col = c;
+                Sum = sum;
+            }
+            public int Row { get; set; }
+            public int Col { get; set; }
+            public int Sum { get; set; }
+        }
+
+
     }
 
 }

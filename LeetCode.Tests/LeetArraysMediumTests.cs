@@ -114,10 +114,65 @@ namespace LeetCode.Tests
             matrix[0] = new char[] { '1', '1', '1' };
             matrix[1] = new char[] { '0', '1', '0'};
             matrix[2] = new char[] { '1', '1', '1' };
-     ;
-            var actual = sut.NumIslands(matrix);
+             var actual = sut.NumIslands(matrix);
             Assert.Equal(1, actual);
         }
+
+        [Fact]
+        public void Test_MinPathSum()
+        {
+            var matrix = new int[3][];
+            matrix[0] = new int[] { 1, 3, 1 };
+            matrix[1] = new int[] { 1, 5, 1 };
+            matrix[2] = new int[] { 4, 2,1 };
+            var actual = sut.MinPathSum(matrix);
+            Assert.Equal(7, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSum2()
+        {
+            var matrix = new int[2][];
+            matrix[0] = new int[] { 1, 2 };
+            matrix[1] = new int[] { 1, 1 };
+            
+            var actual = sut.MinPathSum(matrix);
+            Assert.Equal(3, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSum3()
+        {
+            var matrix = new int[2][];
+            matrix[0] = new int[] { 1, 2, 5 };
+            matrix[1] = new int[] { 3,2, 1 };
+
+            var actual = sut.MinPathSum(matrix);
+            Assert.Equal(6, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSum4()
+        {
+            var matrix = new int[1][];
+            matrix[0] = new int[] { 9, 1, 4, 8 };
+
+            var actual = sut.MinPathSum(matrix);
+            Assert.Equal(22, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSum5()
+        {
+            var matrix = new int[3][];
+            matrix[0] = new int[] { 9};
+            matrix[1] = new int[] { 2 };
+            matrix[2] = new int[] { 4 };
+
+            var actual = sut.MinPathSum(matrix);
+            Assert.Equal(15, actual);
+        }
+
 
     }
 }
