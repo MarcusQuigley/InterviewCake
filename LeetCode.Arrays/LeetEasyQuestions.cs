@@ -230,16 +230,15 @@ namespace LeetCode.Arrays
         public void MoveZerosShort(int[] nums)
         {
             var zeroIndex = 0;
-            for (int i = 0; i < nums.Length; i++)
+            var n = nums.Length;
+            for (int i = 0; i < n; i++)
             {
                 if (nums[i] != 0)
-                {
-                    var temp = nums[i];
-                    nums[i] = nums[zeroIndex];
-                    nums[zeroIndex] = temp;
-                    zeroIndex++;
-                }
-
+                    nums[zeroIndex++] = nums[i];
+            }
+            for (int i = zeroIndex; i < n; i++)
+            {
+                nums[i] = 0;
             }
         }
 
@@ -338,6 +337,27 @@ namespace LeetCode.Arrays
                 
             }
             return new int[] { leftIndex + 1, rightIndex + 1 };
+        }
+        //283. https://leetcode.com/problems/move-zeroes/
+        public void MoveZeroes(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+
+            var n = nums.Length;
+            var zeroPtr = 0;
+            var nonzeroPtr = 0;
+
+            while (nonzeroPtr < n)
+            {
+                while (nums[zeroPtr] != 0)// && zeroPtr < n)
+                    zeroPtr += 1;
+                while (nums[nonzeroPtr] == 0)// && nonzeroPtr < n)
+                    nonzeroPtr += 1;
+                var temp = nums[zeroPtr];
+                nums[zeroPtr] = nums[nonzeroPtr];
+                nums[nonzeroPtr] = temp;
+            }
         }
     }
 }
