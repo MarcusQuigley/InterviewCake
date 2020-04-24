@@ -78,5 +78,55 @@ namespace Matrixes.LeetCode
             }
             return grid[n - 1][m - 1];
         }
+
+        //Leet 1091 https://leetcode.com/problems/shortest-path-in-binary-matrix/
+        //BFS
+        //all moves array
+        //set grid cell to visited after queuing it
+        public int ShortestPathBinaryMatrix(int[][] grid)
+        {
+            if (grid == null)
+                throw new ArgumentNullException(nameof(grid));
+            int n = grid.Length;
+            var result = -1;
+
+            if (n == 0 || grid[0][0] != 0 || grid[n - 1][n - 1] != 0)
+                return result;
+
+            var source = new QItem(0, 0, 1);
+            var moves = new int[8][] { new int[2] { 0, 1 }, new int[2] { 0, -1 }, new int[2] { 1, 0 }, new int[2] { -1, 0 },
+            new int[2] { -1, -1 }, new int[2] { 1, -1 }, new int[2] { 1, 1 }, new int[2] { -1, 1 } };
+            Func<int[], bool> ValidMove = current => current[0] > -1 && current[0] < n &&
+                                                     current[1] > -1 && current[1] < n &&
+                                                     grid[current[0]][current[1]] == 0;
+
+
+            var q = new Queue<QItem>();
+            q.Enqueue(source);
+            var min = int.MaxValue;
+            while (q.Count > 0)
+            {
+                var current = q.Dequeue();
+                if (current.Row == n-1 && current.Col == n - 1)         
+                {
+                    min = Math.Min(min, current.Total);
+                }
+                else 
+                {
+                    foreach (var move in moves)
+                    {
+                        var newmove = new int[2] { current.Row + move[0], current.Col + move[1] };
+                        if (ValidMove(newmove))
+                        {
+                            q.Enqueue(new QItem(newmove[0], newmove[1], current.Total + 1));
+                            grid[newmove[0]][newmove[1]] = 1;
+                        }
+                    }
+                }
+            }
+            if (min != int.MaxValue)
+                result = min;
+            return result;
+        }
     }
 }
