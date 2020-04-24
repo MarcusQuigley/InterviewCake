@@ -11,7 +11,7 @@ namespace Matrixes.Tests.CtCI
             sut = new CTCIMatrixes();
         }
         [Fact]
-        public void Tes_tRotateMatrix()
+        public void Test_RotateMatrix()
         {
             var grid = new int[4][];
             grid[0] = new int[] { 1, 2, 3, 4 };
