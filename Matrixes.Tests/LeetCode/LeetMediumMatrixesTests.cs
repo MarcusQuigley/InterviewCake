@@ -16,7 +16,7 @@ namespace Matrixes.Tests.LeetCode
         public void Test_NumIslands()
         {
             var grid = new char[4][];
-            grid[0] = new char[] { '1', '1', '1','1', '0' };
+            grid[0] = new char[] { '1', '1', '1', '1', '0' };
             grid[1] = new char[] { '1', '1', '0', '1', '0' };
             grid[2] = new char[] { '1', '1', '0', '0', '0' };
             grid[3] = new char[] { '0', '0', '0', '0', '0' };
@@ -35,5 +35,34 @@ namespace Matrixes.Tests.LeetCode
             Assert.Equal(3, actual);
         }
 
+        [Fact]
+        public void Test_MinPathSums()
+        {
+            var grid = new int[3][];
+            grid[0] = new int[] { 1, 3, 1 };
+            grid[1] = new int[] { 1, 5, 1 };
+            grid[2] = new int[] { 4, 2, 1 };
+            var actual = sut.MinPathSum(grid);
+            Assert.Equal(7, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSums2()
+        {
+            var grid = new int[1][];
+            grid[0] = new int[] {9, 1, 4, 8 };
+            var actual = sut.MinPathSum(grid);
+            Assert.Equal(22, actual);
+        }
+
+        [Fact]
+        public void Test_MinPathSums3()
+        {
+            var grid = new int[2][];
+            grid[0] = new int[] { 1, 2, 5 };
+            grid[1] = new int[] { 3, 2, 1 };
+            var actual = sut.MinPathSum(grid);
+            Assert.Equal(6, actual);
+        }
     }
 }
