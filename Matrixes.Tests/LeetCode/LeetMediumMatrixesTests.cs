@@ -64,5 +64,50 @@ namespace Matrixes.Tests.LeetCode
             var actual = sut.MinPathSum(grid);
             Assert.Equal(6, actual);
         }
+
+        [Fact]
+        public void Test_ShortestPathBinaryMatrix()
+        {
+            var grid = new int[2][];
+            grid[0] = new int[] { 0,1};
+            grid[1] = new int[] { 1,0 };
+            var actual = sut.ShortestPathBinaryMatrix(grid);
+            Assert.Equal(2, actual);
+        }
+
+        [Fact]
+        public void Test_ShortestPathBinaryMatrix2()
+        {
+            var grid = new int[3][];
+            grid[0] = new int[] { 0, 0,0 };
+            grid[1] = new int[] { 1,1, 0 };
+            grid[2] = new int[] { 1, 1, 0 };
+            var actual = sut.ShortestPathBinaryMatrix(grid);
+            Assert.Equal(4, actual);
+        }
+
+        [Fact]
+        public void Test_ShortestPathBinaryMatrix3()
+        {
+            var grid = new int[5][];
+            grid[0] = new int[] { 0, 0, 0, 0,1 };
+            grid[1] = new int[] { 1, 0, 0, 0, 0 };
+            grid[2] = new int[] { 0,1,0, 1, 0 };
+            grid[3] = new int[] { 0, 0, 0, 1, 1 };
+            grid[4] = new int[] { 0, 0, 0, 1, 0 };
+            var actual = sut.ShortestPathBinaryMatrix(grid);
+            Assert.Equal(-1, actual);
+        }
+
+        [Fact]
+        public void Test_ShortestPathBinaryMatrix4()
+        {
+            var grid = new int[3][];
+            grid[0] = new int[] { 0, 0, 0 };
+            grid[1] = new int[] { 0, 1, 0 };
+            grid[2] = new int[] { 0, 0, 0 };
+            var actual = sut.ShortestPathBinaryMatrix(grid);
+            Assert.Equal(4, actual);
+        }
     }
 }
