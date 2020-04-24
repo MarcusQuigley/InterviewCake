@@ -3,10 +3,10 @@ using Xunit;
 
 namespace Matrixes.Tests.CtCI
 {
-    public  class CTCMatrixesTests
+    public  class CTCIMatrixesTests
     {
          CTCIMatrixes sut = null;
-        public CTCMatrixesTests()
+        public CTCIMatrixesTests()
         {
             sut = new CTCIMatrixes();
         }
@@ -19,7 +19,7 @@ namespace Matrixes.Tests.CtCI
             grid[2] = new int[] { 9, 10, 11, 12 };
             grid[3] = new int[] { 13, 14, 15, 16 };
             sut.RotateMatrix(grid);
-            Assert.Equal("", "Need to fix this RotateMatrix");
+            Assert.True(grid[3][2] == 12);
         }
     }
 }
