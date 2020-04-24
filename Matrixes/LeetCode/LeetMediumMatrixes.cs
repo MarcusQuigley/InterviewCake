@@ -46,5 +46,37 @@ namespace Matrixes.LeetCode
             BFSIslands(grid, row + 1, col);
             }
         }
+
+        //Leet 64 https://leetcode.com/problems/minimum-path-sum/
+        //Dynamic Programming 
+        public int MinPathSum(int[][] grid)
+        {
+            if (grid == null)
+                throw new ArgumentNullException(nameof(grid));
+            if (grid.Length == 0)
+                return 0;
+
+            var n = grid.Length;
+            var m = grid[0].Length;
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < m; col++)
+                {
+                    if (row == 0)
+                    {
+                        if (col > 0)
+                            grid[row][col] = grid[row][col] + grid[row][col - 1];
+                    }
+                    else if (col == 0)
+                        grid[row][col] = grid[row][col] + grid[row - 1][col];
+                    else
+                    {
+                        var min = Math.Min(grid[row][col-1], grid[row-1][col]);
+                        grid[row][col] = grid[row][col] + min;
+                    }
+                }
+            }
+            return grid[n - 1][m - 1];
+        }
     }
 }
