@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LeetCode\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LeetCode.Arrays\LeetCode.Arrays.csproj" />
     <ProjectReference Include="..\Matrixes\Matrixes.csproj" />
   </ItemGroup>
