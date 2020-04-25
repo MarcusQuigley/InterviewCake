@@ -339,7 +339,7 @@ namespace LeetCode.Arrays
             }
             return new int[] { leftIndex + 1, rightIndex + 1 };
         }
-    }
+
 
         //844 https://leetcode.com/problems/backspace-string-compare/
         // //This uses O(n) space
@@ -427,5 +427,5 @@ namespace LeetCode.Arrays
             //if index has been decremented i need to increment it by 1.
             //if it hasnt been decremented then it there should be nothing to show
         }
-    }
+     }
 }
