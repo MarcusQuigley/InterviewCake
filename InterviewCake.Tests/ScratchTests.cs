@@ -106,6 +106,37 @@ namespace InterviewCake.Tests
             sut.ZeroMatrix(matrix, 1);
 
         }
+
+        [Fact]
+        public void Test_ShortestDistance()
+        {
+            var rowsNumber = 5;
+            var matrix = new int[rowsNumber][];
+            matrix[0] = new int[] { 0, 0, 0, 1 };
+            matrix[1] = new int[] { 1, 0, 0, 0 };
+            matrix[2] = new int[] { 0, 0, 0, 0 };
+            matrix[3] = new int[] { 1, 0, 0, 0 };
+            matrix[4] = new int[] { 0, 0, 0, 0 };
+
+            sut.ZeroMatrix(matrix, 1);
+
+        }
+
+        [Fact]
+        public void Test_MinDistanceInMatrix()
+        { 
+            var rowsNumber = 4;
+            var matrix = new char[rowsNumber][];
+            matrix[0] = new char[] { '0', '*', '0', 's' };
+            matrix[1] = new char[] { '*', '0', '*', '*' };
+            matrix[2] = new char[] { '0', '*', '*', '*' };
+            matrix[3] = new char[] { 'd', '*', '*', '*' };
+            
+
+            var actual = sut.MinDistanceInMatrix(matrix);
+            Assert.Equal(6, actual);
+
+        }
     }
 }
 

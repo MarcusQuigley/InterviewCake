@@ -178,5 +178,79 @@ namespace InterviewCake.Scratch
             //}
 
         }
+
+        public int MinDistanceInMatrix(char[][] grid)
+        {
+            QItem source = new QItem(0, 0, 0);
+            int n = grid.Length;
+            bool[][] visited = new bool[n][];
+            for (int i = 0; i < n; i++)
+            {
+                visited[i] = new bool[n];
+            }
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    var cell = grid[row][col];
+                    if (cell == '0')
+                        visited[row][col] = true;
+                    else if (cell == 's')
+                    {
+                        source.Row = row;
+                        source.Col = col;
+                    }
+                }
+            }
+
+            Queue<QItem> q = new Queue<QItem>();
+            q.Enqueue(source);
+            while (q.Count > 0)
+            {
+                var current = q.Dequeue();
+                if (grid[current.Row][current.Col] == 'd')
+                    return current.Distance;
+                //up
+                if(current.Row -1 >=0 && visited[current.Row-1][current.Col] == false)
+                {
+                    q.Enqueue(new QItem(current.Row - 1, current.Col, current.Distance + 1));
+                    visited[current.Row - 1][current.Col] = true;
+                }
+                //down
+                if (current.Row + 1 < n && visited[current.Row + 1][current.Col] == false)
+                {
+                    q.Enqueue(new QItem(current.Row + 1, current.Col, current.Distance + 1));
+                    visited[current.Row + 1][current.Col] = true;
+                }
+
+                //left
+                if (current.Col - 1 >= 0 && visited[current.Row][current.Col-1] == false)
+                {
+                    q.Enqueue(new QItem(current.Row, current.Col-1, current.Distance + 1));
+                    visited[current.Row][current.Col-1] = true;
+                }
+                //right
+                if (current.Col + 1 < n && visited[current.Row][current.Col + 1] == false)
+                {
+                    q.Enqueue(new QItem(current.Row, current.Col + 1, current.Distance + 1));
+                    visited[current.Row][current.Col + 1] = true;
+                }
+            }
+
+            return -1;
+        }
+
+        private class QItem
+        {
+            public QItem(int row, int col, int distance)
+            {
+                Row = row;
+                Col = col;
+                Distance = distance;
+            }
+            public int Row { get; set; }
+            public int Col { get; set; }
+            public int Distance { get; set; }
+        }
     }
 }
