@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace InterviewCake.Scratch
+namespace Scratch
 {
     public class ScratchOne
     {

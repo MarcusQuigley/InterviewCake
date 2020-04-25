@@ -16,11 +16,10 @@ namespace Trees.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 3)]
-        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 3)]
+        //[InlineData(new int[] { 1, 2, 3, 4, 5 }, 3)]
         public void TestMiddleNode(int[] values, int expected)
         {
-            ;
-            var head = CreatTreeNodes(values);
+             var head = CreatTreeNodes(values);
             var actual = sut.DiameterOfBinaryTree(head);
             Assert.Equal(expected, actual);
         }

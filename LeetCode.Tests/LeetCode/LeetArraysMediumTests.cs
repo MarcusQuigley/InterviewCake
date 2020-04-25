@@ -1,17 +1,17 @@
-﻿using LeetCode.Arrays;
+﻿using Arrays.LeetCode;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace LeetCode.Tests
+namespace Arrays.Tests
 {
     public class LeetArraysMediumTests
     {
-        LeetMediumQuestions sut;
+        LeetMediumArrays sut;
         public LeetArraysMediumTests()
         {
-            sut = new LeetMediumQuestions();
+            sut = new LeetMediumArrays();
         }
         [Theory]
         [InlineData(new string[] { "cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc" }, 10)]

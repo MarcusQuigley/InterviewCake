@@ -1,17 +1,17 @@
-﻿using LeetCode.Arrays;
+﻿using Arrays.LeetCode;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace LeetCode.Tests
+namespace Arrays.Tests
 {
     public class LeetArraysHardTests
     {
-        LeetHardQuestions sut;
+        LeetHardArrays  sut;
         public LeetArraysHardTests()
         {
-            sut = new LeetHardQuestions();
+            sut = new LeetHardArrays();
         }
         [Theory]
         [InlineData(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3,new int[]{ 3, 3, 5, 5, 6, 7 })]

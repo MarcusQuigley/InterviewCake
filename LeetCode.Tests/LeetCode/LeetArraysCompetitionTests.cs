@@ -1,17 +1,17 @@
-﻿using LeetCode.Arrays;
+﻿using Arrays.LeetCode;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace LeetCode.Tests
+namespace Arrays.Tests
 {
     public  class LeetArraysCompetitionTests
     {
-        LeetCompetitionQuestions sut;
+         LeetCompetitionArrays sut;
         public LeetArraysCompetitionTests()
         {
-            sut = new LeetCompetitionQuestions();
+            sut = new LeetCompetitionArrays();
         }
         //[Theory]
         //[InlineData("abc", new int[] { { 0, 1 }{ (1, 2) }, "cab")]
