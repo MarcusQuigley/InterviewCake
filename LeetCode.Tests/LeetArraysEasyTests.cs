@@ -92,17 +92,7 @@ namespace LeetCode.Tests
             Assert.Equal(expected, array);
         }
 
-        [Theory]
-        [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
-        [InlineData(new int[] { 2, 1, 10, 0, 12 }, new int[] { 2, 1, 10, 12, 0 })]
-        [InlineData(new int[] { 0, 1 }, new int[] { 1, 0 })]
-        [InlineData(new int[] { 1, 0 }, new int[] { 1, 0 })]
-        [InlineData(new int[] { 0, 1, 0 }, new int[] { 1, 0, 0 })]
-        public void Test_MoveZerosWithPointers(int[] array, int[] expected)
-        {
-            sut.MoveZerosWithPointers(array);
-            Assert.Equal(expected, array);
-        }
+        
 
         [Theory]
         [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
@@ -110,6 +100,7 @@ namespace LeetCode.Tests
         [InlineData(new int[] { 0, 1 }, new int[] { 1, 0 })]
         [InlineData(new int[] { 0, 1, 0 }, new int[] { 1, 0, 0 })]
         [InlineData(new int[] { 1, 0 }, new int[] { 1, 0 })]
+        [InlineData(new int[] { 1, 0, 1 }, new int[] { 1, 1, 0 })]
         public void Test_MoveZerosShort(int[] array, int[] expected)
         {
             sut.MoveZerosShort(array);
