@@ -34,6 +34,57 @@ namespace LeetCode.Tests
             var actual = sut.CountElements(elements);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 0, 0 }, 0)]
+        [InlineData(new int[] { 0, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0 }, 2)]
+        [InlineData(new int[] { 0, 1, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0, 1, 1, 1, 0, 0, 0 }, 8)]
+        [InlineData(new int[] { 0, 1, 1, 1, 1, 1, 0, 0, 0 }, 6)]
+        public void Test_FindMaxLength(int[] nums, int expected)
+        {
+            var actual = sut.FindMaxLength(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 0, 0 }, 0)]
+        [InlineData(new int[] { 0, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0 }, 2)]
+        [InlineData(new int[] { 0, 1, 1 }, 2)]
+        [InlineData(new int[] { 0, 1, 0, 1, 1, 1, 0, 0, 0 }, 8)]
+        [InlineData(new int[] { 0, 1, 1, 1, 1, 1, 0, 0, 0 }, 6)]
+        public void Test_FindMaxLengthBetter(int[] nums, int expected)
+        {
+            var actual = sut.FindMaxLengthBetter(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 24, 12, 8, 6 })]
+        public void Test_ProductExceptSelf(int[] numbers, int[] expected)
+        {
+            var actual = sut.ProductExceptSelf(numbers);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("()", true)]
+        [InlineData("(*)", true)]
+        [InlineData("(*))", true)]
+        [InlineData("(*()", true)]
+        [InlineData("(((******))", true)]
+        [InlineData("(())((())()()(*)(*()(())())())()()((()())((()))(*", false)]
+
+        public void Test_CheckValidString(string s, bool expected)
+        {
+            var actual = sut.CheckValidString(s);
+            Assert.Equal(expected, actual);
+        }
+
         
     }
 }

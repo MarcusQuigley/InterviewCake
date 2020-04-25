@@ -54,15 +54,15 @@ namespace InterviewCake.Scratch
             return BinarySearchRecursive(arr, low, high, value);
         }
 
-       public int[] PrimeNumbers(int num)
+        public int[] PrimeNumbers(int num)
         {
             List<int> primes = new List<int>(num) { 2 };
-             int start = 3;
-            while(primes.Count < num)
+            int start = 3;
+            while (primes.Count < num)
             {
                 bool isPrime = true;
-                var sqstart =(int) Math.Round( Math.Sqrt(start));
-                for (int i = sqstart; i > 2; i --)
+                var sqstart = (int)Math.Round(Math.Sqrt(start));
+                for (int i = sqstart; i > 2; i--)
                 {
                     if (i % 2 != 0)
                     {
@@ -73,13 +73,110 @@ namespace InterviewCake.Scratch
                         }
                     }
                 }
-                 if (isPrime)
+                if (isPrime)
                 {
                     primes.Add(start);
-                 }
+                }
                 start += 2;
             }
             return primes.ToArray();
+        }
+
+        public int[][] CreateNxMArray(int n, int m)
+        {
+            Random r = new Random();
+            int[][] array = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                int[] temp = new int[m];
+                PopulateArray(temp, r);
+                array[i] = temp;
+            }
+            return array;
+        }
+
+        private void PopulateArray(int[] temp, Random r)
+        {
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = r.Next(2);
+            }
+        }
+
+        //from CTCI page Arrays Question 1.7
+        public void RotateMatrix(int[][] matrix)
+        {
+            if (matrix == null)
+                throw new ArgumentNullException(nameof(matrix));
+            var n = matrix.Length;
+            for (int layer = 0; layer < (n / 2); layer++)
+            {
+                int first = layer;
+                int last = n - layer - 1;
+                for (int j = first; j < last; j++)
+                {
+                    int offset = j - first;
+                    int temp = matrix[first][j];
+                    matrix[first][j] = matrix[last - offset][first];
+                    matrix[last - offset][first] = matrix[last][last - offset];
+                    matrix[last][last - offset] = matrix[j][last];
+                    matrix[j][last] = temp;
+                }
+            }
+        }
+        //from CTCI page Arrays Question 1.8
+        public void ZeroMatrix(int[][] matrix, int symbol = 0)
+        {
+            if (matrix == null)
+                throw new ArgumentNullException(nameof(matrix));
+
+            var setCols = new HashSet<int>();
+            var setRows = new HashSet<int>();
+
+            int rowsLength = matrix.Length;
+            int colsLength = matrix[0].Length;
+
+            for (int row = 0; row < rowsLength; row++)
+            {
+                for (int col = 0; col < colsLength; col++)
+                {
+                    //if (setCols.Contains(col))
+                    //    break;
+                    if (matrix[row][col] == symbol)
+                    {
+                        setRows.Add(row);
+                        setCols.Add(col);
+                        break;
+                    }
+                }
+            }
+
+            for (int row = 0; row < rowsLength; row++)
+            {
+                if (setRows.Contains(row))
+                {
+                    for (int col = 0; col < colsLength; col++)
+                    {
+                        matrix[row][col] = symbol;
+                    }
+                }
+                else
+                {
+                    foreach (var item in setCols)
+                    {
+                        matrix[row][item] = symbol;
+                    }
+                }
+            }
+
+            //for (int col = 0; col < colsLength; col++)
+            //{
+            //    foreach (var item in setCols)
+            //    {
+            //        matrix[col][item] = symbol;
+            //    }
+            //}
+
         }
     }
 }
