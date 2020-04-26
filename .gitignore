@@ -270,3 +270,4 @@ __pycache__/
 # Sqlite db
 memory
 /PieShopSite/Controllers/PieController.cs
+/eq
