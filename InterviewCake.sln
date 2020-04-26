@@ -5,27 +5,27 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scratch", "InterviewCake.Scratch\Scratch.csproj", "{F0A98228-556F-4235-AC25-CA56F18851F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrays.Tests", "LeetCode.Tests\Arrays.Tests.csproj", "{C3A25174-A9FB-4F28-A34A-ABA57DA30E12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrays.Tests", "Tests\LeetCode.Tests\Arrays.Tests.csproj", "{C3A25174-A9FB-4F28-A34A-ABA57DA30E12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41087CA0-7A11-4D98-B1C2-9F2E284B3B32}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitManipulation", "BitManipulation\BitManipulation.csproj", "{E8506468-A5D2-44EA-83B7-AE0CE457550D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitManipulation.Tests", "BitManipulation.Tests\BitManipulation.Tests.csproj", "{129219A3-50E6-442F-9E95-0B749A1A9015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitManipulation.Tests", "Tests\BitManipulation.Tests\BitManipulation.Tests.csproj", "{129219A3-50E6-442F-9E95-0B749A1A9015}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedLists", "LinkedLists\LinkedLists.csproj", "{83E6A1F8-CF6F-4411-A27B-81CE97294076}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedLists.Tests", "LinkedLists.Tests\LinkedLists.Tests.csproj", "{17E04FC2-7539-4CF1-A8CB-5AD4F4938E1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedLists.Tests", "Tests\LinkedLists.Tests\LinkedLists.Tests.csproj", "{17E04FC2-7539-4CF1-A8CB-5AD4F4938E1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees", "Trees\Trees.csproj", "{5C1C2578-3032-48E1-B8D3-F6EA833FEDE0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.Tests", "Trees.Tests\Trees.Tests.csproj", "{42A98680-F408-480A-95FF-596C386DBA3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.Tests", "Tests\Trees.Tests\Trees.Tests.csproj", "{42A98680-F408-480A-95FF-596C386DBA3B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrixes", "Matrixes\Matrixes.csproj", "{C0BB5FC5-EBE0-4F88-91C0-D492291659AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stacks.Tests", "Stacks.Tests\Stacks.Tests.csproj", "{5D24EE9D-2ADA-4525-BCE7-341B209C32F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stacks.Tests", "Tests\Stacks.Tests\Stacks.Tests.csproj", "{5D24EE9D-2ADA-4525-BCE7-341B209C32F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrixes.Tests", "Matrixes.Tests\Matrixes.Tests.csproj", "{1FA453C0-916C-4E62-A873-8EE3BFBBAF6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrixes.Tests", "Tests\Matrixes.Tests\Matrixes.Tests.csproj", "{1FA453C0-916C-4E62-A873-8EE3BFBBAF6B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stacks", "Stacks\Stacks.csproj", "{EAFCD21C-066B-4BDF-AE3D-3F8709DBBED6}"
 EndProject
