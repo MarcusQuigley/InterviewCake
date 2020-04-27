@@ -4,15 +4,20 @@ using System.Text;
 
 namespace Trees
 {
-    public class TreeNode<T>
+    public class TreeNode
     {
-        public TreeNode(T value)
+        public TreeNode(int value)
         {
-            this.Value = value;
+            this.val = value;
         }
 
-        public T Value { get; set; }
-        public TreeNode<T> Left { get; set; }
-        public TreeNode<T> Right { get; set; }
+        public int val { get; set; }
+        public TreeNode left { get; set; }
+        public TreeNode right { get; set; }
+
+        public override string ToString()
+        {
+            return val.ToString();
+        }
     }
 }
