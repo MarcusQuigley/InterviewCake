@@ -2,7 +2,7 @@
 
 namespace BitManipulation
 {
-    public class LeetCodeBitsEasy
+    public class LeetEasyBits
     {
 
         //https://leetcode.com/problems/single-number/
@@ -30,5 +30,6 @@ namespace BitManipulation
             }
             return nums.Length ^ answer;
         }
+
     }
 }
