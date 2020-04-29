@@ -183,5 +183,18 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.SearchRotatedArray(numbers, target);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] {1,1,1 }, 2,2 )]
+        [InlineData(new int[] { 1 }, 2,0 )]
+        [InlineData(new int[] { 1 }, 1 ,1)]
+        [InlineData(new int[] { 1,2,3 }, 3, 2)]
+        [InlineData(new int[] { 1 }, 0, 0)]
+        [InlineData(new int[] { -1,-1,1 }, 0, 1)]
+        public void Test_SubarraySum(int[] nums, int k, int expected)
+        {
+            var actual = sut.SubarraySum(nums, k);
+            Assert.Equal(expected, actual);
+        }
     }
 }
