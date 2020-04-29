@@ -363,6 +363,30 @@ namespace Arrays.LeetCode
 
             return -1;
         }
+
+        //560 https://leetcode.com/problems/subarray-sum-equals-k/
+        //had to look at soln
+        public int SubarraySum(int[] nums, int k)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0)
+                return 0;
+            int result = 0;
+            int n = nums.Length;
+            for (int i = 0; i < n; i++)
+            {
+                int sum = 0;
+                for (int j = i; j < n; j++)
+                {
+                      sum += nums[j];
+                    if (sum == k) 
+                        result += 1;
+                     
+                }
+            }
+            return result;
+        }
     }
 }
  
