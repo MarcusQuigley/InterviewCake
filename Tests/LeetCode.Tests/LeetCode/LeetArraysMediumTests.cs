@@ -196,5 +196,16 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.SubarraySum(nums, k);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 2,3,1,1,4},true)]
+        [InlineData(new int[] { 3,2,1,0,4 },false)]
+ 
+        public void Test_CanJump(int[] nums, bool expected)
+        {
+            var actual = sut.CanJump(nums);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

@@ -391,6 +391,26 @@ namespace Arrays.LeetCode
  
             return result;
         }
+
+        //55. https://leetcode.com/problems/jump-game/
+
+        public bool CanJump(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+
+            var n = nums.Length-1;
+            var safePointer = n ;
+
+            for (int i = n-1; i >= 0; i--)
+            {
+                var val = nums[i];
+                if (val >= safePointer - i)
+                    safePointer = i;
+            }
+            return safePointer == 0;
+            
+        }
     }
 }
  
