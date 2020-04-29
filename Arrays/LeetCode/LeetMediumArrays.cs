@@ -372,19 +372,23 @@ namespace Arrays.LeetCode
                 throw new ArgumentNullException(nameof(nums));
             if (nums.Length == 0)
                 return 0;
+          
             int result = 0;
-            int n = nums.Length;
-            for (int i = 0; i < n; i++)
+            int  sum = 0;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map.Add(0, 1);
+            for (int i = 0; i < nums.Length; i++)
             {
-                int sum = 0;
-                for (int j = i; j < n; j++)
-                {
-                      sum += nums[j];
-                    if (sum == k) 
-                        result += 1;
-                     
-                }
+                sum += nums[i];
+                if (map.ContainsKey(sum - k))
+                    result += map[sum - k];
+                var value = map.ContainsKey(sum) ? map[sum] : 0;
+                if (map.ContainsKey(sum))
+                    map[sum] = value + 1;
+                else
+                    map.Add(sum, value + 1);
             }
+ 
             return result;
         }
     }
