@@ -179,5 +179,21 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.BackspaceCompare(s, t);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("leetcode",  0)]
+        [InlineData("loveleetcode", 2)]
+        [InlineData("ababab", -1)]
+        [InlineData("abcdefghiklmn", 0)]
+        [InlineData("a", 0)]
+        [InlineData("", -1)]
+        
+        public void Test_FirstUniqueChar(string s ,int expected)
+        {
+            var actual = sut.FirstUniqueChar(s);
+            Assert.Equal(expected, actual);
+        }
+        
+
     }
 }
