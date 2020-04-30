@@ -8,11 +8,16 @@ namespace Trees
     {
         public TreeNode(T value)
         {
-            this.Value = value;
+            this.val = value;
         }
 
-        public T Value { get; set; }
-        public TreeNode<T> Left { get; set; }
-        public TreeNode<T> Right { get; set; }
+        public T val { get; set; }
+        public TreeNode<T> left { get; set; }
+        public TreeNode<T> right { get; set; }
+
+        public override string ToString()
+        {
+            return val.ToString();
+        }
     }
 }
