@@ -29,7 +29,7 @@ namespace Design.LeetCode.Medium
             if (map.ContainsKey(value))
             {
                 map[value] = null;
-                llist.Remove(value);
+              //  llist.Remove(value);
             }
             else
             {
@@ -41,6 +41,9 @@ namespace Design.LeetCode.Medium
 
         public int ShowFirstUnique()
         {
+            while (llist.Count > 0 && map[llist.First.Value] == null)
+                llist.RemoveFirst();
+
             if (llist.Count == 0)
                 return -1;
             return llist.First.Value;
