@@ -7,6 +7,7 @@ namespace Trees.LeetCode
     public class LeetMediumTrees
     {
         //Leet 1008 https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
+        //bst
         public TreeNode BstFromPreorder(int[] preorder)
         {
             if (preorder == null)
@@ -37,40 +38,49 @@ namespace Trees.LeetCode
 
         //https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/532/week-5/3315/
         //DFS
-        public bool IsValidSequence(TreeNode root, int[] arr)
+        public bool IsValidSequence(TreeNode<int> root, int[] arr)
         {
             if (root == null || arr == null)
                 throw new ArgumentNullException("Somethings null");
-
+            Queue<int> q = new Queue<int>();
             var currindex = 0;
-          // if (arr[currindex] == root.val)
+            q.Enqueue(root.val)
+            if (arr[currindex] == root.val)
             {
                 var current = root;
                 while (current != null)
                 {
-                    if(arr[currindex++] == current.val)
+                    if (arr[currindex] == current.val)
                     {
-                        if (currindex == arr.Length)
+                        currindex += 1;
+                        if (currindex == arr.Length)// && (current.left != null || (current.right != null)))                        
                             return true;
-                        current = current.left;
-                        current = current.right;
+                        if (current.left != null && current.left.val == arr[currindex])
+                            current = current.left;
+                        else if (current.right != null && current.right.val == arr[currindex])
+                            current = current.right;
+                        else
+                            break;
                     }
-                    else { }
+                  
                 }
             }
-            return false;
+            //return DFSValidSequence(root, arr, currindex);
+           return false;
         }
 
-        bool DFSValidSequence(TreeNode current, int[] arr, int currindex)
+        bool DFSValidSequence(TreeNode<int> current, int[] arr, int currindex)
         {
-            if (arr[currindex++] == current.val)
+            if (current != null)
             {
-                if (currindex == arr.Length)
-                    return true;
-                DFSValidSequence(current.left, arr,currindex);
-                DFSValidSequence(current.right, arr, currindex);
+                if (arr[currindex++] == current.val)
+                {
+                    if (currindex == arr.Length)
+                        return true;
+                    DFSValidSequence(current.left, arr, currindex);
+                    DFSValidSequence(current.right, arr, currindex);
+                }
             }
-            //            else { }
             return false;
         }
     }

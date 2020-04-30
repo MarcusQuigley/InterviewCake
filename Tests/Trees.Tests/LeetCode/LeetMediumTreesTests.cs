@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Trees.Tests.LeetCode
 {
-    public class LeetMediumTreesTests
+    public class LeetMediumTreesTests : BaseTreeTests
     {
         readonly LeetMediumTrees sut = null;
         public LeetMediumTreesTests()
@@ -21,8 +21,22 @@ namespace Trees.Tests.LeetCode
         {
              
             var actual = sut.BstFromPreorder(values);
-          //  Assert.Equal(expected, actual);
+           //  Assert.Equal(expected, actual);
         }
-        
+
+        [Theory]
+        //[InlineData(new int[] { 0, 1, 0, 0, 1, 0, -666, -666, 1, 0, 0 }, new int[] { 0, 1, 0, 1 },true)]
+        //[InlineData(new int[] { 0, 1, 0, 0, 1, 0, -666, -666, 1, 0, 0 }, new int[] { 0, 0, 1 }, false)]
+        //[InlineData(new int[] { 0, 1, 0, 0, 1, 0, -666, -666, 1, 0, 0 }, new int[] { 0, 1, 1 }, false)]
+        //[InlineData(new int[] { 0, 1, 0, 0, 1, 0, -666, -666, 1, 0, 0 }, new int[] { 0, 0,0 }, true)]
+        [InlineData(new int[] { 0, 1, 0 }, new int[] { 0, 0 }, true)]
+        [InlineData(new int[] { 0, 0, 0, -666,0,0,1 }, new int[] { 0, 0,1 }, true)]
+        public void Test_IsValidSequence(int[] values, int[] arr, bool expected)
+        {
+            var root = CreatTreeNodes(values);
+            var actual = sut.IsValidSequence(  root, arr);
+               Assert.Equal(expected, actual);
+        }
+
     }
 }
