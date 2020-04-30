@@ -409,7 +409,6 @@ namespace Arrays.LeetCode
                     safePointer = i;
             }
             return safePointer == 0;
-            
         }
     }
 }

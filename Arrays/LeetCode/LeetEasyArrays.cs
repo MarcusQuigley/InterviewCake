@@ -448,5 +448,27 @@ namespace Arrays.LeetCode
                 nums[nonzeroPtr] = temp;
             }
         }
+
+        //387. https://leetcode.com/problems/first-unique-character-in-a-string/
+        public int FirstUniqueChar(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length ==0)
+                return -1;
+            int[] arr = new int[26];
+            var chars = s.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                 arr[chars[i]-'a'] += 1;
+            }
+            for (int j = 0; j < chars.Length; j++)
+            {
+                if (arr[chars[j] - 'a'] == 1)
+                    return j;
+            }
+                return -1;
+        }
     }
 }
