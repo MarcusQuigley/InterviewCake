@@ -34,5 +34,44 @@ namespace Trees.LeetCode
 
             return root;
         }
+
+        //https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/532/week-5/3315/
+        //DFS
+        public bool IsValidSequence(TreeNode root, int[] arr)
+        {
+            if (root == null || arr == null)
+                throw new ArgumentNullException("Somethings null");
+
+            var currindex = 0;
+          // if (arr[currindex] == root.val)
+            {
+                var current = root;
+                while (current != null)
+                {
+                    if(arr[currindex++] == current.val)
+                    {
+                        if (currindex == arr.Length)
+                            return true;
+                        current = current.left;
+                        current = current.right;
+                    }
+                    else { }
+                }
+            }
+            return false;
+        }
+
+        bool DFSValidSequence(TreeNode current, int[] arr, int currindex)
+        {
+            if (arr[currindex++] == current.val)
+            {
+                if (currindex == arr.Length)
+                    return true;
+                DFSValidSequence(current.left, arr,currindex);
+                DFSValidSequence(current.right, arr, currindex);
+            }
+            //            else { }
+            return false;
+        }
     }
 }
