@@ -12,7 +12,7 @@ namespace Trees.LeetCode
         {
             if (preorder == null)
                 throw new ArgumentNullException(nameof(preorder));
-            var n = preorder.Length ;
+            var n = preorder.Length;
             TreeNode root = new TreeNode(preorder[0]);
             for (int i = 1; i < n; i++)
             {
@@ -42,31 +42,54 @@ namespace Trees.LeetCode
         {
             if (root == null || arr == null)
                 throw new ArgumentNullException("Somethings null");
-            Queue<int> q = new Queue<int>();
+
+            return CheckPath(root, arr, 0);
+
+            //Queue<TreeNode<int>> q = new Queue<TreeNode<int>>();
+            Stack<TreeNode<int>> stack = new Stack<TreeNode<int>>();
             var currindex = 0;
-            q.Enqueue(root.val)
-            if (arr[currindex] == root.val)
+            stack.Push(root);
+            var enquedctr = 1;
+
+            while (stack.Count > 0)
             {
-                var current = root;
-                while (current != null)
+                var current = stack.Pop();
+                if (current != null)
                 {
                     if (arr[currindex] == current.val)
                     {
-                        currindex += 1;
-                        if (currindex == arr.Length)// && (current.left != null || (current.right != null)))                        
+                        if (currindex + 1 == arr.Length && (current.left == null && current.right == null))
                             return true;
-                        if (current.left != null && current.left.val == arr[currindex])
-                            current = current.left;
-                        else if (current.right != null && current.right.val == arr[currindex])
-                            current = current.right;
-                        else
-                            break;
+
+                        if (current.left != null && current != null)
+                        {
+                            stack.Push(current.left);
+                            enquedctr += 1;
+                            stack.Push(current.right);
+                            enquedctr += 1;
+
+                            currindex += 1;
+                        }
+                        //else
+                        //currindex -= 1;
+
                     }
-                  
                 }
             }
-            //return DFSValidSequence(root, arr, currindex);
-           return false;
+
+            return false;
+        }
+
+        bool CheckPath(TreeNode<int> root, int[] arr, int index)
+        {
+            if (root == null || index == arr.Length)
+                return false;
+
+            if (root.left == null && root.right == null && root.val == arr[index] && index == arr.Length - 1)
+                return true;
+
+            return root.val == arr[index] && (CheckPath(root.left, arr, index + 1) || CheckPath(root.right, arr, index + 1));
+
         }
 
         bool DFSValidSequence(TreeNode<int> current, int[] arr, int currindex)
