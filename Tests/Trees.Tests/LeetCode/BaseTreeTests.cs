@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Trees.Tests.LeetCode
 {
-    public abstract  class BaseTreeTests
+    public abstract class BaseTreeTests
     {
         public TreeNode<int> CreatTreeNodes(int[] values)
         {
@@ -16,23 +16,43 @@ namespace Trees.Tests.LeetCode
             return root;
         }
 
+        public TreeNode CreatTreeNodesNonGeneric(int[] values)
+        {
+            if (values == null || values.Length == 0)
+                return null;
+
+            TreeNode root = new TreeNode(values[0]);
+            root = InOrderNonGeneric(values, root, 0);
+            return root;
+        }
+
         TreeNode<int> InOrder(int[] arr,
                             TreeNode<int> root, int i)
         {
-            // Base case for recursion 
             if (i < arr.Length)
             {
-                if (arr[i] != -666){
+                if (arr[i] != -666)
+                {
                     TreeNode<int> temp = new TreeNode<int>(arr[i]);
                     root = temp;
+                    root.left = InOrder(arr, root.left, 2 * i + 1);
+                    root.right = InOrder(arr, root.right, 2 * i + 2);
+                }
+            }
+            return root;
+        }
 
-                    // insert left child 
-                    root.left = InOrder(arr,
-                                    root.left, 2 * i + 1);
-
-                    // insert right child 
-                    root.right = InOrder(arr,
-                                    root.right, 2 * i + 2);
+        TreeNode InOrderNonGeneric(int[] arr,
+                           TreeNode root, int i)
+        {
+            if (i < arr.Length)
+            {
+                if (arr[i] != -666)
+                {
+                    TreeNode temp = new TreeNode(arr[i]);
+                    root = temp;
+                    root.left = InOrderNonGeneric(arr, root.left, 2 * i + 1);
+                    root.right = InOrderNonGeneric(arr, root.right, 2 * i + 2);
                 }
             }
             return root;
