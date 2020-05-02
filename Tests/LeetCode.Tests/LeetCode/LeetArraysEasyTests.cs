@@ -193,7 +193,15 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.FirstUniqueChar(s);
             Assert.Equal(expected, actual);
         }
-        
+
+        [Theory]
+        [InlineData("aA", "aAAbbbb", 3)]
+        [InlineData("z","ZZ", 0)]
+        public void Test_NumJewelsInStones(string s, string j, int expected)
+        {
+            var actual = sut.NumJewelsInStones(s, j);
+            Assert.Equal(expected, actual);
+        }
 
     }
 }
