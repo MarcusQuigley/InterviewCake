@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamicProgramming\DynamicProgramming.csproj" />
+    <ProjectReference Include="..\..\DynamicProgramming\DynamicProgramming.csproj" />
   </ItemGroup>
 
 </Project>
