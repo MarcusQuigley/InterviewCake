@@ -454,21 +454,47 @@ namespace Arrays.LeetCode
         {
             if (s == null)
                 throw new ArgumentNullException(nameof(s));
-            if (s.Length ==0)
+            if (s.Length == 0)
                 return -1;
             int[] arr = new int[26];
             var chars = s.ToCharArray();
 
             for (int i = 0; i < chars.Length; i++)
             {
-                 arr[chars[i]-'a'] += 1;
+                arr[chars[i] - 'a'] += 1;
             }
             for (int j = 0; j < chars.Length; j++)
             {
                 if (arr[chars[j] - 'a'] == 1)
                     return j;
             }
-                return -1;
+            return -1;
+        }
+
+        //771 https://leetcode.com/problems/jewels-and-stones/
+        public int NumJewelsInStones(string J, string S)
+        {
+            if (string.IsNullOrEmpty(J) || string.IsNullOrEmpty(S))
+                return 0;
+            var result = 0;
+            for (int i = 0; i < S.Length; i++)
+            {
+                if (J.Contains(S[i]))
+                {
+                    result++;
+                }
+
+            }
+
+            return result;
+            //int[] arrmap = new int[128];
+
+            //foreach (char c in S)
+            //    arrmap[c - 'A'] += 1;
+
+            //foreach (char c in J)
+            //    result += arrmap[c - 'A'];
+            //return result;
         }
     }
 }
