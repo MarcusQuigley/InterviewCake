@@ -319,6 +319,7 @@ namespace Arrays.LeetCode
             public int Sum { get; set; }
         }
         //33 https://leetcode.com/problems/search-in-rotated-sorted-array/
+        //int overflow
         public int SearchRotatedArray(int[] nums, int target)
         {
             if (nums == null)
@@ -347,16 +348,16 @@ namespace Arrays.LeetCode
             if (target >= nums[pivotIndex] && target <= nums[high])
                 low = pivotIndex;
             else
-                high = pivotIndex ;
+                high = pivotIndex;
 
 
             while (low <= high)
             {
-                var mid = low+ (high-low) / 2;
+                var mid = low + (high - low) / 2;
                 if (target == nums[mid])
                     return mid;
                 if (target < nums[mid])
-                    high = mid-1;
+                    high = mid - 1;
                 else
                     low = mid + 1;
             }
@@ -372,9 +373,9 @@ namespace Arrays.LeetCode
                 throw new ArgumentNullException(nameof(nums));
             if (nums.Length == 0)
                 return 0;
-          
+
             int result = 0;
-            int  sum = 0;
+            int sum = 0;
             Dictionary<int, int> map = new Dictionary<int, int>();
             map.Add(0, 1);
             for (int i = 0; i < nums.Length; i++)
@@ -388,7 +389,7 @@ namespace Arrays.LeetCode
                 else
                     map.Add(sum, value + 1);
             }
- 
+
             return result;
         }
 
@@ -399,16 +400,65 @@ namespace Arrays.LeetCode
             if (nums == null)
                 throw new ArgumentNullException(nameof(nums));
 
-            var n = nums.Length-1;
-            var safePointer = n ;
+            var n = nums.Length - 1;
+            var safePointer = n;
 
-            for (int i = n-1; i >= 0; i--)
+            for (int i = n - 1; i >= 0; i--)
             {
                 var val = nums[i];
                 if (val >= safePointer - i)
                     safePointer = i;
             }
             return safePointer == 0;
+        }
+        //5 https://leetcode.com/problems/longest-palindromic-substring/
+        public string LongestPalindrome(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length == 1)
+                return s;
+
+            var max = 1;
+            var maxStartIndex = 0;
+            var n = s.Length;
+            for (int i = 0; i < n; i++)
+            {
+                if (max >= n - i)
+                {
+                    return s.Substring(maxStartIndex, max);
+                }
+                for (int j = n - 1; j > i; j--)
+                {
+                    if (s[i] == s[j])
+                    {
+                        var mid = i + (j - i) / 2;// j / 2 - i;
+                        var r = mid + 1;
+                        var l = mid;
+                        if ((i + j) % 2 == 0) //if so then we have a individual middle char which has to be unique
+                        {
+                            l--;
+                        }
+                        bool stillPalind = true;
+                        while (l >= i && r <= j)
+                        {
+                            if (s[l] != s[r])
+                            {
+                                stillPalind = false;
+                                break;
+                            }
+                            l--;
+                            r++;
+                        }
+                        if (stillPalind && (j - i + 1) > max)
+                        {
+                            max = j - i + 1;
+                            maxStartIndex = i;
+                        }
+                    }
+                }
+            }
+            return string.Empty;
         }
     }
 }
