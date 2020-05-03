@@ -496,5 +496,26 @@ namespace Arrays.LeetCode
             //    result += arrmap[c - 'A'];
             //return result;
         }
+
+        //338 https://leetcode.com/problems/ransom-note/
+        public bool CanConstruct(string ransomNote, string magazine)
+        {
+            if (ransomNote == null || magazine == null)
+                throw new ArgumentNullException("somethings null");
+
+            int[] map = new int[26];
+            foreach (char c in magazine)
+            {
+                map[c - 'a'] += 1;
+            }
+            foreach (char b in ransomNote)
+            {
+                var val = b - 'a';
+                map[val] -= 1;
+                if (map[val] < 0)
+                    return false;
+            }
+            return true;
+        }
     }
 }

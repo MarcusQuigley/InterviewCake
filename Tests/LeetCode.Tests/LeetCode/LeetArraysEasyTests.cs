@@ -5,8 +5,8 @@ namespace Arrays.Tests.LeetCode
 {
     public class LeetArraysEasyTests
     {
- 
-       readonly LeetEasyArrays sut = null;
+
+        readonly LeetEasyArrays sut = null;
         public LeetArraysEasyTests()
         {
             sut = new LeetEasyArrays();
@@ -93,7 +93,7 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, array);
         }
 
-        
+
 
         [Theory]
         [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
@@ -181,14 +181,14 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData("leetcode",  0)]
+        [InlineData("leetcode", 0)]
         [InlineData("loveleetcode", 2)]
         [InlineData("ababab", -1)]
         [InlineData("abcdefghiklmn", 0)]
         [InlineData("a", 0)]
         [InlineData("", -1)]
-        
-        public void Test_FirstUniqueChar(string s ,int expected)
+
+        public void Test_FirstUniqueChar(string s, int expected)
         {
             var actual = sut.FirstUniqueChar(s);
             Assert.Equal(expected, actual);
@@ -196,12 +196,21 @@ namespace Arrays.Tests.LeetCode
 
         [Theory]
         [InlineData("aA", "aAAbbbb", 3)]
-        [InlineData("z","ZZ", 0)]
+        [InlineData("z", "ZZ", 0)]
         public void Test_NumJewelsInStones(string s, string j, int expected)
         {
             var actual = sut.NumJewelsInStones(s, j);
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("a", "b", false)]
+        [InlineData("aa", "ab", false)]
+        [InlineData("aa", "aab", true)]
+        public void Test_CanConstruct(string note, string magazine, bool expected)
+        {
+            var actual = sut.CanConstruct(note, magazine);
+            Assert.Equal(expected, actual);
+        }
     }
 }
