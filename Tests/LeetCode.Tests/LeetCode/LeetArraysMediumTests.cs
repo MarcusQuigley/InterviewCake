@@ -206,6 +206,20 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CanJump(nums);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("a", "a")]
+        [InlineData("aa", "aa")]
+        [InlineData("ac", "a")]
+        [InlineData("babad", "bab")]
+        [InlineData("cbbd", "bb")]
+        [InlineData("abbacab", "bacab")]
+
+        public void Test_LongestPalindrome(string val, string expected)
+        {
+            var actual = sut.LongestPalindrome(val);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }
