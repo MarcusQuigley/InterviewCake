@@ -212,5 +212,16 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CanConstruct(note, magazine);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 3,2,3 }, 3)]
+        [InlineData(new int[] { 2, 2, 1, 1, 1, 2, 2 }, 2)]
+        public void Test_MajorityElement(int[] nums, int expected)
+        {
+            var actual = sut.MajorityElement(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        
     }
 }
