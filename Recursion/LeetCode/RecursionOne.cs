@@ -42,5 +42,22 @@ namespace Recursion.LeetCode
             }
             return s;
         }
+
+        //24 https://leetcode.com/problems/swap-nodes-in-pairs/
+        public ListNode SwapPairs(ListNode node)
+        {
+            if (node == null)// || node.next == null)
+                return null;// node;
+
+            var firstNode = node;
+            var secondNode = node.next;
+
+            firstNode.next = SwapPairs(secondNode.next);
+            secondNode.next = firstNode;
+
+            return secondNode;
+ 
+        }         
+      
     }
 }
