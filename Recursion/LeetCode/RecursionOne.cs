@@ -46,8 +46,8 @@ namespace Recursion.LeetCode
         //24 https://leetcode.com/problems/swap-nodes-in-pairs/
         public ListNode SwapPairs(ListNode node)
         {
-            if (node == null)// || node.next == null)
-                return null;// node;
+            if (node == null || node.next==null)
+                return node;
 
             var firstNode = node;
             var secondNode = node.next;
@@ -56,8 +56,18 @@ namespace Recursion.LeetCode
             secondNode.next = firstNode;
 
             return secondNode;
- 
-        }         
-      
+
+        }
+        public string NewReverseString(string s)
+        {
+            return NewReverseString2(s, s.Length-1);
+        }
+
+        string NewReverseString2(string s, int index)
+        {
+            if (index < 0)
+                return "";
+            return s.Substring(index, 1) + NewReverseString2(s, index - 1);
+        }
     }
 }
