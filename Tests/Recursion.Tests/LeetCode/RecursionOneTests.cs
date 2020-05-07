@@ -16,6 +16,7 @@ namespace Recursion.Tests.LeetCode
         }
 
         [Theory]
+        [InlineData("a", "a")]
         [InlineData("abc", "cba")]
         [InlineData("ab", "ba")]
         [InlineData("hello", "olleh")]
@@ -28,8 +29,20 @@ namespace Recursion.Tests.LeetCode
         }
 
         [Theory]
+        [InlineData("a", "a")]
+        [InlineData("abc", "cba")]
+        [InlineData("ab", "ba")]
+        [InlineData("hello", "olleh")]
+        public void Test_ReverseStringNew(string s1, string expected)
+        {
+             var actual = sut.NewReverseString(s1);
+             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(new int[] {1, 2, 3, 4}, new int[] {2,1,4,3 })]
-        
+        [InlineData(new int[] {1}, new int[] {1})]
+
         public void Test_SwapPairs(int[] startArray, int[] expected)
         {
             ListNode head = CreateLinkedListFromArray(startArray);
