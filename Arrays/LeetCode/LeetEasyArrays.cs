@@ -517,5 +517,34 @@ namespace Arrays.LeetCode
             }
             return true;
         }
+
+        //169 https://leetcode.com/problems/majority-element/
+        public int MajorityElement(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+
+            //Array.Sort(nums);
+            //return nums[nums.Length / 2];
+            var half = (nums.Length / 2) + 1;
+            var result = -1;
+            var map = new Dictionary<int, int>(half + 1);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var value = nums[i];
+                if (map.ContainsKey(value))
+                     map[value] += 1;
+                 else
+                    map.Add(value, 1);
+                if (map[value] == half)
+                {
+                    result = value;
+                    break;
+                }
+
+            }
+            return result;
+        }
+
     }
 }
