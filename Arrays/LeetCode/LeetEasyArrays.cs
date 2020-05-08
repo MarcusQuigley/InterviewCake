@@ -546,5 +546,33 @@ namespace Arrays.LeetCode
             return result;
         }
 
+        //665 https://leetcode.com/problems/non-decreasing-array/
+        public bool CheckPossibility(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            bool changed = false;
+            var n = nums.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (nums[i] > nums[i + 1])
+                {
+                    if (changed) return false;
+                    changed = true;
+                    if (i == 0)
+                        nums[i] = nums[i+1];
+                    else
+                    {
+                        if (nums[i - 1] > nums[i + 1])
+                            nums[i + 1] = nums[i];
+                        else
+                            nums[i] = nums[i + 1];
+
+                    }
+                }
+            }
+            return true;
+        }
+
     }
 }
