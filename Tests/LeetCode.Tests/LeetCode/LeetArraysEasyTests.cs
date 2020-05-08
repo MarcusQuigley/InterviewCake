@@ -222,6 +222,17 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 4, 2, 3 }, true)]
+        [InlineData(new int[] { 4 }, true)]
+        [InlineData(new int[] { 4,3 }, true)]
+        [InlineData(new int[] { 4, 2, 1}, false)]
+        [InlineData(new int[] { 3, 4, 2, 3 }, false)]
+         public void Test_CheckPossibility(int[] nums, bool expected)
+        {
+            var actual = sut.CheckPossibility(nums);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }
