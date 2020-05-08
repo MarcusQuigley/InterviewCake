@@ -73,7 +73,7 @@ namespace Recursion.Tests.LeetCode
                 head = temp;
             else
             {
-                ListNode ptr= head;
+                ListNode ptr = head;
                 while(ptr.next != null)
                 {
                     ptr = ptr.next;
@@ -96,5 +96,65 @@ namespace Recursion.Tests.LeetCode
             return list.ToArray();
         }
 
+
+        
+         [Theory]
+        [InlineData(new int[] { 4,2,7,1,3}, 2, new int[] { 2, 1, 3 })]
+      //  [InlineData(new int[] { 1 }, 2, new int[] { 1 })]
+
+        public void Test_SearchBST(int[] startArray, int val, int[] expected)
+        {
+            TreeNode head = CreateTree(startArray);
+              var result=  sut.SearchBST(head, val);
+            var actual = CreateArrayFromTree(result, expected.Length);
+             Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
+        public void Test_SearchBSTRecursively(int[] startArray, int val, int[] expected)
+        {
+            TreeNode head = CreateTree(startArray);
+            var result = sut.SearchBSTRecursively(head, val);
+            var actual = CreateArrayFromTree(result, expected.Length);
+            Assert.Equal(expected, actual);
+        }
+
+        private TreeNode CreateTree(int[] startArray)
+        {
+            if (startArray == null) return null;
+             
+            return CreateTree(startArray, null, 0 );
+        }
+
+        TreeNode CreateTree(int[] startArray, TreeNode node, int index)
+        {
+            if (index < startArray.Length)
+            {
+                node = new TreeNode(startArray[index]);
+                node.left = CreateTree(startArray, node.left, (2 * index) + 1);
+                node.right = CreateTree(startArray, node.right, (2 * index) + 2);
+            }
+            return node;
+        }
+
+        int[] CreateArrayFromTree(TreeNode head, int count)
+        {
+           int[] array = new int[count];
+            int index = 0;
+            var q = new Queue<TreeNode>();
+            q.Enqueue(head);
+            while (q.Count > 0)
+            {
+                var node = q.Dequeue();
+                if (node != null)
+                {
+                    array[index++] = node.val;
+                    q.Enqueue(node.left);
+                    q.Enqueue(node.right);
+                }
+                
+            }
+            return array;
+        }
     }
 }
