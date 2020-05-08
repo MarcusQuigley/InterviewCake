@@ -101,5 +101,41 @@ namespace Recursion.LeetCode
             else
                 return SearchBSTRecursively(root.right, val);
         }
+
+        //https://leetcode.com/problems/cousins-in-binary-tree/
+        //use bst along with for loops for levels and nulls in q for sibling markers
+        public bool IsCousins(TreeNode root, int x, int y)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count>0)
+            {
+                bool isCousin = false;
+                bool isSibling = false;
+                var index = q.Count;
+                for (int i = 0; i < index; i++)
+                {
+                    var node = q.Dequeue();
+                    if (node == null)
+                        isSibling = false;
+                    else
+                    {
+                        if (node.val == x || node.val == y)
+                        {
+                            if (isCousin)
+                                return (!isSibling);
+                            isCousin = true;
+                            isSibling = true;
+                        }
+                        if (node.left != null) q.Enqueue(node.left);
+                        if (node.right != null) q.Enqueue(node.right);
+                        q.Enqueue(null);
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

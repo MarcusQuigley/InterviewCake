@@ -156,5 +156,17 @@ namespace Recursion.Tests.LeetCode
             }
             return array;
         }
-    }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4 },4,3,false)]
+        [InlineData(new int[] { 1, 2, 3, -666, 4, -666, 5 }, 4, 5, true)]
+        [InlineData(new int[] { 1, 2, 3, -666, 4  }, 2,3, false)]
+        
+        public void Test_IsCousins(int[] startArray, int x, int y, bool expected)
+        {
+            TreeNode head = CreateTree(startArray);
+            var actual = sut.IsCousins(head, x,y);
+             Assert.Equal(expected, actual);
+        }
+     }
 }
