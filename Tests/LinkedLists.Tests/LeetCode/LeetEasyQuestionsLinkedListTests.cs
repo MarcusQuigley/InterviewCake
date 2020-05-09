@@ -22,7 +22,7 @@ public class LeetEasyQuestionsLinkedListTests
         [InlineData(new int[] { 0, 0 }, 0)]
         public void TestGetDecimalValue(int[] values, int expected)
         {
-           var head =  CreateLinkedList(values);
+           var head = LinkedListHelper.CreateLinkedList(values);
             var actual = sut.GetDecimalValue(head);
             Assert.Equal(expected, actual);
         }
@@ -34,26 +34,33 @@ public class LeetEasyQuestionsLinkedListTests
         [InlineData(new int[] { 1}, 1)]
         public void TestMiddleNode(int[] values, int expected)
         {
-            var head = CreateLinkedList(values);
+            var head = LinkedListHelper.CreateLinkedList(values);
             var actual = sut.MiddleNode(head);
             Assert.Equal(expected, actual.val);
         }
- 
 
-        #region Helpers
-
-        private ListNode CreateLinkedList(int[] values)
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, true)]
+        public void Test_HasCycle(int[] values, bool expected)
         {
-            var head = new ListNode(values[0]);
-            var current = head;
-            for (int i = 1; i < values.Length; i++)
-            {
-                //  while(current.next !=null)
-                current.next = new ListNode(values[i]);
-                current = current.next;
-            }
-            return head;
+            ListNode node = LinkedListHelper.CreateLinkedList(values);
+            var node1 = node.next.next;
+            var node2 = node.next.next.next.next;
+            node2.next = node1;
+            node.next = node;
+            var actual = sut.HasCycle(node);
+            Assert.Equal(expected, actual);
         }
-        #endregion
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, false)]
+        public void Test_HasCycle2(int[] values, bool expected)
+        {
+            ListNode node = LinkedListHelper.CreateLinkedList(values);
+          
+            var actual = sut.HasCycle(node);
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
