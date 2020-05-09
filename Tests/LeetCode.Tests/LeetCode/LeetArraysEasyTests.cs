@@ -233,6 +233,63 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CheckPossibility(nums);
             Assert.Equal(expected, actual);
         }
-        
+
+
+        [Fact]
+         public void Test_CheckStraightLine( )
+        {
+            var grid = new int[6][];
+            grid[0] = new int[] { 1, 1 };
+            grid[1] = new int[] { 2,2 };
+            grid[2] = new int[] {3,4};
+            grid[3] = new int[] {4,5 };
+            grid[4] = new int[] { 5,6};
+            grid[5] = new int[] { 7,7 };
+            var actual = sut.CheckStraightLine(grid);
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine2()
+        {
+            var grid = new int[6][];
+            grid[0] = new int[] { 1, 2 };
+            grid[1] = new int[] { 2, 3 };
+            grid[2] = new int[] { 3, 4 };
+            grid[3] = new int[] { 4, 5 };
+            grid[4] = new int[] { 5, 6 };
+            grid[5] = new int[] { 6, 7 };
+            var actual = sut.CheckStraightLine(grid);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine3()
+        {
+            var grid = new int[5][];
+            grid[0] = new int[] {  -3, -2 };
+            grid[1] = new int[] {-1,-2 };
+            grid[2] = new int[] { 2, -2 };
+            grid[3] = new int[] { -2, -2 };
+            grid[4] = new int[] { 0, -2 };
+          
+            var actual = sut.CheckStraightLine(grid);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine4()
+        {
+            var grid = new int[5][];
+            grid[0] = new int[] { -4, -3 };
+            grid[1] = new int[] { 1, 0 };
+            grid[2] = new int[] { 3, -1 };
+            grid[3] = new int[] { 0, -1 };
+            grid[4] = new int[] { -5, 2 };
+
+            var actual = sut.CheckStraightLine(grid);
+            Assert.False(actual);
+        }
+ 
     }
 }

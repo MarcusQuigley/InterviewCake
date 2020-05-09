@@ -573,6 +573,35 @@ namespace Arrays.LeetCode
             }
             return true;
         }
+        //https://leetcode.com/explore/featured/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3323/
+        public bool CheckStraightLine(int[][] coordinates)
+        {
+            if (coordinates == null)
+                throw new ArgumentNullException(nameof(coordinates));
+            var n = coordinates.Length;
+            if (n == 1) return true;
+            double slope = 0.0;
+            for (int i = 0; i < n-1; i++)
+            {
+                var currentslope = CalculateSlope(coordinates[i], coordinates[i + 1]);
+                if (i != 0)
+                {
+                    if (currentslope != slope)
+                        return false;
+                }
+                else
+                {
+                    slope = currentslope;
+                }
+            }
+            return true;
+        }
 
+        double CalculateSlope(int[] p1, int[] p2)
+        {
+             double x = p1[0] - p2[0];
+            double y = p1[1] - p2[1];
+            return y / x;
+        }
     }
 }
