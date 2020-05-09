@@ -8,10 +8,10 @@ namespace LinkedLists.Tests.LeetCode
 {
 public class LeetEasyQuestionsLinkedListTests
     {
-        readonly LeetEasyQuestionsLinkedList sut = null;
+        readonly LeetEasyLinkedList sut = null;
         public LeetEasyQuestionsLinkedListTests()
         {
-            sut = new LeetEasyQuestionsLinkedList();
+            sut = new LeetEasyLinkedList();
         }
 
         [Theory]
@@ -38,6 +38,9 @@ public class LeetEasyQuestionsLinkedListTests
             var actual = sut.MiddleNode(head);
             Assert.Equal(expected, actual.val);
         }
+ 
+
+        #region Helpers
 
         private ListNode CreateLinkedList(int[] values)
         {
@@ -51,5 +54,6 @@ public class LeetEasyQuestionsLinkedListTests
             }
             return head;
         }
+        #endregion
     }
 }

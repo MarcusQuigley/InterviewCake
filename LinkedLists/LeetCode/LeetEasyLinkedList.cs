@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LinkedLists.LeetCode
 {
-   public class LeetEasyQuestionsLinkedList
+   public class LeetEasyLinkedList
     {
         //1290 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/submissions/
         public int GetDecimalValue(ListNode head)
@@ -31,6 +31,23 @@ namespace LinkedLists.LeetCode
                 pointer2 = pointer2.next.next;
             }
             return head;
+        }
+
+        //141 https://leetcode.com/problems/linked-list-cycle/
+        public bool HasCycle(ListNode head)
+        {
+            if (head == null)
+                throw new ArgumentNullException(nameof(head));
+            var p1 = head;
+            var p2 = head.next;
+            while(p1!=null && p2!=null)
+            {
+                if (p1 == p2) return true;
+                if (p2.next == null) return false;
+                p1 = p1.next;
+                p2 = p2.next.next;
+            }
+            return false;
         }
     }
 }
