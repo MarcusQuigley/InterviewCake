@@ -6,10 +6,10 @@ using Xunit;
 
 namespace LinkedLists.Tests.LeetCode
 {
-public class LeetEasyQuestionsLinkedListTests
+public class LeetEasyLinkedListTests
     {
         readonly LeetEasyLinkedList sut = null;
-        public LeetEasyQuestionsLinkedListTests()
+        public LeetEasyLinkedListTests()
         {
             sut = new LeetEasyLinkedList();
         }
@@ -61,6 +61,19 @@ public class LeetEasyQuestionsLinkedListTests
             var actual = sut.HasCycle(node);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 4,1,8, 4, 5 }, new int[] { 5, 0, 1 }, 8)]
+        public void Test_DetectCycle2(int[] values, int[] values2, int expected)
+        {
+            ListNode nodeA = LinkedListHelper.CreateLinkedList(values);
+            ListNode nodeB = LinkedListHelper.CreateLinkedList(values2);
+            nodeB.next.next.next = nodeA.next.next;
+            
+            var actual = sut.GetIntersectionNode(nodeA, nodeB);
+            Assert.Equal(expected, actual.val);
+        }
+        
 
     }
 }
