@@ -149,7 +149,7 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.TwoSum(numbers, target);
             Assert.Equal(expected, actual);
         }
-  
+
         [Theory]
         [InlineData("aba#c#", "ab", true)]
         [InlineData("ab#c", "ad#c", true)]
@@ -212,7 +212,7 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(new int[] { 3,2,3 }, 3)]
+        [InlineData(new int[] { 3, 2, 3 }, 3)]
         [InlineData(new int[] { 2, 2, 1, 1, 1, 2, 2 }, 2)]
         public void Test_MajorityElement(int[] nums, int expected)
         {
@@ -223,25 +223,25 @@ namespace Arrays.Tests.LeetCode
         [Theory]
         [InlineData(new int[] { 4, 2, 3 }, true)]
         [InlineData(new int[] { 4 }, true)]
-        [InlineData(new int[] { 4,3 }, true)]
-        [InlineData(new int[] { 4, 2, 1}, false)]
+        [InlineData(new int[] { 4, 3 }, true)]
+        [InlineData(new int[] { 4, 2, 1 }, false)]
         [InlineData(new int[] { 3, 4, 2, 3 }, false)]
-         public void Test_CheckPossibility(int[] nums, bool expected)
+        public void Test_CheckPossibility(int[] nums, bool expected)
         {
             var actual = sut.CheckPossibility(nums);
             Assert.Equal(expected, actual);
         }
- 
+
         [Fact]
-         public void Test_CheckStraightLine( )
+        public void Test_CheckStraightLine()
         {
             var grid = new int[6][];
             grid[0] = new int[] { 1, 1 };
-            grid[1] = new int[] { 2,2 };
-            grid[2] = new int[] {3,4};
-            grid[3] = new int[] {4,5 };
-            grid[4] = new int[] { 5,6};
-            grid[5] = new int[] { 7,7 };
+            grid[1] = new int[] { 2, 2 };
+            grid[2] = new int[] { 3, 4 };
+            grid[3] = new int[] { 4, 5 };
+            grid[4] = new int[] { 5, 6 };
+            grid[5] = new int[] { 7, 7 };
             var actual = sut.CheckStraightLine(grid);
             Assert.False(actual);
         }
@@ -264,12 +264,12 @@ namespace Arrays.Tests.LeetCode
         public void Test_CheckStraightLine3()
         {
             var grid = new int[5][];
-            grid[0] = new int[] {  -3, -2 };
-            grid[1] = new int[] {-1,-2 };
+            grid[0] = new int[] { -3, -2 };
+            grid[1] = new int[] { -1, -2 };
             grid[2] = new int[] { 2, -2 };
             grid[3] = new int[] { -2, -2 };
             grid[4] = new int[] { 0, -2 };
-          
+
             var actual = sut.CheckStraightLine(grid);
             Assert.True(actual);
         }
@@ -290,14 +290,24 @@ namespace Arrays.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 1, 1, 0, 1, 1, 1 }, 3)]
-        [InlineData(new int[] {0 }, 0)]
+        [InlineData(new int[] { 0 }, 0)]
         [InlineData(new int[] { 1 }, 1)]
         public void Test_FindMaxConsecutiveOnes(int[] nums, int expected)
         {
             var actual = sut.FindMaxConsecutiveOnes(nums);
             Assert.Equal(expected, actual);
         }
-        
+
+        [Theory]
+        [InlineData(new int[] { -4, -1, 0, 3, 10 }, new int[] { 0, 1, 9, 16, 100 })]
+        [InlineData(new int[] { -7, -3, 2, 3, 11 }, new int[] { 4, 9, 9, 49, 121 })]
+        [InlineData(new int[] { -14, -11, 0, 1, 3, 11 }, new int[] { 0, 1, 9, 121, 121, 196 })]
+        public void Test_SortedSquares(int[] nums, int[] expected)
+        {
+            var actual = sut.SortedSquares(nums);
+            Assert.Equal(expected, actual);
+        }
+
 
     }
 }

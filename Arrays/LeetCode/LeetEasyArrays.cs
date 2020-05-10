@@ -564,7 +564,43 @@ namespace Arrays.LeetCode
             maxOnesCount = Math.Max(maxOnesCount, onesCount);
             return maxOnesCount;
         }
- 
+
+        //977 https://leetcode.com/problems/squares-of-a-sorted-array/
+        public int[] SortedSquares(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            int leftptr = -1;
+            var n = nums.Length;
+            for (int i = 0; i < n; i++)
+            {
+                if (nums[i] < 0)
+                    leftptr += 1;
+                else
+                    break;
+            }
+
+            while (leftptr > -1)
+            {
+                var tempLeft = leftptr;
+                nums[tempLeft] = Math.Abs(nums[tempLeft]);
+
+                while (tempLeft + 1 < n && nums[tempLeft] > nums[tempLeft + 1])
+                {
+                    var temp = nums[tempLeft];
+                    nums[tempLeft] = nums[tempLeft + 1];
+                    nums[tempLeft + 1] = temp;
+                    tempLeft += 1;
+                }
+                leftptr -= 1;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                nums[i] = nums[i] * nums[i];
+            }
+            return nums;
+        }
+
 
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
