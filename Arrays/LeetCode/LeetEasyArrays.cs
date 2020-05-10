@@ -109,18 +109,6 @@ namespace Arrays.LeetCode
             return false;
         }
 
-        int digitSquareSum(int n)
-        {
-            var newNum = 0;
-            while (n > 0)
-            {
-                var remainder = n % 10;
-                n /= 10;
-                newNum += remainder * remainder;
-            }
-            return newNum;
-        }
-
         //53. https://leetcode.com/problems/maximum-subarray/
         public int MaxSubArrayBad(int[] nums)
         {
@@ -340,7 +328,6 @@ namespace Arrays.LeetCode
             return new int[] { leftIndex + 1, rightIndex + 1 };
         }
 
-
         //844 https://leetcode.com/problems/backspace-string-compare/
         // //This uses O(n) space
         public bool BackspaceCompareStack(string S, string T)
@@ -362,27 +349,7 @@ namespace Arrays.LeetCode
             }
             return true;
         }
-
-        private Stack<char> CleanArrayWithStack(char[] charArray)
-        {
-            var ctr = charArray.Length - 1;
-            var stack = new Stack<char>();
-            var backspaceCounter = 0;
-            while (ctr >= 0)
-            {
-                var item = charArray[ctr];
-                if (item == '#')
-                    backspaceCounter += 1;
-                else if (backspaceCounter > 0)
-                    backspaceCounter -= 1;
-                else
-                    stack.Push(item);
-                ctr -= 1;
-            }
-            return stack;
-        }
-
-
+ 
         //844 https://leetcode.com/problems/backspace-string-compare/
         //This uses O(1) space
         public bool BackspaceCompare(string S, string T)
@@ -406,27 +373,7 @@ namespace Arrays.LeetCode
             }
             return true;
         }
-
-        private int CleanArray(char[] charArray)
-        {
-            var backspaceCounter = 0;
-            var i = charArray.Length - 1;
-            var index = i;
-            while (i >= 0)
-            {
-                var item = charArray[i--];
-                if (item == '#')
-                    backspaceCounter += 1;
-                else if (backspaceCounter > 0)
-                    backspaceCounter -= 1;
-                else
-                    charArray[index--] = item;
-            }
-            return index + 1;
-
-            //if index has been decremented i need to increment it by 1.
-            //if it hasnt been decremented then it there should be nothing to show
-        }
+        
         //283. https://leetcode.com/problems/move-zeroes/
         public void MoveZeroes(int[] nums)
         {
@@ -597,11 +544,87 @@ namespace Arrays.LeetCode
             return true;
         }
 
+        //485 https://leetcode.com/problems/max-consecutive-ones/
+        public int FindMaxConsecutiveOnes(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            var onesCount = 0;
+            var maxOnesCount = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 1) 
+                    onesCount += 1;
+                else
+                {
+                    maxOnesCount = Math.Max(maxOnesCount, onesCount);
+                    onesCount = 0;
+                }
+            }
+            maxOnesCount = Math.Max(maxOnesCount, onesCount);
+            return maxOnesCount;
+        }
+ 
+
+        #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
         {
-             double x = p1[0] - p2[0];
+            double x = p1[0] - p2[0];
             double y = p1[1] - p2[1];
             return y / x;
         }
+
+        private int CleanArray(char[] charArray)
+        {
+            var backspaceCounter = 0;
+            var i = charArray.Length - 1;
+            var index = i;
+            while (i >= 0)
+            {
+                var item = charArray[i--];
+                if (item == '#')
+                    backspaceCounter += 1;
+                else if (backspaceCounter > 0)
+                    backspaceCounter -= 1;
+                else
+                    charArray[index--] = item;
+            }
+            return index + 1;
+
+            //if index has been decremented i need to increment it by 1.
+            //if it hasnt been decremented then it there should be nothing to show
+        }
+
+        private Stack<char> CleanArrayWithStack(char[] charArray)
+        {
+            var ctr = charArray.Length - 1;
+            var stack = new Stack<char>();
+            var backspaceCounter = 0;
+            while (ctr >= 0)
+            {
+                var item = charArray[ctr];
+                if (item == '#')
+                    backspaceCounter += 1;
+                else if (backspaceCounter > 0)
+                    backspaceCounter -= 1;
+                else
+                    stack.Push(item);
+                ctr -= 1;
+            }
+            return stack;
+        }
+
+        int digitSquareSum(int n)
+        {
+            var newNum = 0;
+            while (n > 0)
+            {
+                var remainder = n % 10;
+                n /= 10;
+                newNum += remainder * remainder;
+            }
+            return newNum;
+        }
+        #endregion
     }
 }

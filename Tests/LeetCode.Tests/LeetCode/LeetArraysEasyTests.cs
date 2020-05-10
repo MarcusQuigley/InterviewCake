@@ -149,9 +149,7 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.TwoSum(numbers, target);
             Assert.Equal(expected, actual);
         }
-
-
-
+  
         [Theory]
         [InlineData("aba#c#", "ab", true)]
         [InlineData("ab#c", "ad#c", true)]
@@ -233,8 +231,7 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CheckPossibility(nums);
             Assert.Equal(expected, actual);
         }
-
-
+ 
         [Fact]
          public void Test_CheckStraightLine( )
         {
@@ -290,6 +287,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CheckStraightLine(grid);
             Assert.False(actual);
         }
- 
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 0, 1, 1, 1 }, 3)]
+        [InlineData(new int[] {0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        public void Test_FindMaxConsecutiveOnes(int[] nums, int expected)
+        {
+            var actual = sut.FindMaxConsecutiveOnes(nums);
+            Assert.Equal(expected, actual);
+        }
+        
+
     }
 }
