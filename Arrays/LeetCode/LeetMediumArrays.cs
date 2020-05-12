@@ -460,6 +460,14 @@ namespace Arrays.LeetCode
             }
             return string.Empty;
         }
+
+        public int SingleNonDuplicate(int[] nums)
+        {
+            var single = 0;
+            foreach (var num in nums)
+                single ^= num;
+            return single;
+        }
     }
 }
  

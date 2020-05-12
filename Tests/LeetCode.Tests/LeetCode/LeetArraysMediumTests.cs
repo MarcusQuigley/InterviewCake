@@ -220,6 +220,15 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.LongestPalindrome(val);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2)]
+        [InlineData(new int[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
+         public void Test_SingleNonDuplicate(int[] nums, int expected)
+        {
+            var actual = sut.SingleNonDuplicate(nums);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }
