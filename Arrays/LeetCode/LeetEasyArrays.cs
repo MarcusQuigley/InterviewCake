@@ -349,7 +349,7 @@ namespace Arrays.LeetCode
             }
             return true;
         }
- 
+
         //844 https://leetcode.com/problems/backspace-string-compare/
         //This uses O(1) space
         public bool BackspaceCompare(string S, string T)
@@ -373,7 +373,7 @@ namespace Arrays.LeetCode
             }
             return true;
         }
-        
+
         //283. https://leetcode.com/problems/move-zeroes/
         public void MoveZeroes(int[] nums)
         {
@@ -480,8 +480,8 @@ namespace Arrays.LeetCode
             {
                 var value = nums[i];
                 if (map.ContainsKey(value))
-                     map[value] += 1;
-                 else
+                    map[value] += 1;
+                else
                     map.Add(value, 1);
                 if (map[value] == half)
                 {
@@ -507,7 +507,7 @@ namespace Arrays.LeetCode
                     if (changed) return false;
                     changed = true;
                     if (i == 0)
-                        nums[i] = nums[i+1];
+                        nums[i] = nums[i + 1];
                     else
                     {
                         if (nums[i - 1] > nums[i + 1])
@@ -528,7 +528,7 @@ namespace Arrays.LeetCode
             var n = coordinates.Length;
             if (n == 1) return true;
             double slope = 0.0;
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 var currentslope = CalculateSlope(coordinates[i], coordinates[i + 1]);
                 if (i != 0)
@@ -553,7 +553,7 @@ namespace Arrays.LeetCode
             var maxOnesCount = 0;
             for (int i = 0; i < nums.Length; i++)
             {
-                if (nums[i] == 1) 
+                if (nums[i] == 1)
                     onesCount += 1;
                 else
                 {
@@ -566,6 +566,7 @@ namespace Arrays.LeetCode
         }
 
         //977 https://leetcode.com/problems/squares-of-a-sorted-array/
+        //This should be a Medium
         public int[] SortedSquares(int[] nums)
         {
             if (nums == null)
@@ -599,6 +600,45 @@ namespace Arrays.LeetCode
                 nums[i] = nums[i] * nums[i];
             }
             return nums;
+        }
+        //1089 https://leetcode.com/problems/duplicate-zeros/
+        public void DuplicateZeros(int[] arr)
+        {
+            if (arr == null)
+                throw new ArgumentNullException(nameof(arr));
+            var numZeros = 0;
+            var n = arr.Length - 1;
+            for (int i = 0; i <= n - numZeros; i++)
+            {
+                if (arr[i] == 0)
+                {
+                    // Edge case: This zero can't be duplicated. We have no more space,
+                    // as left is pointing to the last element which could be included  
+                    if (i == (n - numZeros))
+                    {
+                        // For this zero we just copy it without duplication.
+                        arr[n] = 0;
+                        n -= 1;
+                        break;
+                    }
+                    numZeros += 1;
+                }
+            }
+            if (numZeros == 0) return;
+            var right = n - numZeros;
+            for (int i = right; i >= 0; i--)
+            {
+                if (arr[i] == 0)
+                {
+                    arr[i + numZeros] = 0;
+                    numZeros -= 1;
+                    arr[i + numZeros] = 0;
+                }
+                else
+                    arr[i + numZeros] = arr[i];
+                if (numZeros == 0)
+                    break;
+            }
         }
 
 
