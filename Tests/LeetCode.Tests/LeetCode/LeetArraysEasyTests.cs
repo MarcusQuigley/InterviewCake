@@ -322,5 +322,18 @@ namespace Arrays.Tests.LeetCode
             sut.DuplicateZeros(nums);
             Assert.Equal(expected, nums);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[]{1,2,2,3,5,6})]
+        [InlineData(new int[] { 1,  0 }, 1, new int[] { 1 }, 1, new int[] { 1, 1 })]
+        [InlineData(new int[] {  0 },  0, new int[] { 1 }, 1, new int[] { 1  })]
+        [InlineData(new int[] { 1, 2, 3, 0 }, 3, new int[] { 1 }, 1, new int[] {1, 1, 2,3 })]
+        [InlineData(new int[] { 2, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 2 })]
+        public void Test_Merge(int[] nums,int nums1length, int[] nums2, int nums2length, int[] expected)
+        {
+            sut.Merge(nums, nums1length,  nums2,  nums2length);
+            Assert.Equal(expected, nums);
+        }
+        
     }
 }
