@@ -641,7 +641,24 @@ namespace Arrays.LeetCode
             }
         }
 
+        //88 https://leetcode.com/problems/merge-sorted-array/
+        public void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("one of them");
 
+            var firstpointer = m - 1;
+            var secondpointer = n - 1;
+            int val = 0;
+            int index = nums1.Length - 1;
+            while (secondpointer >= 0 && firstpointer >= 0)
+            {
+                val = (nums1[firstpointer] > nums2[secondpointer]) ? nums1[firstpointer--] : nums2[secondpointer--];
+                nums1[index--] = val;
+            }
+            while (secondpointer >= 0)
+                nums1[index--] = nums2[secondpointer--];
+        }
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
         {
