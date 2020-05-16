@@ -468,6 +468,29 @@ namespace Arrays.LeetCode
                 single ^= num;
             return single;
         }
+
+        //918 https://leetcode.com/problems/maximum-sum-circular-subarray/
+        public int MaxSubarraySumCircular(int[] A)
+        {
+            if (A == null)
+                throw new ArgumentNullException(nameof(A));
+            var tempMax = 0;
+            var tempMin = 0;
+            var total = 0;
+            var max = int.MinValue;
+            var min = int.MaxValue;
+            for (int i = 0; i < A.Length; i++)
+            {
+                var val = A[i];
+                tempMin = (tempMin + val < val) ? (tempMin + val) : val;
+                tempMax = (tempMax + val > val) ? (tempMax + val) : val;
+                total += val;
+                min = Math.Min(min, tempMin);
+                max = Math.Max(max, tempMax);
+            }
+            var result = Math.Max(max, total - min); //this deals with the edge case when all vals are negative
+            return result!=0? result: max;
+        }
     }
 }
  

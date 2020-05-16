@@ -229,6 +229,20 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.SingleNonDuplicate(nums);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, -2, 3, -2 }, 3)]
+        [InlineData(new int[] { 5,-3,5}, 10)]
+        [InlineData(new int[] { 3,-1,2,-1}, 4)]
+        [InlineData(new int[] { 3, -2, 2, -3 }, 3)]
+        [InlineData(new int[] { -3, -1, -2 }, -1)]
+        public void Test_MaxSubarraySumCircular(int[] nums, int expected)
+        {
+            var actual = sut.MaxSubarraySumCircular(nums);
+            Assert.Equal(expected, actual);
+        }
+
         
+
     }
 }
