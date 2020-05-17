@@ -21,6 +21,20 @@ namespace LinkedLists.Tests
             }
             return head;
         }
+
+        public static int[] ListFromListNode(ListNode node)
+        {
+            List<int> vals = new List<int>();
+            if (node != null)
+            {
+                while (node != null)
+                {
+                    vals.Add(node.val);
+                    node = node.next;
+                }
+            }
+            return vals.ToArray();
+        }
         #endregion
     }
 }
