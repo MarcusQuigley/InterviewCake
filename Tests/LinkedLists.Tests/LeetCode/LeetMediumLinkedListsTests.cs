@@ -74,5 +74,19 @@ namespace LinkedLists.Tests.LeetCode
             var actual = sut.RemoveNthFromEnd(node, n);
             Assert.Equal(expected, LinkedListHelper.ListFromListNode(actual));
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4, 5},  new int[] { 1, 3, 5, 2, 4 })]
+        //[InlineData(new int[] {  2,1,3,5,6,4,7}, new int[] { 2, 3,6,7,1, 5,4 })]
+        //[InlineData(new int[] { 1 },  new int[] {1 })]
+        //[InlineData(new int[] { 1, 2 }, new int[] { 1,2 })]
+        public void Test_OddEvenList(int[] values,  int[] expected)
+        {
+            ListNode node = LinkedListHelper.CreateLinkedList(values);
+
+            var actual = sut.OddEvenList(node);
+            Assert.Equal(expected, LinkedListHelper.ListFromListNode(actual));
+        }
+        
     }
 }
