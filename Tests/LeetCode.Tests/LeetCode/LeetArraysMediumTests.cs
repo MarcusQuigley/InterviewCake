@@ -1,6 +1,7 @@
 ﻿using Arrays.LeetCode;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -242,6 +243,15 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("cbaebabacd","abc", new int[] { 0, 6 })]
+        [InlineData("abab", "ab", new int[] { 0,1,2})]
+        [InlineData("abc", "ab", new int[] { 0 })]
+        public void Test_FindAnagrams(string s, string p, int[] expected)
+        {
+            var actual = sut.FindAnagramsCleaner(s,p);
+            Assert.Equal(expected, actual.ToArray());
+        }
         
 
     }

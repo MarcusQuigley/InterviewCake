@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Arrays.LeetCode
@@ -489,7 +490,75 @@ namespace Arrays.LeetCode
                 max = Math.Max(max, tempMax);
             }
             var result = Math.Max(max, total - min); //this deals with the edge case when all vals are negative
-            return result!=0? result: max;
+            return result != 0 ? result : max;
+        }
+
+        //438 https://leetcode.com/problems/find-all-anagrams-in-a-string/
+        public IList<int> FindAnagrams(string s, string p)
+        {
+            if (s == null || p == null)
+                throw new ArgumentNullException("a param is null");
+            int[] pmap = new int[26];
+            int[] tempmap;
+            int plength = p.Length;
+            List<int> results = new List<int>();
+
+            foreach (char c in p.ToCharArray())
+                pmap[c - 'a']++;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                char ch = s[i];
+                if (pmap[ch - 'a'] > 0 && s.Length-i >= plength)
+                {
+                     tempmap = new int[26];
+                    tempmap[ch - 'a'] = 1;
+                    var j = 0;
+                    var k = i + 1;
+                    while (j < plength - 1)
+                    {
+                        char c = s[k];
+                        if (pmap[c - 'a'] == 0) break;
+                        tempmap[c - 'a']++;
+                        if (tempmap[c - 'a'] > pmap[c - 'a']) break;
+                        j++;
+                        k++;
+                    }
+                    if (j == plength - 1)
+                    {
+                        if (tempmap.SequenceEqual(pmap))
+                            results.Add(i);
+                    }
+                }
+            }
+            return results;
+        }
+
+        public IList<int> FindAnagramsCleaner(string s, string p)
+        {
+            int slen = s.Length, plen = p.Length;
+            List<int> startIndices = new List<int>();
+            int[] dictS = new int[26], dictP = new int[26];
+
+            foreach (char ch in p.ToCharArray())
+                dictP[ch - 'a']++;
+
+            int j = 0; // [i, j) is current window.
+            for (int i = 0; i < slen; i++)
+            {
+                var ch = s[i];
+                while (j < slen && j - i + 1 <= plen)
+                {
+                    var c = s[j];
+                    dictS[c - 'a']++;
+                    j++;
+                }
+                if ( dictS.SequenceEqual(dictP)) 
+                    startIndices.Add(i);
+                dictS[ch - 'a']--; //this is the bit thats confusing me.
+            }
+
+            return startIndices;
         }
     }
 }
