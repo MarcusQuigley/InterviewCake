@@ -252,7 +252,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.FindAnagramsCleaner(s,p);
             Assert.Equal(expected, actual.ToArray());
         }
-        
 
+        [Theory]
+        [InlineData("ab", "eidbaooo", true)]
+        [InlineData("abab", "eidboaoo",false)]
+        [InlineData("ab", "eidboaooba", true)]
+        [InlineData("ab", "eba", true)]
+        public void Test_CheckInclusion(string s, string p, bool expected)
+        {
+            var actual = sut.CheckInclusion(s, p);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

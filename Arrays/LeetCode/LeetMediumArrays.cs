@@ -560,6 +560,37 @@ namespace Arrays.LeetCode
 
             return startIndices;
         }
+
+        //567 https://leetcode.com/problems/permutation-in-string/
+        public bool CheckInclusion(string s1, string s2)
+        {
+            if (s1 == null || s2 == null)
+                throw new ArgumentNullException("a param is null");
+            var s1Length = s1.Length;
+            var s2Length = s2.Length;
+            if (s2Length < s1Length) return false;
+            var maps1 = new int[26];
+            var maps2 = new int[26];
+            int j = 0;
+            
+            foreach (char ch in s1.ToCharArray())
+                maps1[ch - 'a']++;
+            
+            for (int i = 0; i < s2Length; i++)
+            {
+                var ch = s2[i];
+                while (j < s2Length && j - i + 1 <= s1Length)
+                {
+                    var c = s2[j];
+                    maps2[c - 'a']++;
+                    j++;
+                }
+                if (maps2.SequenceEqual(maps1))
+                    return true;
+                maps2[ch - 'a']--;
+            }
+            return false;
+        }
     }
 }
  
