@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\InterviewCake.Scratch\Scratch.csproj" />
+    <ProjectReference Include="..\..\Scratch\Scratch.csproj" />
   </ItemGroup>
 
 </Project>
