@@ -3,12 +3,12 @@ using Xunit;
 
 namespace BitManipulation.Tests.LeetCode
 {
-    public class LeetCodeBitsEasyTest
+    public class LeetBitsEasyTest
     {
-        readonly LeetCodeBitsEasy sut;
-        public LeetCodeBitsEasyTest()
+        readonly LeetEasyBits sut;
+        public LeetBitsEasyTest()
         {
-            sut = new LeetCodeBitsEasy();
+            sut = new LeetEasyBits();
         }
         [Theory]
         [InlineData(new int[] { 1,3,3 }, 1)]
