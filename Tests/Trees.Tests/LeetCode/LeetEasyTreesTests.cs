@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Trees.Tests.LeetCode
 {
-    public class LeetEasyTreesTests
+    public class LeetEasyTreesTests : BaseTreeTests
     {
         readonly LeetEasyTrees<int> sut = null;
         public LeetEasyTreesTests()
@@ -33,47 +33,6 @@ namespace Trees.Tests.LeetCode
 
 
 
-        private TreeNode<int> CreatTreeNodes(int[] values)
-        {
-            if (values == null || values.Length == 0)
-                return null;
-
-            TreeNode<int> root = new TreeNode<int>(values[0]);
-            root= InOrder(values, root, 0);
-            return root;
-        }
-
-        TreeNode<int> InOrder(int[] arr,
-                            TreeNode<int> root, int i)
-        {
-            // Base case for recursion 
-            if (i < arr.Length)
-            {
-                TreeNode<int> temp = new TreeNode<int>(arr[i]);
-                root = temp;
-
-                // insert left child 
-                root.Left = InOrder(arr,
-                                root.Left, 2 * i + 1);
-
-                // insert right child 
-                root.Right = InOrder(arr,
-                                root.Right, 2 * i + 2);
-            }
-            return root;
-        }
-
-        TreeNode<int> OutOrder(int[] arr)
-        {
-            TreeNode<int> root = new TreeNode<int>(arr[0]); 
-            int i = 1;
-            while (i < arr.Length)
-            {
-                var node = new TreeNode<int>(arr[i++]);
-                node.Left = new TreeNode<int>(arr[i++]);
-                node.Right = new TreeNode<int>(arr[i++]);
-            }
-            return root;
-        }
+       
     }
 }

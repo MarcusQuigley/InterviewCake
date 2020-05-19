@@ -6,8 +6,9 @@ namespace Trees.LeetCode
 {
    public class LeetEasyTrees<T>
     {
-        int max;
+        int max; //TODO replace this with a ref param in Depth()
         //543 https://leetcode.com/problems/diameter-of-binary-tree/
+        //DFS
         public int DiameterOfBinaryTree(TreeNode<T> root)
         {
             Depth(root);
@@ -17,8 +18,8 @@ namespace Trees.LeetCode
         {
             if (node == null)
                 return 0;
-            int L = Depth(node.Left);
-            int R = Depth(node.Right);
+            int L = Depth(node.left);
+            int R = Depth(node.right);
             max = Math.Max(max, L + R);
             return Math.Max(L, R) + 1;
         }
