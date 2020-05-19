@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CTCI\" />
+    <Compile Remove="CTCI\**" />
+    <EmbeddedResource Remove="CTCI\**" />
+    <None Remove="CTCI\**" />
   </ItemGroup>
 
 </Project>
