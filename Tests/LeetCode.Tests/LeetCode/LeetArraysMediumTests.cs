@@ -1,6 +1,7 @@
 ﻿using Arrays.LeetCode;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -183,5 +184,85 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.SearchRotatedArray(numbers, target);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] {1,1,1 }, 2,2 )]
+        [InlineData(new int[] { 1 }, 2,0 )]
+        [InlineData(new int[] { 1 }, 1 ,1)]
+        [InlineData(new int[] { 1,2,3 }, 3, 2)]
+        [InlineData(new int[] { 1 }, 0, 0)]
+        [InlineData(new int[] { -1,-1,1 }, 0, 1)]
+        public void Test_SubarraySum(int[] nums, int k, int expected)
+        {
+            var actual = sut.SubarraySum(nums, k);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 2,3,1,1,4},true)]
+        [InlineData(new int[] { 3,2,1,0,4 },false)]
+ 
+        public void Test_CanJump(int[] nums, bool expected)
+        {
+            var actual = sut.CanJump(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("a", "a")]
+        [InlineData("aa", "aa")]
+        [InlineData("ac", "a")]
+        [InlineData("babad", "bab")]
+        [InlineData("cbbd", "bb")]
+        [InlineData("abbacab", "bacab")]
+
+        public void Test_LongestPalindrome(string val, string expected)
+        {
+            var actual = sut.LongestPalindrome(val);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2)]
+        [InlineData(new int[] { 3, 3, 7, 7, 10, 11, 11 }, 10)]
+         public void Test_SingleNonDuplicate(int[] nums, int expected)
+        {
+            var actual = sut.SingleNonDuplicate(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, -2, 3, -2 }, 3)]
+        [InlineData(new int[] { 5,-3,5}, 10)]
+        [InlineData(new int[] { 3,-1,2,-1}, 4)]
+        [InlineData(new int[] { 3, -2, 2, -3 }, 3)]
+        [InlineData(new int[] { -3, -1, -2 }, -1)]
+        public void Test_MaxSubarraySumCircular(int[] nums, int expected)
+        {
+            var actual = sut.MaxSubarraySumCircular(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("cbaebabacd","abc", new int[] { 0, 6 })]
+        [InlineData("abab", "ab", new int[] { 0,1,2})]
+        [InlineData("abc", "ab", new int[] { 0 })]
+        public void Test_FindAnagrams(string s, string p, int[] expected)
+        {
+            var actual = sut.FindAnagramsCleaner(s,p);
+            Assert.Equal(expected, actual.ToArray());
+        }
+
+        [Theory]
+        [InlineData("ab", "eidbaooo", true)]
+        [InlineData("abab", "eidboaoo",false)]
+        [InlineData("ab", "eidboaooba", true)]
+        [InlineData("ab", "eba", true)]
+        public void Test_CheckInclusion(string s, string p, bool expected)
+        {
+            var actual = sut.CheckInclusion(s, p);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }
