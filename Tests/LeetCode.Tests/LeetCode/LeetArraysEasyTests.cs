@@ -5,8 +5,8 @@ namespace Arrays.Tests.LeetCode
 {
     public class LeetArraysEasyTests
     {
- 
-       readonly LeetEasyArrays sut = null;
+
+        readonly LeetEasyArrays sut = null;
         public LeetArraysEasyTests()
         {
             sut = new LeetEasyArrays();
@@ -93,7 +93,7 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, array);
         }
 
-        
+
 
         [Theory]
         [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
@@ -150,8 +150,6 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
-
-
         [Theory]
         [InlineData("aba#c#", "ab", true)]
         [InlineData("ab#c", "ad#c", true)]
@@ -179,5 +177,163 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.BackspaceCompare(s, t);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("leetcode", 0)]
+        [InlineData("loveleetcode", 2)]
+        [InlineData("ababab", -1)]
+        [InlineData("abcdefghiklmn", 0)]
+        [InlineData("a", 0)]
+        [InlineData("", -1)]
+
+        public void Test_FirstUniqueChar(string s, int expected)
+        {
+            var actual = sut.FirstUniqueChar(s);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("aA", "aAAbbbb", 3)]
+        [InlineData("z", "ZZ", 0)]
+        public void Test_NumJewelsInStones(string s, string j, int expected)
+        {
+            var actual = sut.NumJewelsInStones(s, j);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("a", "b", false)]
+        [InlineData("aa", "ab", false)]
+        [InlineData("aa", "aab", true)]
+        public void Test_CanConstruct(string note, string magazine, bool expected)
+        {
+            var actual = sut.CanConstruct(note, magazine);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 3, 2, 3 }, 3)]
+        [InlineData(new int[] { 2, 2, 1, 1, 1, 2, 2 }, 2)]
+        public void Test_MajorityElement(int[] nums, int expected)
+        {
+            var actual = sut.MajorityElement(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 3 }, true)]
+        [InlineData(new int[] { 4 }, true)]
+        [InlineData(new int[] { 4, 3 }, true)]
+        [InlineData(new int[] { 4, 2, 1 }, false)]
+        [InlineData(new int[] { 3, 4, 2, 3 }, false)]
+        public void Test_CheckPossibility(int[] nums, bool expected)
+        {
+            var actual = sut.CheckPossibility(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine()
+        {
+            var grid = new int[6][];
+            grid[0] = new int[] { 1, 1 };
+            grid[1] = new int[] { 2, 2 };
+            grid[2] = new int[] { 3, 4 };
+            grid[3] = new int[] { 4, 5 };
+            grid[4] = new int[] { 5, 6 };
+            grid[5] = new int[] { 7, 7 };
+            var actual = sut.CheckStraightLine(grid);
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine2()
+        {
+            var grid = new int[6][];
+            grid[0] = new int[] { 1, 2 };
+            grid[1] = new int[] { 2, 3 };
+            grid[2] = new int[] { 3, 4 };
+            grid[3] = new int[] { 4, 5 };
+            grid[4] = new int[] { 5, 6 };
+            grid[5] = new int[] { 6, 7 };
+            var actual = sut.CheckStraightLine(grid);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine3()
+        {
+            var grid = new int[5][];
+            grid[0] = new int[] { -3, -2 };
+            grid[1] = new int[] { -1, -2 };
+            grid[2] = new int[] { 2, -2 };
+            grid[3] = new int[] { -2, -2 };
+            grid[4] = new int[] { 0, -2 };
+
+            var actual = sut.CheckStraightLine(grid);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void Test_CheckStraightLine4()
+        {
+            var grid = new int[5][];
+            grid[0] = new int[] { -4, -3 };
+            grid[1] = new int[] { 1, 0 };
+            grid[2] = new int[] { 3, -1 };
+            grid[3] = new int[] { 0, -1 };
+            grid[4] = new int[] { -5, 2 };
+
+            var actual = sut.CheckStraightLine(grid);
+            Assert.False(actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 0, 1, 1, 1 }, 3)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        public void Test_FindMaxConsecutiveOnes(int[] nums, int expected)
+        {
+            var actual = sut.FindMaxConsecutiveOnes(nums);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { -4, -1, 0, 3, 10 }, new int[] { 0, 1, 9, 16, 100 })]
+        [InlineData(new int[] { -7, -3, 2, 3, 11 }, new int[] { 4, 9, 9, 49, 121 })]
+        [InlineData(new int[] { -14, -11, 0, 1, 3, 11 }, new int[] { 0, 1, 9, 121, 121, 196 })]
+        public void Test_SortedSquares(int[] nums, int[] expected)
+        {
+            var actual = sut.SortedSquares(nums);
+            Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData(new int[] { 1, 0, 2, 3, 0, 4, 5, 0 }, new int[] { 1, 0, 0, 2, 3, 0, 0, 4 })]
+        [InlineData(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [InlineData(new int[] { 1, 2, 0, 3, 0, 7, 9, 8 }, new int[] { 1, 2, 0, 0, 3, 0, 0, 7 })]
+        [InlineData(new int[] { 0 }, new int[] { 0 })]
+        [InlineData(new int[] { 1, 1, 0, 0 }, new int[] { 1, 1, 0, 0 })]
+        [InlineData(new int[] { 8, 4, 5, 0, 0, 0, 0, 7 }, new int[] { 8, 4, 5, 0, 0, 0, 0, 0 })]
+        [InlineData(new int[] { 9, 9, 9, 4, 8, 0, 0, 3, 7, 2, 0, 0, 0, 0, 9, 1, 0, 0, 1, 1, 0, 5, 6, 3, 1, 6, 0, 0, 2, 3, 4, 7, 0, 3, 9, 3, 6, 5, 8, 9, 1, 1, 3, 2, 0, 0, 7, 3, 3, 0, 5, 7, 0, 8, 1, 9, 6, 3, 0, 8, 8, 8, 8, 0, 0, 5, 0, 0, 0, 3, 7, 7, 7, 7, 5, 1, 0, 0, 8, 0, 0 },
+            new int[] { 9, 9, 9, 4, 8, 0, 0, 0, 0, 3, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 6, 3, 1, 6, 0, 0, 0, 0, 2, 3, 4, 7, 0, 0, 3, 9, 3, 6, 5, 8, 9, 1, 1, 3, 2, 0, 0, 0, 0, 7, 3, 3, 0, 0, 5, 7, 0, 0, 8, 1, 9, 6, 3, 0, 0, 8, 8, 8, 8, 0 })]
+
+        public void Test_DuplicateZeros(int[] nums, int[] expected)
+        {
+            sut.DuplicateZeros(nums);
+            Assert.Equal(expected, nums);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[]{1,2,2,3,5,6})]
+        [InlineData(new int[] { 1,  0 }, 1, new int[] { 1 }, 1, new int[] { 1, 1 })]
+        [InlineData(new int[] {  0 },  0, new int[] { 1 }, 1, new int[] { 1  })]
+        [InlineData(new int[] { 1, 2, 3, 0 }, 3, new int[] { 1 }, 1, new int[] {1, 1, 2,3 })]
+        [InlineData(new int[] { 2, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 2 })]
+        public void Test_Merge(int[] nums,int nums1length, int[] nums2, int nums2length, int[] expected)
+        {
+            sut.Merge(nums, nums1length,  nums2,  nums2length);
+            Assert.Equal(expected, nums);
+        }
+        
     }
 }
