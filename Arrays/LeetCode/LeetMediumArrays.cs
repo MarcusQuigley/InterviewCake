@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Arrays.LeetCode
@@ -319,6 +320,7 @@ namespace Arrays.LeetCode
             public int Sum { get; set; }
         }
         //33 https://leetcode.com/problems/search-in-rotated-sorted-array/
+        //int overflow
         public int SearchRotatedArray(int[] nums, int target)
         {
             if (nums == null)
@@ -347,21 +349,247 @@ namespace Arrays.LeetCode
             if (target >= nums[pivotIndex] && target <= nums[high])
                 low = pivotIndex;
             else
-                high = pivotIndex ;
+                high = pivotIndex;
 
 
             while (low <= high)
             {
-                var mid = low+ (high-low) / 2;
+                var mid = low + (high - low) / 2;
                 if (target == nums[mid])
                     return mid;
                 if (target < nums[mid])
-                    high = mid-1;
+                    high = mid - 1;
                 else
                     low = mid + 1;
             }
 
             return -1;
+        }
+
+        //560 https://leetcode.com/problems/subarray-sum-equals-k/
+        //had to look at soln
+        public int SubarraySum(int[] nums, int k)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0)
+                return 0;
+
+            int result = 0;
+            int sum = 0;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map.Add(0, 1);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                if (map.ContainsKey(sum - k))
+                    result += map[sum - k];
+                var value = map.ContainsKey(sum) ? map[sum] : 0;
+                if (map.ContainsKey(sum))
+                    map[sum] = value + 1;
+                else
+                    map.Add(sum, value + 1);
+            }
+
+            return result;
+        }
+
+        //55. https://leetcode.com/problems/jump-game/
+
+        public bool CanJump(int[] nums)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+
+            var n = nums.Length - 1;
+            var safePointer = n;
+
+            for (int i = n - 1; i >= 0; i--)
+            {
+                var val = nums[i];
+                if (val >= safePointer - i)
+                    safePointer = i;
+            }
+            return safePointer == 0;
+        }
+        //5 https://leetcode.com/problems/longest-palindromic-substring/
+        public string LongestPalindrome(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length == 1)
+                return s;
+
+            var max = 1;
+            var maxStartIndex = 0;
+            var n = s.Length;
+            for (int i = 0; i < n; i++)
+            {
+                if (max >= n - i)
+                {
+                    return s.Substring(maxStartIndex, max);
+                }
+                for (int j = n - 1; j > i; j--)
+                {
+                    if (s[i] == s[j])
+                    {
+                        var mid = i + (j - i) / 2;// j / 2 - i;
+                        var r = mid + 1;
+                        var l = mid;
+                        if ((i + j) % 2 == 0) //if so then we have a individual middle char which has to be unique
+                        {
+                            l--;
+                        }
+                        bool stillPalind = true;
+                        while (l >= i && r <= j)
+                        {
+                            if (s[l] != s[r])
+                            {
+                                stillPalind = false;
+                                break;
+                            }
+                            l--;
+                            r++;
+                        }
+                        if (stillPalind && (j - i + 1) > max)
+                        {
+                            max = j - i + 1;
+                            maxStartIndex = i;
+                        }
+                    }
+                }
+            }
+            return string.Empty;
+        }
+
+        public int SingleNonDuplicate(int[] nums)
+        {
+            var single = 0;
+            foreach (var num in nums)
+                single ^= num;
+            return single;
+        }
+
+        //918 https://leetcode.com/problems/maximum-sum-circular-subarray/
+        public int MaxSubarraySumCircular(int[] A)
+        {
+            if (A == null)
+                throw new ArgumentNullException(nameof(A));
+            var tempMax = 0;
+            var tempMin = 0;
+            var total = 0;
+            var max = int.MinValue;
+            var min = int.MaxValue;
+            for (int i = 0; i < A.Length; i++)
+            {
+                var val = A[i];
+                tempMin = (tempMin + val < val) ? (tempMin + val) : val;
+                tempMax = (tempMax + val > val) ? (tempMax + val) : val;
+                total += val;
+                min = Math.Min(min, tempMin);
+                max = Math.Max(max, tempMax);
+            }
+            var result = Math.Max(max, total - min); //this deals with the edge case when all vals are negative
+            return result != 0 ? result : max;
+        }
+
+        //438 https://leetcode.com/problems/find-all-anagrams-in-a-string/
+        public IList<int> FindAnagrams(string s, string p)
+        {
+            if (s == null || p == null)
+                throw new ArgumentNullException("a param is null");
+            int[] pmap = new int[26];
+            int[] tempmap;
+            int plength = p.Length;
+            List<int> results = new List<int>();
+
+            foreach (char c in p.ToCharArray())
+                pmap[c - 'a']++;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                char ch = s[i];
+                if (pmap[ch - 'a'] > 0 && s.Length-i >= plength)
+                {
+                     tempmap = new int[26];
+                    tempmap[ch - 'a'] = 1;
+                    var j = 0;
+                    var k = i + 1;
+                    while (j < plength - 1)
+                    {
+                        char c = s[k];
+                        if (pmap[c - 'a'] == 0) break;
+                        tempmap[c - 'a']++;
+                        if (tempmap[c - 'a'] > pmap[c - 'a']) break;
+                        j++;
+                        k++;
+                    }
+                    if (j == plength - 1)
+                    {
+                        if (tempmap.SequenceEqual(pmap))
+                            results.Add(i);
+                    }
+                }
+            }
+            return results;
+        }
+
+        public IList<int> FindAnagramsCleaner(string s, string p)
+        {
+            int slen = s.Length, plen = p.Length;
+            List<int> startIndices = new List<int>();
+            int[] dictS = new int[26], dictP = new int[26];
+
+            foreach (char ch in p.ToCharArray())
+                dictP[ch - 'a']++;
+
+            int j = 0; // [i, j) is current window.
+            for (int i = 0; i < slen; i++)
+            {
+                var ch = s[i];
+                while (j < slen && j - i + 1 <= plen)
+                {
+                    var c = s[j];
+                    dictS[c - 'a']++;
+                    j++;
+                }
+                if ( dictS.SequenceEqual(dictP)) 
+                    startIndices.Add(i);
+                dictS[ch - 'a']--; //this is the bit thats confusing me.
+            }
+
+            return startIndices;
+        }
+
+        //567 https://leetcode.com/problems/permutation-in-string/
+        public bool CheckInclusion(string s1, string s2)
+        {
+            if (s1 == null || s2 == null)
+                throw new ArgumentNullException("a param is null");
+            var s1Length = s1.Length;
+            var s2Length = s2.Length;
+            if (s2Length < s1Length) return false;
+            var maps1 = new int[26];
+            var maps2 = new int[26];
+            int j = 0;
+            
+            foreach (char ch in s1.ToCharArray())
+                maps1[ch - 'a']++;
+            
+            for (int i = 0; i < s2Length; i++)
+            {
+                var ch = s2[i];
+                while (j < s2Length && j - i + 1 <= s1Length)
+                {
+                    var c = s2[j];
+                    maps2[c - 'a']++;
+                    j++;
+                }
+                if (maps2.SequenceEqual(maps1))
+                    return true;
+                maps2[ch - 'a']--;
+            }
+            return false;
         }
     }
 }

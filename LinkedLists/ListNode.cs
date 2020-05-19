@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LinkedLists.LeetCode
 {
-public    class ListNode
+    public class ListNode
     {
         public ListNode(int value)
         {
@@ -14,5 +14,9 @@ public    class ListNode
         public int val { get; }
         public ListNode next { get; set; }
 
+        public override string ToString()
+        {
+            return val.ToString();
+        }
     }
 }
