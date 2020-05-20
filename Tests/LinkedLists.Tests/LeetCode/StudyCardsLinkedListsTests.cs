@@ -8,7 +8,7 @@ namespace LinkedLists.Tests.LeetCode
 {
   public  class StudyCardsLinkedListsTests
     {
-        StudyCardsLinkedList sut = null;
+      readonly  StudyCardsLinkedList sut = null;
 
         public StudyCardsLinkedListsTests()
         {
