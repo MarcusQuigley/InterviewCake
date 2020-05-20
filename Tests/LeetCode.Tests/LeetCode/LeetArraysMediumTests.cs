@@ -245,11 +245,12 @@ namespace Arrays.Tests.LeetCode
 
         [Theory]
         [InlineData("cbaebabacd","abc", new int[] { 0, 6 })]
+        [InlineData("cbaebabc", "abc", new int[] { 0, 5 })]
         [InlineData("abab", "ab", new int[] { 0,1,2})]
         [InlineData("abc", "ab", new int[] { 0 })]
         public void Test_FindAnagrams(string s, string p, int[] expected)
         {
-            var actual = sut.FindAnagramsCleaner(s,p);
+            var actual = sut.FindAnagrams(s,p);
             Assert.Equal(expected, actual.ToArray());
         }
 
