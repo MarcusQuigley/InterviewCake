@@ -50,5 +50,15 @@ namespace Trees.Tests.LeetCode
             Assert.True(sut.Search("app"));
         }
 
+        [Theory]
+        [InlineData(new int[] {3,1, 4,-666,2 }, 1,1)]
+        [InlineData(new int[] { 5, 3, 6, 2, 4, -666, -666, 1 }, 1, 1)]
+        public void Test_KthSmallest(int[] values, int k, int expected)
+        {
+            var root = CreatTreeNodesNonGeneric(values);
+            var actual = sut.KthSmallest(root, k);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

@@ -106,5 +106,26 @@ namespace Trees.LeetCode
             }
             return false;
         }
+
+        // 230. https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+        public int KthSmallest(TreeNode root, int k)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            List<int> list = new List<int>();
+            KthSmallestDFS(root, list);
+            list.Sort();
+            return list[k-1];
+        }
+
+          void KthSmallestDFS(TreeNode node, List<int> list)
+        {
+            if (node != null)
+            {
+                list.Add(node.val);
+                KthSmallestDFS(node.left, list);
+                KthSmallestDFS(node.right, list);
+            }
+        }
     }
 }
