@@ -112,10 +112,20 @@ namespace Trees.LeetCode
         {
             if (root == null)
                 throw new ArgumentNullException(nameof(root));
-            List<int> list = KthSmallestDFS(root, new List<int>());
-           
- 
-            return  list[k-1];
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+
+            while (root != null || stack.Count > 0)
+            {
+                while (root != null)
+                {
+                    stack.Push(root);
+                    root = root.left;
+                }
+                root = stack.Pop();
+                if (--k == 0) return root.val;
+                root = root.right;
+            }
+            return -1;
         }
 
         List<int> KthSmallestDFS(TreeNode node, List<int> list)
@@ -124,7 +134,6 @@ namespace Trees.LeetCode
             {
                 KthSmallestDFS(node.left, list);
                 list.Add(node.val);
-                
                 KthSmallestDFS(node.right, list);
                 return list;
             }
