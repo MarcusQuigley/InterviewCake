@@ -139,5 +139,50 @@ namespace Trees.LeetCode
             }
             return list;
         }
+        //701 https://leetcode.com/problems/insert-into-a-binary-search-tree/
+        public TreeNode InsertIntoBST(TreeNode root, int val)
+        {
+            if (root == null)
+            {
+                TreeNode node = new TreeNode(val);
+                return node;
+            }
+            if (val > root.val)
+                root.right = InsertIntoBST(root.right, val);
+            else
+                root.left = InsertIntoBST(root.left, val);
+            return root;
+        }
+
+        public TreeNode InsertIntoBSTIterative(TreeNode root, int val)
+        {
+            var node = new TreeNode(val);
+            if (root == null)
+                return node;
+            var current = root;
+            while (current!=null)
+            {
+                if (val > current.val)
+                {
+                    if (current.right == null)
+                    {
+                        current.right = node;
+                        break;
+                    }
+                    current = current.right;
+                }
+                else
+                {
+                    if (current.left == null)
+                    {
+                        current.left = node;
+                        break;
+                    }
+                    current = current.left;
+                }
+            }
+
+            return root;
+        }
     }
 }
