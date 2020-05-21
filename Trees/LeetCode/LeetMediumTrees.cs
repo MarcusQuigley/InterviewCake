@@ -112,20 +112,23 @@ namespace Trees.LeetCode
         {
             if (root == null)
                 throw new ArgumentNullException(nameof(root));
-            List<int> list = new List<int>();
-            KthSmallestDFS(root, list);
-            list.Sort();
-            return list[k-1];
+            List<int> list = KthSmallestDFS(root, new List<int>());
+           
+ 
+            return  list[k-1];
         }
 
-          void KthSmallestDFS(TreeNode node, List<int> list)
+        List<int> KthSmallestDFS(TreeNode node, List<int> list)
         {
             if (node != null)
             {
-                list.Add(node.val);
                 KthSmallestDFS(node.left, list);
+                list.Add(node.val);
+                
                 KthSmallestDFS(node.right, list);
+                return list;
             }
+            return list;
         }
     }
 }
