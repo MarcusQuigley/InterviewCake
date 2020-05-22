@@ -264,6 +264,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.CheckInclusion(s, p);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("tree", "eetr")]
+        [InlineData("cccaaa", "cccaaa")]
+        [InlineData("Aabb", "bbAa")]
+        [InlineData("a", "a")]
+        public void Test_FrequencySort(string s, string expected)
+        {
+            var actual = sut.FrequencySort(s);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }

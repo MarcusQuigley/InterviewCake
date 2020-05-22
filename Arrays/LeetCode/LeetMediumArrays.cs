@@ -568,6 +568,28 @@ namespace Arrays.LeetCode
             }
             return false;
         }
+
+        //https://leetcode.com/problems/sort-characters-by-frequency/
+        public string FrequencySort(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
+            Dictionary<char, int> map = new Dictionary<char, int>(s.Length/2);
+            StringBuilder sb = new StringBuilder(s.Length);
+            foreach (char c in s.ToCharArray())
+            {
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+                map[c]++;
+            }
+
+            foreach (KeyValuePair<char,int> kvp in map.OrderByDescending(KeyValuePair=>KeyValuePair.Value))
+            {//better to append using while loop, performance wise
+                sb.Append(string.Concat(Enumerable.Repeat(kvp.Key, kvp.Value)));
+            }
+
+            return sb.ToString();
+        }
     }
 }
  
