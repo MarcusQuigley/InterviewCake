@@ -29,7 +29,7 @@ namespace Matrixes.LeetCode
                 }
             }
             return result;
-}
+        }
         void BFSIslands(char[][] grid, int row, int col)
         {
             var n = grid.Length;
@@ -39,11 +39,11 @@ namespace Matrixes.LeetCode
                 grid[row][col] == '1')
             {
                 grid[row][col] = '0';
-            
-            BFSIslands(grid, row, col - 1);
-            BFSIslands(grid, row, col + 1);
-            BFSIslands(grid, row - 1, col);
-            BFSIslands(grid, row + 1, col);
+
+                BFSIslands(grid, row, col - 1);
+                BFSIslands(grid, row, col + 1);
+                BFSIslands(grid, row - 1, col);
+                BFSIslands(grid, row + 1, col);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Matrixes.LeetCode
                         grid[row][col] = grid[row][col] + grid[row - 1][col];
                     else
                     {
-                        var min = Math.Min(grid[row][col-1], grid[row-1][col]);
+                        var min = Math.Min(grid[row][col - 1], grid[row - 1][col]);
                         grid[row][col] = grid[row][col] + min;
                     }
                 }
@@ -107,11 +107,11 @@ namespace Matrixes.LeetCode
             while (q.Count > 0)
             {
                 var current = q.Dequeue();
-                if (current.Row == n-1 && current.Col == n - 1)         
+                if (current.Row == n - 1 && current.Col == n - 1)
                 {
                     min = Math.Min(min, current.Total);
                 }
-                else 
+                else
                 {
                     foreach (var move in moves)
                     {
@@ -127,6 +127,37 @@ namespace Matrixes.LeetCode
             if (min != int.MaxValue)
                 result = min;
             return result;
+        }
+
+        //1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+        //Dynamic programming
+        public int CountSquares(int[][] matrix)
+        {
+            if (matrix == null)
+                throw new ArgumentNullException(nameof(matrix));
+
+            int result = 0;
+            for (int i = 0; i < matrix[0].Length; i++)
+                result += matrix[0][i];
+            for (int j = 1; j < matrix.Length; j++)
+                result += matrix[j][0];
+            for (int r = 1; r < matrix.Length; r++)
+            {
+                for (int c = 1; c < matrix[0].Length; c++)
+                {
+                    if (matrix[r][c] == 1)
+                    {
+                        matrix[r][c] =  1 + MinOfThree(matrix[r - 1][c - 1], matrix[r-1][c], matrix[r][c-1]);
+                        result += matrix[r][c];
+                    }
+                }
+            }
+            return result;
+        }
+
+        int MinOfThree(int a, int b, int c)
+        {
+            return Math.Min(a, Math.Min(b, c));
         }
     }
 }
