@@ -18,6 +18,7 @@ namespace FBQuestions.Tests
         [InlineData(new string[] { "hello", "leetcode" }, "hlabcdefgijkmnopqrstuvwxyz",true)]
         [InlineData(new string[] { "word", "world", "row" }, "worldabcefghijkmnpqstuvxyz", false)]
         [InlineData(new string[] { "apple", "app" }, "abcdefghijklmnopqrstuvwxyz", false)]
+        [InlineData(new string[] { "kuvp", "q" }, "ngxlkthsjuoqcpavbfdermiywz", true)]
         public void Test_IsAlienSorted(string[] words, string order, bool expected)
         {
             var actual = sut.IsAlienSorted(words, order);
