@@ -46,7 +46,7 @@ namespace Trees.Tests.LeetCode
         public void Test_KthSmallest(int[] values, int k, int expected)
         {
             var root = CreatTreeNodesNonGeneric(values);
-            var actual = sut.KthSmallest(root, k);
+            var actual = sut.KthSmallestDFS(root, k);
             Assert.Equal(expected, actual);
         }
 

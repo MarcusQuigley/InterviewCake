@@ -128,6 +128,13 @@ namespace Trees.LeetCode
             return -1;
         }
 
+        //230 
+        public int KthSmallestDFS(TreeNode node, int k)
+        {
+            var list = KthSmallestDFS(node, new List<int>());
+            return list[k - 1];
+        }
+
         List<int> KthSmallestDFS(TreeNode node, List<int> list)
         {
             if (node != null)
