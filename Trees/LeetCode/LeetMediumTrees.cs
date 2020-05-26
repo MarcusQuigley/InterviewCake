@@ -142,7 +142,7 @@ namespace Trees.LeetCode
                 KthSmallestDFS(node.left, list);
                 list.Add(node.val);
                 KthSmallestDFS(node.right, list);
-                return list;
+               // return list;
             }
             return list;
         }
@@ -167,7 +167,7 @@ namespace Trees.LeetCode
             if (root == null)
                 return node;
             var current = root;
-            while (current!=null)
+            while (true)
             {
                 if (val > current.val)
                 {
