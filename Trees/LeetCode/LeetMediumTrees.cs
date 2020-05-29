@@ -191,5 +191,44 @@ namespace Trees.LeetCode
 
             return root;
         }
+
+        //207 https://leetcode.com/problems/course-schedule/
+        public bool CanFinish(int numCourses, int[][] prerequisites)
+        {
+            List<List<int>> courses  = new List<List<int>>(numCourses);
+ 
+            for (int i = 0; i < numCourses; i++)
+                courses.Add(new List<int>());
+            //dependency graph
+            for (int i = 0; i < prerequisites.Length; i++)
+                  courses[prerequisites[i][0]].Add(prerequisites[i][1]);
+            
+            bool[] dp = new bool[numCourses];
+            bool[] visited = new bool[numCourses];
+            //visit each course
+            for (int i = 0; i < numCourses; i++)
+            {
+                if (!DfsCourses(i, courses, visited, dp))
+                    return false;
+            }
+            return true;
+        }
+
+        private bool DfsCourses(int course, List<List<int>> courses, bool[] visited, bool[] dp)
+        {
+            if (visited[course])
+                return dp[course];
+            visited[course] = true;
+            List<int> eligibleCourses = courses[course];
+            //dfs its children
+            for (int j = 0; j < eligibleCourses.Count; j++)
+            {
+                if (!DfsCourses(courses[course][j], courses, visited, dp))
+                    return false;
+            }
+            dp[course] = true;
+            return true;
+        }
     }
+    
 }
