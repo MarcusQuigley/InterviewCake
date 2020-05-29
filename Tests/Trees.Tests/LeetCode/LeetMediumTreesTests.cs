@@ -70,6 +70,27 @@ namespace Trees.Tests.LeetCode
             var actual = sut.InsertIntoBSTIterative(root, k);
             Assert.Equal(expected, ArrayFromTree(actual));
         }
-        
+
+        [Fact]
+        public void Test_CanFinish()
+        {
+            var grid = new int[1][];
+            grid[0] = new int[] { 1,0 };
+    
+          
+            var actual = sut.CanFinish(2, grid);
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void Test_CanFinish2()
+        {
+            var grid = new int[2][];
+            grid[0] = new int[] { 1, 0 };
+            grid[1] = new int[] { 0, 1 };
+
+            var actual = sut.CanFinish(2, grid);
+            Assert.False(actual);
+        }
     }
 }
