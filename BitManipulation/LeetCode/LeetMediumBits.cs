@@ -21,5 +21,16 @@ namespace BitManipulation
             }
             return m & n & ~x;
         }
+
+        public int[] CountBits(int num)
+        {
+            int[] results = new int[num + 1];
+            for (int f = 1 ; f <= num; f++)
+            {
+                results[f] = results[f >> 1] + (f & 1);
+            }
+            return results;
+
+        }
     }
 }
