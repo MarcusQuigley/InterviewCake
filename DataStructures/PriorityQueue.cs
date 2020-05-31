@@ -11,9 +11,9 @@ namespace DataStructures
         {
             heap.Add(value);
         }
-        public void Dequeue( )
+        public T Dequeue( )
         {
-            heap.RemoveMax();
+           return heap.RemoveMax();
         }
 
         public void Clear()

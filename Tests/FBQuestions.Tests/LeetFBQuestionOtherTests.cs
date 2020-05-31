@@ -35,10 +35,10 @@ namespace FBQuestions.Tests
             grid[1] = new int[] { 5, -1 };
             grid[2] = new int[] { -2, 4 };
 
-            var actual = sut.KClosest(grid, 2);
+            var actual = sut.KClosestWithPriorityQueue(grid, 2);
             var expected = new int[2][];
-            expected[0] = new int[] { 3, 3 };
-            expected[1] = new int[] { -2, 4 };
+            expected[0] = new int[] { -2, 4 };
+            expected[1] = new int[] { 3, 3  };
             Assert.Equal(expected, actual);
         }
     }
