@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Trees
+namespace DataStructures
 {
     class TrieNode
     {

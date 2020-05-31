@@ -38,17 +38,7 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void Test_Trie()
-        {
-            var sut = new Trie();
-            sut.Insert("apple");
-            Assert.True(sut.Search("apple"));
-            Assert.False(sut.Search("app"));
-            Assert.True(sut.StartsWith("app"));
-            sut.Insert("app");
-            Assert.True(sut.Search("app"));
-        }
+       
 
         [Theory]
         [InlineData(new int[] { 3, 1, 4, -666, 2 }, 1, 1)]

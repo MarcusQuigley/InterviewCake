@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Trees
+namespace DataStructures
 {
     public class MaxHeap<T> where T : IComparable<T>
     {
@@ -19,11 +17,11 @@ namespace Trees
             for (int i = 0; i < items.Length; i++)
             {
                 Add(items[i]);
-             }
+            }
         }
 
         public int Count => count;
-       
+
         public int Parent(int index)
         {
             return (index - 1) / 2;
@@ -35,7 +33,7 @@ namespace Trees
                 DoubleArray();
             values[count] = value;
             int index = count;
-            while(index > 0 && values[index].CompareTo(values[Parent(index)]) > 0)
+            while (index > 0 && values[index].CompareTo(values[Parent(index)]) > 0)
             {
                 Swap(index, Parent(index));
                 index = Parent(index);
@@ -51,15 +49,15 @@ namespace Trees
             values[0] = values[count - 1];
             count -= 1;
             int index = 0;
-            while(index < count)
+            while (index < count)
             {
-                int left = (index *2) +1;
+                int left = (index * 2) + 1;
                 int right = (index * 2) + 2;
                 if (left >= count)
                     break;
 
                 int maxChildIndex = MaxChildIndex(left, right);
-                if (values[index].CompareTo(values[maxChildIndex])> 0)
+                if (values[index].CompareTo(values[maxChildIndex]) > 0)
                 {
                     break;
                 }
@@ -76,22 +74,32 @@ namespace Trees
             return values[0];
         }
 
+        public void Clear()
+        {
+            count = 0;
+            values = null;
+        }
+
         int MaxChildIndex(int left, int right)
         {
-            int maxChildIndex = -1; 
+            int maxChildIndex = -1;
             if (right >= count)
             { // No right child. 
-                maxChildIndex = left; 
-            } 
-            else 
-            { 
-                if (values[left].CompareTo(values[right]) > 0) {
-                    maxChildIndex = left; } else 
-                { 
-                    maxChildIndex = right; 
-                } 
-            } return maxChildIndex;
+                maxChildIndex = left;
             }
+            else
+            {
+                if (values[left].CompareTo(values[right]) > 0)
+                {
+                    maxChildIndex = left;
+                }
+                else
+                {
+                    maxChildIndex = right;
+                }
+            }
+            return maxChildIndex;
+        }
 
         void Swap(int a, int b)
         {
@@ -108,6 +116,8 @@ namespace Trees
             }
             values = temp;
         }
+
+
 
     }
 }
