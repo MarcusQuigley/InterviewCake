@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace Trees.Tests.LeetCode
 {
     public abstract class BaseTreeTests
@@ -69,6 +69,30 @@ namespace Trees.Tests.LeetCode
                 node.right = new TreeNode<int>(arr[i++]);
             }
             return root;
+        }
+
+        public int[] ArrayFromTree(TreeNode node)
+        {
+            List<int> list = new List<int>();
+            var q = new Queue<TreeNode>();
+            q.Enqueue(node);
+
+            while (q.Count > 0)
+            {
+                var current = q.Dequeue();
+                if (current != null)
+                {
+                    list.Add(current.val);
+                    //if (current.left != null) q.Enqueue(current.left);
+                    // if (current.right != null) q.Enqueue(current.right);
+                    q.Enqueue(current.left);
+                    q.Enqueue(current.right);
+                }
+                else
+                    list.Add(-666); //simple hack to define nulls in int[]
+            }
+            return list.Take(list.LastIndexOf(list.Last(n=>n!=-666))+1) //strips end elements that are -666
+                       .ToArray();
         }
     }
 }

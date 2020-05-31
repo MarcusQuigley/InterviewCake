@@ -494,71 +494,48 @@ namespace Arrays.LeetCode
         }
 
         //438 https://leetcode.com/problems/find-all-anagrams-in-a-string/
+        //Sliding windows
         public IList<int> FindAnagrams(string s, string p)
         {
-            if (s == null || p == null)
-                throw new ArgumentNullException("a param is null");
-            int[] pmap = new int[26];
-            int[] tempmap;
-            int plength = p.Length;
+            Dictionary<char, int> map = new Dictionary<char, int>();
+            var pLength = p.Length;
+            var begin = 0;
+            var end = 0;
+            var counter = 0;
             List<int> results = new List<int>();
-
             foreach (char c in p.ToCharArray())
-                pmap[c - 'a']++;
-
-            for (int i = 0; i < s.Length; i++)
             {
-                char ch = s[i];
-                if (pmap[ch - 'a'] > 0 && s.Length-i >= plength)
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+                map[c]++;
+            }
+            counter = map.Count;
+            while (end < s.Length)
+            {
+                var ce = s[end];
+                if (map.ContainsKey(ce))
                 {
-                     tempmap = new int[26];
-                    tempmap[ch - 'a'] = 1;
-                    var j = 0;
-                    var k = i + 1;
-                    while (j < plength - 1)
+                    map[ce]--;
+                    if (map[ce] == 0)
+                        counter--;
+                }
+                end++;
+                while (counter == 0)
+                {
+                    if (end - begin == pLength)
+                        results.Add(begin);
+
+                    var cb = s[begin];
+                    if (map.ContainsKey(cb))
                     {
-                        char c = s[k];
-                        if (pmap[c - 'a'] == 0) break;
-                        tempmap[c - 'a']++;
-                        if (tempmap[c - 'a'] > pmap[c - 'a']) break;
-                        j++;
-                        k++;
+                        map[cb]++;
+                        if (map[cb] > 0)
+                            counter++;
                     }
-                    if (j == plength - 1)
-                    {
-                        if (tempmap.SequenceEqual(pmap))
-                            results.Add(i);
-                    }
+                    begin++;
                 }
             }
             return results;
-        }
-
-        public IList<int> FindAnagramsCleaner(string s, string p)
-        {
-            int slen = s.Length, plen = p.Length;
-            List<int> startIndices = new List<int>();
-            int[] dictS = new int[26], dictP = new int[26];
-
-            foreach (char ch in p.ToCharArray())
-                dictP[ch - 'a']++;
-
-            int j = 0; // [i, j) is current window.
-            for (int i = 0; i < slen; i++)
-            {
-                var ch = s[i];
-                while (j < slen && j - i + 1 <= plen)
-                {
-                    var c = s[j];
-                    dictS[c - 'a']++;
-                    j++;
-                }
-                if ( dictS.SequenceEqual(dictP)) 
-                    startIndices.Add(i);
-                dictS[ch - 'a']--; //this is the bit thats confusing me.
-            }
-
-            return startIndices;
         }
 
         //567 https://leetcode.com/problems/permutation-in-string/
@@ -590,6 +567,28 @@ namespace Arrays.LeetCode
                 maps2[ch - 'a']--;
             }
             return false;
+        }
+
+        //https://leetcode.com/problems/sort-characters-by-frequency/
+        public string FrequencySort(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
+            Dictionary<char, int> map = new Dictionary<char, int>(s.Length/2);
+            StringBuilder sb = new StringBuilder(s.Length);
+            foreach (char c in s.ToCharArray())
+            {
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+                map[c]++;
+            }
+
+            foreach (KeyValuePair<char,int> kvp in map.OrderByDescending(KeyValuePair=>KeyValuePair.Value))
+            {//better to append using while loop, performance wise
+                sb.Append(string.Concat(Enumerable.Repeat(kvp.Key, kvp.Value)));
+            }
+
+            return sb.ToString();
         }
     }
 }

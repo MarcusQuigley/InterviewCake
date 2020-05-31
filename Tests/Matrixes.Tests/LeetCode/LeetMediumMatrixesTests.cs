@@ -109,5 +109,27 @@ namespace Matrixes.Tests.LeetCode
             var actual = sut.ShortestPathBinaryMatrix(grid);
             Assert.Equal(4, actual);
         }
+
+        [Fact]
+        public void Test_CountSquares()
+        {
+            var grid = new int[3][];
+            grid[0] = new int[] { 0, 1, 1, 1 };
+            grid[1] = new int[] { 1, 1, 1, 1 };
+            grid[2] = new int[] { 0, 1, 1, 1 };
+            var actual = sut.CountSquares(grid);
+            Assert.Equal(15, actual);
+        }
+
+        [Fact]
+        public void Test_CountSquares2()
+        {
+            var grid = new int[3][];
+            grid[0] = new int[] { 1, 0, 1 };
+            grid[1] = new int[] { 1, 1, 0 };
+            grid[2] = new int[] { 1, 1, 0 };
+            var actual = sut.CountSquares(grid);
+            Assert.Equal(7, actual);
+        }
     }
 }

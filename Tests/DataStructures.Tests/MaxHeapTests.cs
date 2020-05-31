@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
 using Xunit;
 
-namespace Trees.Tests
+namespace DataStructures.Tests
 {
     public class MaxHeapTests
     {
@@ -14,7 +12,7 @@ namespace Trees.Tests
         }
 
         [Theory]
-        [InlineData(new int[] { 3,5,1,6,8,4,2}, 7)]
+        [InlineData(new int[] { 3, 5, 1, 6, 8, 4, 2 }, 7)]
         public void TestCount(int[] values, int expected)
         {
             for (int i = 0; i < values.Length; i++)
@@ -55,7 +53,7 @@ namespace Trees.Tests
             {
                 sut.Add(values[i]);
             }
-            
+
             var actual = sut.RemoveMax();
             Assert.Equal(expected, actual);
         }

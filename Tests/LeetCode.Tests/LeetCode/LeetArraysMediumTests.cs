@@ -245,11 +245,12 @@ namespace Arrays.Tests.LeetCode
 
         [Theory]
         [InlineData("cbaebabacd","abc", new int[] { 0, 6 })]
+        [InlineData("cbaebabc", "abc", new int[] { 0, 5 })]
         [InlineData("abab", "ab", new int[] { 0,1,2})]
         [InlineData("abc", "ab", new int[] { 0 })]
         public void Test_FindAnagrams(string s, string p, int[] expected)
         {
-            var actual = sut.FindAnagramsCleaner(s,p);
+            var actual = sut.FindAnagrams(s,p);
             Assert.Equal(expected, actual.ToArray());
         }
 
@@ -261,6 +262,17 @@ namespace Arrays.Tests.LeetCode
         public void Test_CheckInclusion(string s, string p, bool expected)
         {
             var actual = sut.CheckInclusion(s, p);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("tree", "eetr")]
+        [InlineData("cccaaa", "cccaaa")]
+        [InlineData("Aabb", "bbAa")]
+        [InlineData("a", "a")]
+        public void Test_FrequencySort(string s, string expected)
+        {
+            var actual = sut.FrequencySort(s);
             Assert.Equal(expected, actual);
         }
         

@@ -106,5 +106,83 @@ namespace Trees.LeetCode
             }
             return false;
         }
+
+        // 230. https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+        public int KthSmallest(TreeNode root, int k)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+
+            while (root != null || stack.Count > 0)
+            {
+                while (root != null)
+                {
+                    stack.Push(root);
+                    root = root.left;
+                }
+                root = stack.Pop();
+                if (--k == 0) return root.val;
+                root = root.right;
+            }
+            return -1;
+        }
+
+        List<int> KthSmallestDFS(TreeNode node, List<int> list)
+        {
+            if (node != null)
+            {
+                KthSmallestDFS(node.left, list);
+                list.Add(node.val);
+                KthSmallestDFS(node.right, list);
+                return list;
+            }
+            return list;
+        }
+        //701 https://leetcode.com/problems/insert-into-a-binary-search-tree/
+        public TreeNode InsertIntoBST(TreeNode root, int val)
+        {
+            if (root == null)
+            {
+                TreeNode node = new TreeNode(val);
+                return node;
+            }
+            if (val > root.val)
+                root.right = InsertIntoBST(root.right, val);
+            else
+                root.left = InsertIntoBST(root.left, val);
+            return root;
+        }
+
+        public TreeNode InsertIntoBSTIterative(TreeNode root, int val)
+        {
+            var node = new TreeNode(val);
+            if (root == null)
+                return node;
+            var current = root;
+            while (current!=null)
+            {
+                if (val > current.val)
+                {
+                    if (current.right == null)
+                    {
+                        current.right = node;
+                        break;
+                    }
+                    current = current.right;
+                }
+                else
+                {
+                    if (current.left == null)
+                    {
+                        current.left = node;
+                        break;
+                    }
+                    current = current.left;
+                }
+            }
+
+            return root;
+        }
     }
 }

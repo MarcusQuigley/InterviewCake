@@ -8,7 +8,7 @@ namespace Recursion.Tests.LeetCode
 {
     public class RecursionOneTests
     {
-        RecursionOne sut;
+      readonly RecursionOne sut;
 
         public RecursionOneTests()
         {
