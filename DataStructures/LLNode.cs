@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LinkedLists
+namespace DataStructures
 {
     public class LLNode<T>
     {

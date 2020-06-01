@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LinkedLists
+namespace DataStructures
 {
    public class DLLNode<T>
     {
