@@ -24,19 +24,19 @@ namespace AmazonQuestions.Tests
             Assert.Equal(expected, actual);
 
         }
-        //[Theory]
-        //[InlineData("abcabcbb", 3)]
-        //[InlineData("bbbb", 1)]
-        //[InlineData("pwwkew", 3)]
-        //[InlineData("", 0)]
-        //[InlineData("a", 1)]
-        //[InlineData("dvdf", 3)]
-        //public void Test_LengthOfLongestSubstring(string s, int expected)
-        //{
-        //    var actual = sut.LengthOfLongestSubstring(s);
-        //    Assert.Equal(expected, actual);
+        [Theory]
+        [InlineData("abcabcbb", 3)]
+        [InlineData("bbbb", 1)]
+        [InlineData("pwwkew", 3)]
+        [InlineData("", 0)]
+        [InlineData("a", 1)]
+        [InlineData("dvdf", 3)]
+        public void Test_LengthOfLongestSubstring(string s, int expected)
+        {
+            var actual = sut.LengthOfLongestSubstring(s);
+            Assert.Equal(expected, actual);
 
-        //}
+        }
         
 
     }

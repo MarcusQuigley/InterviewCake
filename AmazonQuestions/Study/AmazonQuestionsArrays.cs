@@ -33,38 +33,38 @@ namespace AmazonQuestions.Study
             return result;
         }
 
-        ////Medium https://leetcode.com/problems/longest-substring-without-repeating-characters/
-        //public int LengthOfLongestSubstring(string s)
-        //{
-        //    //pwwkew
-        //    if (s == null)
-        //        throw new ArgumentNullException();
-        //    if (s.Length==0)
-        //        return 0;
+        //Medium https://leetcode.com/problems/longest-substring-without-repeating-characters/
+        public int LengthOfLongestSubstring(string s)
+        {
+            //pwwkew
+            if (s == null)
+                throw new ArgumentNullException();
+            if (s.Length==0)
+                return 0;
 
-        //    var begin = 0;
-        //    var end = 0;
-        //    var n = s.Length;
-        //    var max = 0;
-        //    while (end < n)
-        //    {
-        //        var val = s[end];
-        //        var i = begin;
-        //        while (i < end)
-        //        {
-        //            if (s[i] == val)
-        //            {
-        //                max = Math.Max(max, end - begin);
-        //                begin = i+1;
-        //                break;
-        //            }
-        //            i++;
-        //        }
-        //        end++;
-        //    }
-        //    max = Math.Max(max, end - begin );
-        //    return max;
-        //}
+            var begin = 0;
+            var end = 0;
+            var n = s.Length;
+            var max = 0;
+            while (end < n)
+            {
+                var val = s[end];
+                var i = begin;
+                while (i < end)
+                {
+                    if (s[i] == val)
+                    {
+                        max = Math.Max(max, end - begin);
+                        begin = i+1;
+                        break;
+                    }
+                    i++;
+                }
+                end++;
+            }
+            max = Math.Max(max, end - begin );
+            return max;
+        }
 
     }
 }
