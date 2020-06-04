@@ -96,5 +96,34 @@ namespace Trees.Tests.LeetCode
             return list.Take(list.LastIndexOf(list.Last(n=>n!=-666))+1) //strips end elements that are -666
                        .ToArray();
         }
+
+        public TreeNode BSTreeFromPreOrder(int[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if (array.Length == 0)
+                return null;
+            var n = array.Length;
+            var root = new TreeNode(array[0]);
+            for (int i = 1; i < n; i++)
+            {
+                var val = array[i];
+                TreeNode parent = null;
+                var node = root;
+                while (node != null)
+                {
+                    parent = node;
+                    if (val < node.val)
+                        node = node.left;
+                    else
+                        node = node.right;
+                }
+                if (val < parent.val)
+                    parent.left = new TreeNode(val);
+                else
+                    parent.right = new TreeNode(val);
+            }
+            return root;
+        }
     }
 }

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\LeetStudy\LeetStudy.csproj" />
     <ProjectReference Include="..\LinkedLists.Tests\LinkedLists.Tests.csproj" />
+    <ProjectReference Include="..\Trees.Tests\Trees.Tests.csproj" />
   </ItemGroup>
 
 </Project>
