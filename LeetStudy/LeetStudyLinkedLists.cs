@@ -112,7 +112,7 @@ namespace LeetStudy
             }
             return head;
         }
-
+        //https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1208/
         public ListNode OddEvenList(ListNode head)
         {
             if (head == null)
@@ -130,7 +130,7 @@ namespace LeetStudy
             odd.next = evenhead;
             return head;
         }
-
+        //https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1209/
         public bool IsPalindrome(ListNode head)
         {
             if (head == null) return true;
