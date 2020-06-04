@@ -65,5 +65,29 @@ namespace LeetStudy.Tests
             var actual = sut.LevelOrder(treeNode);
             Assert.Equal(expected, actual);
         }
-     }
+
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 },1)]
+        [InlineData(new int[] {   }, 0)]
+        public void Test_MaxDepthIter(int[] nums,   int  expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepthIter(treeNode);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { }, 0)]
+        public void Test_MaxDepth(int[] nums, int expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepth(treeNode);
+            Assert.Equal(expected, actual);
+        }
+       
+        
+    }
 }

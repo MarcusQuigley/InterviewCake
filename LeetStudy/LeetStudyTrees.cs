@@ -1,6 +1,7 @@
 ﻿using DataStructures;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace LeetStudy
 {
@@ -55,7 +56,7 @@ namespace LeetStudy
 
             var current = root;
             var stack = new Stack<TreeNode>();
-            while(stack.Count >0 || current!=null)
+            while (stack.Count > 0 || current != null)
             {
                 while (current != null)
                 {
@@ -65,8 +66,8 @@ namespace LeetStudy
                 current = stack.Pop();
                 result.Add(current.val);
                 current = current.right;
-             }
-              return result;
+            }
+            return result;
         }
 
         //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/930/
@@ -81,7 +82,7 @@ namespace LeetStudy
             while (leftStack.Count > 0)
             {
                 var current = leftStack.Pop();
-               
+
                 if (current.left != null)
                     leftStack.Push(current.left);
                 if (current.right != null)
@@ -120,6 +121,68 @@ namespace LeetStudy
                 results.Add(result);
             }
             return results;
+        }
+
+
+        #region Recursion with Trees
+        public int MaxDepth(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            var l = MaxDepth(root.left) + 1;
+            var r = MaxDepth(root.right) + 1;
+            return Math.Max(l, r);
+        }
+
+
+        #endregion
+
+        public int MaxDepthIter(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            var count = 0;
+            var q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var len = q.Count;
+                for (int i = 0; i < len; i++)
+                {
+                    var current = q.Dequeue();
+                    if (current.left != null) q.Enqueue(current.left);
+                    if (current.right != null) q.Enqueue(current.right);
+                }
+                count += 1;
+            }
+            return count;
+        }
+
+        public bool IsSymmetric(TreeNode root)
+        {
+            if (root == null) return false;
+            return IsMirror(root, root);
+        }
+        bool IsMirror(TreeNode t1, TreeNode t2)
+        {
+            if (t1 == null && t2 == null)
+                return true;
+            if (t1 == null || t2 == null)
+                return false;
+            return (t1.val == t2.val) &&
+            IsMirror(t1.left, t2.right) &&
+            IsMirror(t1.right, t2.left);
+        }
+
+        public bool HasPathSum(TreeNode root, int sum)
+        {
+            if (root == null)
+                return false;
+            if (root.left == null && root.right == null)
+                return sum- root.val  == 0;
+            return (HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val));
+
+
         }
     }
 }
