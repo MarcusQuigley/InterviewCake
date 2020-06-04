@@ -56,9 +56,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures", "DataStruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Tests", "Tests\DataStructures.Tests\DataStructures.Tests.csproj", "{E16FE78A-E149-4CA3-92AF-CD34F0000ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetStudy", "LeetStudy\LeetStudy.csproj", "{8A922A14-45E5-4329-979A-05F820F4EC0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetStudy", "LeetStudy\LeetStudy.csproj", "{8A922A14-45E5-4329-979A-05F820F4EC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetStudy.Tests", "Tests\LeetStudy.Tests\LeetStudy.Tests.csproj", "{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetStudy.Tests", "Tests\LeetStudy.Tests\LeetStudy.Tests.csproj", "{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonQuestions", "AmazonQuestions\AmazonQuestions.csproj", "{74B9CF17-7EED-477C-9E18-02F50915E74F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonQuestions.Tests", "Tests\AmazonQuestions.Tests\AmazonQuestions.Tests.csproj", "{096B758D-A1C1-4952-A143-6334B70CDEBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -406,6 +410,30 @@ Global
 		{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}.Release|x64.Build.0 = Release|Any CPU
 		{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}.Release|x86.ActiveCfg = Release|Any CPU
 		{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}.Release|x86.Build.0 = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|x64.Build.0 = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Debug|x86.Build.0 = Debug|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|x64.ActiveCfg = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|x64.Build.0 = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|x86.ActiveCfg = Release|Any CPU
+		{74B9CF17-7EED-477C-9E18-02F50915E74F}.Release|x86.Build.0 = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|x64.Build.0 = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Debug|x86.Build.0 = Debug|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x64.ActiveCfg = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x64.Build.0 = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x86.ActiveCfg = Release|Any CPU
+		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -425,6 +453,7 @@ Global
 		{1FC77BC6-3692-407E-B3CD-9FA3C34360FC} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 		{E16FE78A-E149-4CA3-92AF-CD34F0000ED5} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 		{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
+		{096B758D-A1C1-4952-A143-6334B70CDEBB} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11FA0035-E8FB-4506-88C3-94AEAE002C5B}
