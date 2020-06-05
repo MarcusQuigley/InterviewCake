@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace AmazonQuestions.Study
 {
@@ -64,6 +65,56 @@ namespace AmazonQuestions.Study
             }
             max = Math.Max(max, end - begin );
             return max;
+        }
+
+        //Medium https://leetcode.com/problems/string-to-integer-atoi/
+        public int MyAtoi(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return 0;
+            var trimmedStr = str.Trim();
+            if (trimmedStr == "")
+                return 0;
+            var isNegative = false;
+            var stringDigit = new StringBuilder(trimmedStr.Length);
+            var firstChar = trimmedStr[0];
+
+            if (IsDigit(firstChar))
+                stringDigit.Append(firstChar);
+            else if (firstChar == '-')
+                isNegative = true;
+            else if (firstChar == '+')
+                isNegative = false;
+            else
+                return 0;
+
+            int i = 1;
+            for (i = 1; i < trimmedStr.Length; i++)
+            {
+                if (!IsDigit(trimmedStr[i]))
+                    break;
+            }
+            stringDigit.Append(trimmedStr.Substring(1, i - 1));
+            if (stringDigit.Length == 0)
+                return 0;
+
+            if (!long.TryParse(stringDigit.ToString(), out var number))
+                number = 2147483648;
+            if (number > int.MaxValue)
+            {
+                if (isNegative)
+                    number = int.MinValue;
+                else
+                    number = int.MaxValue;
+            }
+            if (isNegative)
+                number *= -1;
+            return (int) number;
+        }
+
+        bool IsDigit(char c)
+        {
+            return c > 47 && c < 58;
         }
 
     }
