@@ -334,6 +334,19 @@ namespace Arrays.Tests.LeetCode
             sut.Merge(nums, nums1length,  nums2,  nums2length);
             Assert.Equal(expected, nums);
         }
-        
+
+        [Theory]
+        [InlineData("a", "a")]
+        [InlineData("abc", "cba")]
+        [InlineData("ab", "ba")]
+        [InlineData("hello", "olleh")]
+        [InlineData("Hannah", "hannaH")]
+        public void Test_ReverseString(string s1, string expected)
+        {
+            var s1chararray = s1.ToCharArray();
+            sut.ReverseString(s1chararray);
+            var actual = new string(s1chararray);
+            Assert.Equal(expected, actual);
+        }
     }
 }
