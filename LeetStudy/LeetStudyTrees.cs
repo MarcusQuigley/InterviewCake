@@ -125,6 +125,7 @@ namespace LeetStudy
 
 
         #region Recursion with Trees
+        //104 Easy https://leetcode.com/problems/maximum-depth-of-binary-tree/
         public int MaxDepth(TreeNode root)
         {
             if (root == null)
@@ -158,6 +159,7 @@ namespace LeetStudy
             return count;
         }
 
+        //101 Easy https://leetcode.com/problems/symmetric-tree/
         public bool IsSymmetric(TreeNode root)
         {
             if (root == null) return false;
@@ -174,6 +176,28 @@ namespace LeetStudy
             IsMirror(t1.right, t2.left);
         }
 
+        public bool IsSymmetricIter(TreeNode root)
+        {
+            if (root == null) return false;
+            var q = new Queue<TreeNode>();
+            q.Enqueue(root.left);
+            q.Enqueue(root.right);
+            while (q.Count > 0)
+            {
+                var left = q.Dequeue();
+                var right = q.Dequeue();
+                if (left == null && right == null) continue;
+                if (left == null || right == null) return false;
+                if (left.val != right.val) return false;
+                q.Enqueue(left.left);
+                q.Enqueue(right.right);
+                q.Enqueue(left.right);
+                q.Enqueue(right.left);
+            }
+            return true;
+        }
+
+        //112 Easy https://leetcode.com/problems/path-sum/
         public bool HasPathSum(TreeNode root, int sum)
         {
             if (root == null)
@@ -182,7 +206,33 @@ namespace LeetStudy
                 return sum- root.val  == 0;
             return (HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val));
 
+        }
 
+        public bool HasPathSumIter(TreeNode root, int sum)
+        {
+            if (root == null) return false;
+            var q = new Stack<TreeNode>();
+            var sumq = new Stack<int>();
+            q.Push(root);
+            sumq.Push(sum - root.val);
+            while (q.Count > 0)
+            {
+                var curr = q.Pop();
+                var currsum = sumq.Pop();
+                if (curr.left == null && curr.right == null && currsum == 0)
+                    return true;
+                if (curr.left != null)
+                {
+                    q.Push(curr.left);
+                    sumq.Push(currsum - curr.left.val);
+                }
+                if (curr.right != null)
+                {
+                    q.Push(curr.right);
+                    sumq.Push(currsum - curr.right.val);
+                }
+            }
+            return false;
         }
     }
 }
