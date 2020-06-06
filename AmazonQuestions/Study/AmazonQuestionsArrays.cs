@@ -34,8 +34,29 @@ namespace AmazonQuestions.Study
             return result;
         }
 
-        //Medium https://leetcode.com/problems/longest-substring-without-repeating-characters/
-        public int LengthOfLongestSubstring(string s)
+        public int[] TwoSumBrute(int[] nums, int target)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            var result = new int[2];
+            var n = nums.Length;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i+1; j < n; j++)
+                {
+                    if (nums[i] + nums[j] == target)
+                    {
+                        result[0] = i;
+                        result[1] = j;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+            //Medium https://leetcode.com/problems/longest-substring-without-repeating-characters/
+            public int LengthOfLongestSubstring(string s)
         {
             //pwwkew
             if (s == null)
