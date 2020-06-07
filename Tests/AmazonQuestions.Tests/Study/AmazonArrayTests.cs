@@ -52,6 +52,22 @@ namespace AmazonQuestions.Tests
         }
 
         [Theory]
+        [InlineData("abcabcbb", 3)]
+        [InlineData("bbbb", 1)]
+        [InlineData("pwwkew", 3)]
+        [InlineData("", 0)]
+        [InlineData("a", 1)]
+        [InlineData("dvdf", 3)]
+        [InlineData("ingUsik",6)]
+        public void Test_LengthOfLongestSubstringUsingArray(string s, int expected)
+        {
+            var actual = sut.LengthOfLongestSubstringUsingArray(s);
+            Assert.Equal(expected, actual);
+        }
+
+        
+
+        [Theory]
         [InlineData("42", 42)]
         [InlineData("-42", -42)]
         [InlineData("- 42", 0)]

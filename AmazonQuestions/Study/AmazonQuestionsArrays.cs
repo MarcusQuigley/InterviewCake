@@ -87,6 +87,24 @@ namespace AmazonQuestions.Study
             max = Math.Max(max, end - begin );
             return max;
         }
+        // https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/1730/Shortest-O(n)-DP-solution-with-explanations
+        public int LengthOfLongestSubstringUsingArray(string s)
+        {//ingUsik
+            int[] charIndexs = new int[128];
+            for (int i = 0; i < charIndexs.Length; i++)
+                charIndexs[i] = -1;
+           
+            int max = 0;
+            int begin = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                var _char = s[i];
+                begin = Math.Max(charIndexs[_char] + 1, begin);
+                charIndexs[_char] = i;
+                max = Math.Max(max, i - begin + 1);
+            }
+            return max;
+        }
 
         //Medium https://leetcode.com/problems/string-to-integer-atoi/
         public int MyAtoi(string str)
