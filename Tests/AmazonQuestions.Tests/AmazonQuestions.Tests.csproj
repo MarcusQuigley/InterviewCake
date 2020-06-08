@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AmazonQuestions\AmazonQuestions.csproj" />
+    <ProjectReference Include="..\..\DataStructures\DataStructures.csproj" />
   </ItemGroup>
 
 </Project>
