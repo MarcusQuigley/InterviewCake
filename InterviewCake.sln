@@ -60,9 +60,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetStudy", "LeetStudy\Leet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetStudy.Tests", "Tests\LeetStudy.Tests\LeetStudy.Tests.csproj", "{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonQuestions", "AmazonQuestions\AmazonQuestions.csproj", "{74B9CF17-7EED-477C-9E18-02F50915E74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonQuestions", "AmazonQuestions\AmazonQuestions.csproj", "{74B9CF17-7EED-477C-9E18-02F50915E74F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonQuestions.Tests", "Tests\AmazonQuestions.Tests\AmazonQuestions.Tests.csproj", "{096B758D-A1C1-4952-A143-6334B70CDEBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonQuestions.Tests", "Tests\AmazonQuestions.Tests\AmazonQuestions.Tests.csproj", "{096B758D-A1C1-4952-A143-6334B70CDEBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting.Tests", "Tests\Sorting.Tests\Sorting.Tests.csproj", "{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -434,6 +438,30 @@ Global
 		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x64.Build.0 = Release|Any CPU
 		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x86.ActiveCfg = Release|Any CPU
 		{096B758D-A1C1-4952-A143-6334B70CDEBB}.Release|x86.Build.0 = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|x64.Build.0 = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|x64.ActiveCfg = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|x64.Build.0 = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}.Release|x86.Build.0 = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x64.Build.0 = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -454,6 +482,7 @@ Global
 		{E16FE78A-E149-4CA3-92AF-CD34F0000ED5} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 		{98258E8E-EB9F-4179-A5C1-8CA6C923CBDA} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 		{096B758D-A1C1-4952-A143-6334B70CDEBB} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
+		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA} = {41087CA0-7A11-4D98-B1C2-9F2E284B3B32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11FA0035-E8FB-4506-88C3-94AEAE002C5B}
