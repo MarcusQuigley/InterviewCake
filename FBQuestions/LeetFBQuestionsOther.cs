@@ -64,6 +64,48 @@ namespace FBQuestions
             return results;
         }
 
+        public int[][] KClosestQuickSelect(int[][] points, int K)
+        {
+            if (points == null)
+                throw new ArgumentNullException(nameof(points));
+
+            var n = points.Length;
+            var l = 0;
+            var r = n - 1;
+            while (l <= r)
+            {
+                var pivot = KClosestQuickSelect(points, l, r);
+                if (pivot == K)
+                    break;
+                if (pivot < K)
+                    l = pivot + 1;
+                else
+                    r = pivot - 1;
+            }
+            int[][] result = new int[K][];
+            Array.Copy(points, result, K);
+            return result;
+        }
+
+        private int KClosestQuickSelect(int[][] A, int l, int r)
+        {
+            int[] pivot = A[l];
+            while (l < r)
+            {
+                while (l < r && Compare(A[r], pivot) >= 0) r--;
+                A[l] = A[r];
+                while (l < r && Compare(A[l], pivot) <= 0) l++;
+                A[r] = A[l];
+            }
+            A[l] = pivot;
+            return l;
+        }
+
+        private int Compare(int[] p1, int[] p2)
+        {
+            return (p1[0] * p1[0] + p1[1] * p1[1]) - (p2[0] * p2[0] + p2[1] * p2[1]);
+        }
+
         class MyPoint : IComparable<MyPoint>
         {
            readonly int x;
