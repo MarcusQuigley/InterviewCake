@@ -156,5 +156,28 @@ namespace AmazonQuestions.Study
             return c > 47 && c < 58;
         }
 
+        //Medium https://leetcode.com/problems/kth-largest-element-in-an-array/
+        public int FindKthLargest(int[] nums, int k)
+        {
+            if (nums == null)
+                throw new ArgumentNullException(nameof(nums));
+            Array.Sort(nums);
+            return nums[nums.Length-k];
+            var q = new Queue<int>(k);
+            int max = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var number = nums[i];
+                if (number >= max)
+                {
+                    max = number;
+                    q.Enqueue(max);
+                    if (q.Count == k + 1)
+                        q.Dequeue();
+                }
+            }
+            return q.Dequeue();
+        }
+
     }
 }
