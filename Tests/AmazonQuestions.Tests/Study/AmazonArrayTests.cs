@@ -85,5 +85,16 @@ namespace AmazonQuestions.Tests
             var actual = sut.MyAtoi(s);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 3, 2, 1, 5, 6, 4 }, 2,5)]
+        [InlineData(new int[] { 3, 2, 3, 1, 2, 4, 5, 5, 6 }, 4,4)]
+        [InlineData(new int[] { 1}, 1,1)]
+        [InlineData(new int[] { 2,1 }, 2, 1)]
+        public void Test_FindKthLargest(int[] nums, int k, int expected)
+        {
+            var actual = sut.FindKthLargest(nums,k);
+            Assert.Equal(expected, actual);
+        }
     }
 }
