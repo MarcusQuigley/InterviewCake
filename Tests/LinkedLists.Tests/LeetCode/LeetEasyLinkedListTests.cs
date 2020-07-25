@@ -1,4 +1,5 @@
-﻿using LinkedLists.LeetCode;
+﻿using DataStructures;
+using LinkedLists.LeetCode;
 using System;
 using System.Collections.Generic;
 using System.Text;

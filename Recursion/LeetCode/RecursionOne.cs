@@ -110,7 +110,7 @@ namespace Recursion.LeetCode
                 throw new ArgumentNullException(nameof(root));
             Queue<TreeNode> q = new Queue<TreeNode>();
             q.Enqueue(root);
-            while (q.Count>0)
+            while (q.Count > 0)
             {
                 bool isCousin = false;
                 bool isSibling = false;
@@ -137,5 +137,19 @@ namespace Recursion.LeetCode
             }
             return false;
         }
+        public ListNode ReverseList(ListNode head)
+        {
+            ListNode previous = null;
+            ListNode current = head;
+            while (current != null)
+            {
+                var tmp = current.next;
+                current.next = previous;
+                previous = current;
+                current = tmp;
+            }
+            return previous;
+        }
     }
 }
+

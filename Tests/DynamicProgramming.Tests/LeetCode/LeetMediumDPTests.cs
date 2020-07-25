@@ -18,6 +18,7 @@ namespace DynamicProgramming.Tests.LeetCode
         [InlineData("abcde", "ace",3)]
         [InlineData("ace", "ace", 3)]
         [InlineData("abc", "def", 0)]
+
         public void Test_LongestCommonSubsequence(string text1, string text2, int expected)
         {
             var actual = sut.LongestCommonSubsequence(text1, text2);
@@ -61,5 +62,15 @@ namespace DynamicProgramming.Tests.LeetCode
             Assert.Equal(1, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 1, 4, 2 },new int[] { 1,2, 4 }, 2)]
+        [InlineData(new int[] { 2, 5, 1, 2, 5 }, new int[] {10,5,2,1,5,2}, 3)]
+        [InlineData(new int[] { 1, 3, 7, 1, 7, 5 }, new int[] { 1, 9, 2, 5, 1 }, 2)]
+        public void Test_MaxUncrossedLines(int[] A, int[] B, int expected)
+        {
+            var actual = sut.MaxUncrossedLines(A, B);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

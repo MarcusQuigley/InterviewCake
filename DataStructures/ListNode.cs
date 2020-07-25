@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LinkedLists.LeetCode
+namespace DataStructures
 {
     public class ListNode
     {

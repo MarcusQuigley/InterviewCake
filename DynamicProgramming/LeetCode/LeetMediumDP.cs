@@ -64,5 +64,31 @@ namespace DynamicProgramming.LeetCode
             }
             return max * max;
         }
+
+        //1035 https://leetcode.com/problems/uncrossed-lines/
+        public int MaxUncrossedLines(int[] A, int[] B)
+        {
+            if (A == null || B == null)
+                throw new ArgumentNullException("Param is null");
+            int rows = A.Length + 1;
+            int cols = B.Length + 1;
+            int[][] matrix = new int[rows][];
+            for (int i = 0; i < rows; i++)
+            {
+                matrix[i] = new int[cols];
+            }
+
+            for (int i = 1; i < rows; i++)
+            {
+                for (int j = 1; j < cols; j++)
+                {
+                    if (A[i-1] == B[j-1])
+                        matrix[i][j] = matrix[i - 1][j - 1] + 1;
+                    else
+                        matrix[i][j] = Math.Max( matrix[i][j - 1], matrix[i - 1][j]);
+                }
+            }
+            return matrix[A.Length ][B.Length ];
+        }
     }
 }

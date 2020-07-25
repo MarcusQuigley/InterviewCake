@@ -92,5 +92,56 @@ namespace FBQuestions
             public bool IncrementBIndex { get; set; }
             public int[] Intersection { get; set; }
         }
+
+        public bool ValidPalindrome(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                throw new ArgumentNullException(nameof(s));
+            //if (s.Length == 1)
+            //    return false;
+            var arr = new int[26];
+            for (int i = 0; i < s.Length; i++)
+            {
+                var val = s[i] - 'a';
+                arr[val] = arr[val] == 0 ? 1 : 0;
+            }
+            var begin = 0;
+            var end = s.Length - 1;
+            var matches = true;
+            while (begin <= end)
+            {
+                arr[s[begin] - 'a'] += 1;
+                if (begin != end)
+                {
+                     arr[s[end] - 'a'] += 1;
+                }
+
+                if (s[begin]-'a'!=s[end]-'a')
+                {
+                    if (matches == false)
+                        return false;
+                    matches = false;
+                 }
+               
+                begin++;
+                end--;
+            }
+            if (!matches)
+            { //go thru arr and return false if more than 2 chars are >0
+                var letterscount = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] > 0)
+                    {
+                        letterscount += 1;
+                        if (letterscount > 2)
+                            return false;
+                    }
+                }
+               
+            }
+            return true;
+        }
+
     }
 }

@@ -1,9 +1,9 @@
-﻿using LinkedLists.LeetCode;
+﻿ 
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LinkedLists
+namespace DataStructures
 {
     //https://leetcode.com/explore/learn/card/linked-list/209/singly-linked-list/1290/
     public class MyLinkedList

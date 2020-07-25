@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Trees
+namespace DataStructures
 {
-    public class TreeNode
+    public class TreeNode<T>
     {
-        public TreeNode(int value)
+        public TreeNode(T value)
         {
             this.val = value;
         }
 
-        public int val { get; set; }
-        public TreeNode left { get; set; }
-        public TreeNode right { get; set; }
+        public T val { get; set; }
+        public TreeNode<T> left { get; set; }
+        public TreeNode<T> right { get; set; }
 
         public override string ToString()
         {

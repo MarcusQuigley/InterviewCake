@@ -718,6 +718,28 @@ namespace Arrays.LeetCode
             }
             return newNum;
         }
+
+        public void ReverseString(char[] s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Length == 1)
+                return;
+            var n = s.Length;
+            var begin = 0;
+            var end = n - 1;
+            while (begin < end)
+            {
+                if (s[begin] != s[end])
+                {
+                    var temp = s[begin];
+                    s[begin] = s[end];
+                    s[end] = temp;
+                 }
+                begin++;
+                end--;
+            }
+        }
         #endregion
     }
 }

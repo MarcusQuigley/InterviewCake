@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
+using ds = DataStructures;
 
 namespace LinkedLists.Tests
 {
     public class LinkedListTests
     {
-        readonly LinkedList<int> sut = null;
+        readonly ds.LinkedList<int> sut = null;
         public LinkedListTests()
         {
-            sut = new LinkedList<int>();
+            sut = new  ds.LinkedList<int>();
         }
         [Fact]
         public void CanAdd()

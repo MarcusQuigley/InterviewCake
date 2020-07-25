@@ -21,5 +21,15 @@ namespace BitManipulation.Tests.LeetCode
             var actual = sut.RangeBitwiseAnd(rangeStart, rangeEnd);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(2,new int[] {0,1,1 })]
+        [InlineData(5, new int[] { 0, 1, 1,2,1,2 })]
+        public void Test_CountBits(int n , int[] expected)
+        {
+            var actual = sut.CountBits(n);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using LinkedLists.CTCI;
+﻿using DataStructures;
+using LinkedLists.CTCI;
 using System;
 using System.Collections.Generic;
 using System.Text;

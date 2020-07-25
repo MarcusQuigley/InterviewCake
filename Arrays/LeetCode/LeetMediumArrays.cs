@@ -569,12 +569,12 @@ namespace Arrays.LeetCode
             return false;
         }
 
-        //https://leetcode.com/problems/sort-characters-by-frequency/
+        //451 https://leetcode.com/problems/sort-characters-by-frequency/
         public string FrequencySort(string s)
         {
             if (string.IsNullOrEmpty(s))
                 return string.Empty;
-            Dictionary<char, int> map = new Dictionary<char, int>(s.Length/2);
+            Dictionary<char, int> map = new Dictionary<char, int>(s.Length);
             StringBuilder sb = new StringBuilder(s.Length);
             foreach (char c in s.ToCharArray())
             {
@@ -585,7 +585,8 @@ namespace Arrays.LeetCode
 
             foreach (KeyValuePair<char,int> kvp in map.OrderByDescending(KeyValuePair=>KeyValuePair.Value))
             {//better to append using while loop, performance wise
-                sb.Append(string.Concat(Enumerable.Repeat(kvp.Key, kvp.Value)));
+              //  sb.Append(string.Concat(Enumerable.Repeat(kvp.Key, kvp.Value)));
+                sb.Append(kvp.Key, kvp.Value);
             }
 
             return sb.ToString();

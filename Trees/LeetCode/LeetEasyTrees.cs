@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+ 
 
 namespace Trees.LeetCode
 {
@@ -38,6 +39,19 @@ namespace Trees.LeetCode
             }
 
             return (heap.Count == 0) ? 0 : heap.Peek();
+        }
+        //226 https://leetcode.com/problems/invert-binary-tree/
+        public TreeNode InvertTree(TreeNode root)
+        {
+            if (root == null)
+                return null;
+            TreeNode left = InvertTree(root.left);
+            TreeNode right = InvertTree(root.right);
+
+            root.left = right;
+            root.right = left;
+
+            return root;
         }
     }
 }

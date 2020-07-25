@@ -12,6 +12,15 @@ namespace Scratch.Tests
         {
             sut = new Scratch();
         }
- 
+
+        [Theory]
+        [InlineData("pw", false)]
+        [InlineData("pww", true)]
+        [InlineData("pws", false)]
+        public void Test_HasDuplicateUsingBits(string s, bool expected)
+        {
+            var actual = sut.HasDuplicateUsingBits(s);
+            Assert.Equal(expected, actual);
+        }
     }
 }
