@@ -53,5 +53,19 @@ namespace FBQuestions.Tests
             var actual = sut.IntervalIntersection(A, B);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(  "aba", true)]
+        //[InlineData(  "abca", true)]
+        [InlineData("abc", false)]
+        [InlineData("tebbem", false)]
+        [InlineData("deeee", true)]
+        public void Test_ValidPalindrome( string word, bool expected)
+        {
+            var actual = sut.ValidPalindrome(word);
+            Assert.Equal(expected, actual);
+        }
+
+        
     }
 }
