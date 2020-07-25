@@ -8,7 +8,7 @@ namespace Recursion.Tests.LeetCode
 {
     public class RecursionOneTests
     {
-      readonly RecursionOne sut;
+        readonly RecursionOne sut;
 
         public RecursionOneTests()
         {
@@ -35,18 +35,18 @@ namespace Recursion.Tests.LeetCode
         [InlineData("hello", "olleh")]
         public void Test_ReverseStringNew(string s1, string expected)
         {
-             var actual = sut.NewReverseString(s1);
-             Assert.Equal(expected, actual);
+            var actual = sut.NewReverseString(s1);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData(new int[] {1, 2, 3, 4}, new int[] {2,1,4,3 })]
-        [InlineData(new int[] {1}, new int[] {1})]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 2, 1, 4, 3 })]
+        [InlineData(new int[] { 1 }, new int[] { 1 })]
 
         public void Test_SwapPairs(int[] startArray, int[] expected)
         {
             ListNode head = CreateLinkedListFromArray(startArray);
-           var temp =  sut.SwapPairs(head);
+            var temp = sut.SwapPairs(head);
             var actual = CreateArrayFromLinkedList(temp);
             Assert.Equal(expected, actual);
         }
@@ -62,10 +62,11 @@ namespace Recursion.Tests.LeetCode
             for (int i = 0; i < arr.Length; i++)
             {
                 head = Insert(head, arr[i]);
-             }
+            }
             return head;
         }
-        ListNode Insert(ListNode head, int item) {
+        ListNode Insert(ListNode head, int item)
+        {
             ListNode temp = new ListNode(item);
             temp.next = null;
 
@@ -74,7 +75,7 @@ namespace Recursion.Tests.LeetCode
             else
             {
                 ListNode ptr = head;
-                while(ptr.next != null)
+                while (ptr.next != null)
                 {
                     ptr = ptr.next;
                 }
@@ -83,7 +84,8 @@ namespace Recursion.Tests.LeetCode
             return head;
         }
 
-        int[] CreateArrayFromLinkedList(ListNode node) {
+        int[] CreateArrayFromLinkedList(ListNode node)
+        {
             if (node == null)
                 throw new ArgumentNullException(nameof(node));
             List<int> list = new List<int>();
@@ -97,17 +99,17 @@ namespace Recursion.Tests.LeetCode
         }
 
 
-        
-         [Theory]
-        [InlineData(new int[] { 4,2,7,1,3}, 2, new int[] { 2, 1, 3 })]
-      //  [InlineData(new int[] { 1 }, 2, new int[] { 1 })]
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
+        //  [InlineData(new int[] { 1 }, 2, new int[] { 1 })]
 
         public void Test_SearchBST(int[] startArray, int val, int[] expected)
         {
             TreeNode head = CreateTree(startArray);
-              var result=  sut.SearchBST(head, val);
+            var result = sut.SearchBST(head, val);
             var actual = CreateArrayFromTree(result, expected.Length);
-             Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual);
         }
         [Theory]
         [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
@@ -122,8 +124,8 @@ namespace Recursion.Tests.LeetCode
         private TreeNode CreateTree(int[] startArray)
         {
             if (startArray == null) return null;
-             
-            return CreateTree(startArray, null, 0 );
+
+            return CreateTree(startArray, null, 0);
         }
 
         TreeNode CreateTree(int[] startArray, TreeNode node, int index)
@@ -139,7 +141,7 @@ namespace Recursion.Tests.LeetCode
 
         int[] CreateArrayFromTree(TreeNode head, int count)
         {
-           int[] array = new int[count];
+            int[] array = new int[count];
             int index = 0;
             var q = new Queue<TreeNode>();
             q.Enqueue(head);
@@ -152,21 +154,34 @@ namespace Recursion.Tests.LeetCode
                     q.Enqueue(node.left);
                     q.Enqueue(node.right);
                 }
-                
+
             }
             return array;
         }
 
         [Theory]
-        [InlineData(new int[] { 1, 2, 3, 4 },4,3,false)]
+        [InlineData(new int[] { 1, 2, 3, 4 }, 4, 3, false)]
         [InlineData(new int[] { 1, 2, 3, -666, 4, -666, 5 }, 4, 5, true)]
-        [InlineData(new int[] { 1, 2, 3, -666, 4  }, 2,3, false)]
-        
+        [InlineData(new int[] { 1, 2, 3, -666, 4 }, 2, 3, false)]
+
         public void Test_IsCousins(int[] startArray, int x, int y, bool expected)
         {
             TreeNode head = CreateTree(startArray);
-            var actual = sut.IsCousins(head, x,y);
-             Assert.Equal(expected, actual);
+            var actual = sut.IsCousins(head, x, y);
+            Assert.Equal(expected, actual);
         }
-     }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]//2, 1, 4, 3 }
+        [InlineData(new int[] { 1 }, new int[] { 1 })]
+        [InlineData(new int[] { 1, 2 }, new int[] { 2, 1 })]
+
+        public void Test_ReverseList(int[] startArray, int[] expected)
+        {
+            ListNode head = CreateLinkedListFromArray(startArray);
+            var temp = sut.ReverseList(head);
+            var actual = CreateArrayFromLinkedList(temp);
+            Assert.Equal(expected, actual);
+        }
+    }
 }
