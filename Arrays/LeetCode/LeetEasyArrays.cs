@@ -659,6 +659,33 @@ namespace Arrays.LeetCode
             while (secondpointer >= 0)
                 nums1[index--] = nums2[secondpointer--];
         }
+
+        //643 https://leetcode.com/problems/maximum-average-subarray-i/
+        public double FindMaxAverage(int[] nums, int k)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0) return 0d;
+
+            int n = nums.Length;
+            double sum = 0;
+            for (int i = 0; i < k; i++)
+            {
+                sum += nums[i];
+            }
+            double max = sum;
+
+            for (int j = k; j < n; j++)
+            {
+                sum -= nums[j - k];
+                sum += nums[j];
+                max = Math.Max(max, sum);
+            }
+            return (max / k/1.0);
+        }
+
+
+
+
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
         {

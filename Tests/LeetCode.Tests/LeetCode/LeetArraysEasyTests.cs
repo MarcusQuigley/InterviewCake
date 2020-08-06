@@ -348,5 +348,16 @@ namespace Arrays.Tests.LeetCode
             var actual = new string(s1chararray);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 12, -5, -6, 50, 3 }, 4,12.75)]
+        [InlineData(new int[] {  -5, -6, 5, -3 }, 2, 1.0)]
+        //[InlineData(new int[] { 1 }, 1)]
+        public void Test_FindMaxAverage(int[] nums, int k, double expected)
+        {
+            var actual = sut.FindMaxAverage(nums,k);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }
