@@ -304,28 +304,30 @@ namespace Arrays.LeetCode
             return true;
         }
         //167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-        public int[] TwoSum(int[] numbers, int target)
+        //array is   sorted.
+        public int[] TwoSum2(int[] numbers, int target)
         {
-            if (numbers == null || numbers.Length < 2)
-                throw new ArgumentNullException(nameof(numbers));
-            int leftIndex = 0;
-            int rightIndex = numbers.Length - 1;
-            while (leftIndex < rightIndex)
+            if (numbers == null) throw new ArgumentNullException(nameof(numbers));
+            int[] result = new int[2];
+            int begin = 0;
+            int end = numbers.Length - 1;
+            
+            while (begin <= end)
             {
-                var sum = numbers[leftIndex] + numbers[rightIndex];
+                var sum = numbers[begin] + numbers[end];
                 if (sum == target)
+                {
+                    result[0] = begin + 1;
+                    result[1] = end + 1;
                     break;
+                }
+                if (sum > target)
+                    end--;
                 else if (sum < target)
-                    leftIndex += 1;
-                else// (sum > target)
-                    rightIndex -= 1;
-                //if (numbers[rightIndex] > target)
-                //    rightIndex -= 1;
-                //if (numbers[leftIndex] < target)
-                //    leftIndex += 1;
+                    begin++;
 
             }
-            return new int[] { leftIndex + 1, rightIndex + 1 };
+            return result;
         }
 
         //844 https://leetcode.com/problems/backspace-string-compare/
@@ -684,6 +686,28 @@ namespace Arrays.LeetCode
         }
 
 
+        //1 https://leetcode.com/problems/two-sum/
+        //array is not sorted.
+        public int[] TwoSum(int[] nums, int target)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            int[] result = new int[2];
+            Dictionary<int, int> hash = new Dictionary<int, int>(nums.Length);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var val = nums[i];
+                var newTarget = target - val;
+                if (hash.ContainsKey(newTarget))
+                {
+                    result[0] = hash[newTarget];
+                    result[1] = i;
+                    break;
+                }
+                if (!hash.ContainsKey(val))
+                    hash.Add(nums[i], i);
+            }
+            return result;
+        }
 
 
         #region Helpers
