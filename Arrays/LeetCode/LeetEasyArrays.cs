@@ -709,6 +709,33 @@ namespace Arrays.LeetCode
             return result;
         }
 
+        //1099. https://leetcode.com/problems/two-sum-less-than-k/
+        public int TwoSumLessThanK(int[] A, int K)
+        {
+            if (A == null) throw new ArgumentNullException(nameof(A));
+
+            Array.Sort(A);
+            var max = -1;
+            var start = 0;
+            var end = A.Length - 1;
+            while (start < end)
+            {
+                var sum = A[start] + A[end];
+                if (sum > K)
+                     end--;
+                 else
+                {
+                    if (sum < K)
+                        max = Math.Max(max, sum);
+                    start++;
+                }
+            }
+            
+            return max;
+
+        }
+
+         
 
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
