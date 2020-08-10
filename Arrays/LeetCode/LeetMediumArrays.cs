@@ -596,38 +596,66 @@ namespace Arrays.LeetCode
         {
             if (nums == null) throw new ArgumentNullException(nameof(nums));
             List<IList<int>> result = new List<IList<int>>();
-            
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            List<HashSet<int>> set = new List<HashSet<int>>();
+
             for (int i = 0;i< nums.Length - 1; i++)
             {
-                var valFor2Sum = -nums[i];
-                var otherVals = TempTwoSum(nums, valFor2Sum, i);
-                if (otherVals != null)
+                 var target = -nums[i];
+                
+                for (int j = 0; j < nums.Length; j++)
                 {
-                     result.Add(otherVals);
-                }
+                    if (j == i)
+                        continue;
+                    var valToCheck = target - nums[j];
+                    if (map.ContainsKey(valToCheck)) 
+                    {
+                        var val = new List<int>() { nums[i], map[valToCheck], nums[j] };
+                        var isDuplicate = false;
+                        foreach (var item in set)
+                        {
+                            if (item.SetEquals(val))
+                            {
+                                isDuplicate = true;
+                                break;
+                            }   
+                        }
+                        if (!isDuplicate)
+                        {
+                            set.Add(new HashSet<int>(val));
+                            result.Add(val);
+                        }
+                      
+                        break;
+                    }
+                    if (!map.ContainsKey(nums[j]))
+                    {
+                        map.Add(nums[j], nums[j]);
+                     }
+                } 
             }
-            return result;
+             return result;
         }
 
-        IList<int> TempTwoSum(int[] nums, int target, int indexToignore)
-        {
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (i == indexToignore)
-                    continue;
-                var valToCheck = target - nums[i];
-                if (map.ContainsKey(valToCheck))
-                {
-                    return new List<int>() { nums[indexToignore], map[valToCheck],nums[i] };
-                }
-                if (!map.ContainsKey(nums[i]))
-                {
-                    map.Add(nums[i], nums[i]);
-                }
-            }
-            return null;
-        }
+        //IList<int> TempTwoSum(int[] nums, int target, int indexToignore)
+        //{
+        //    Dictionary<int, int> map = new Dictionary<int, int>();
+        //    for (int i = 0; i < nums.Length; i++)
+        //    {
+        //        if (i == indexToignore)
+        //            continue;
+        //        var valToCheck = target - nums[i];
+        //        if (map.ContainsKey(valToCheck))
+        //        {
+        //            return new List<int>() { nums[indexToignore], map[valToCheck],nums[i] };
+        //        }
+        //        if (!map.ContainsKey(nums[i]))
+        //        {
+        //            map.Add(nums[i], nums[i]);
+        //        }
+        //    }
+        //    return null;
+        //}
 
         public int[] TwoSum(int[] nums, int target)
         {
