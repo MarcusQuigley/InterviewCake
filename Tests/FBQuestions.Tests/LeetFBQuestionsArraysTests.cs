@@ -66,6 +66,14 @@ namespace FBQuestions.Tests
             Assert.Equal(expected, actual);
         }
 
-        
+        [Theory]
+        [InlineData("race a car", false)]
+        [InlineData("A man, a plan, a canal: Panama", true)]
+        [InlineData(".,", true)]
+        public void Test_IsPalindrome(string word, bool expected)
+        {
+            var actual = sut.IsPalindrome(word);
+            Assert.Equal(expected, actual);
+        }
     }
 }
