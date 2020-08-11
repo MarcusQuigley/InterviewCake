@@ -93,7 +93,7 @@ namespace FBQuestions
             public int[] Intersection { get; set; }
         }
 
-        public bool ValidPalindrome(string s)
+        public bool ValidPalindromeOld(string s)
         {
             if (string.IsNullOrEmpty(s))
                 throw new ArgumentNullException(nameof(s));
@@ -182,6 +182,34 @@ namespace FBQuestions
                     return true;
             }
             return false;
+        }
+        //https://leetcode.com/problems/valid-palindrome-ii/
+        public bool ValidPalindrome(string s)
+        {
+            var start = 0;
+            var end = s.Length - 1;
+            while(start < end)
+            {
+                if (s[start]!= s[end])
+                {
+                    return (IsPal(s, start + 1, end) || IsPal(s, start, end - 1));
+                }
+                start++;
+                end--;
+            }
+            return true;
+        }
+
+        private bool IsPal(string s, int i, int j)
+        {
+            while(i < j)
+            {
+                if (s[i] != s[j])
+                    return false;
+                i++;
+                j--;
+            }
+            return true;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace FBQuestions.Tests
 
         [Theory]
         [InlineData(  "aba", true)]
-        //[InlineData(  "abca", true)]
+        [InlineData(  "abca", true)]
         [InlineData("abc", false)]
         [InlineData("tebbem", false)]
         [InlineData("deeee", true)]
