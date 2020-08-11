@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace FBQuestions
 {
-    public class LeetFBQuestionsOther
+    public class LeetFBQuestionsK
     {
         //973 https://leetcode.com/problems/k-closest-points-to-origin/
         //Medium
@@ -125,6 +125,8 @@ namespace FBQuestions
                 return (X * X + Y * Y) - (other.X * other.X + other.Y * other.Y);
             }
         }
+
+
 
     }
 }

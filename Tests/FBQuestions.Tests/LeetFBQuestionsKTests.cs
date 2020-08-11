@@ -6,12 +6,12 @@ using Xunit;
 
 namespace FBQuestions.Tests
 {
-    public class LeetFBQuestionOtherTests
+    public class LeetFBQuestionsKTests
     {
-        readonly LeetFBQuestionsOther sut = null;
-        public LeetFBQuestionOtherTests()
+        readonly LeetFBQuestionsK sut = null;
+        public LeetFBQuestionsKTests()
         {
-            sut = new LeetFBQuestionsOther();
+            sut = new LeetFBQuestionsK();
         }
 
         [Fact]

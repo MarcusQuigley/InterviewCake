@@ -144,6 +144,7 @@ namespace FBQuestions
         }
 
         //125 https://leetcode.com/problems/valid-palindrome/
+        //Easy
         public bool IsPalindrome(string s)
         {
             if (s == null)
@@ -184,6 +185,7 @@ namespace FBQuestions
             return false;
         }
         //https://leetcode.com/problems/valid-palindrome-ii/
+        //Medium
         public bool ValidPalindrome(string s)
         {
             var start = 0;
