@@ -75,5 +75,17 @@ namespace FBQuestions.Tests
             var actual = sut.IsPalindrome(word);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12,0,0 })]
+        [InlineData(new int[] { 0, 1, }, new int[] { 1,0 })]
+        [InlineData(new int[] {0 }, new int[] { 0})]
+        [InlineData(new int[] { 1,2 }, new int[] { 1,2 })]
+        public void Test_MoveZeroes(int[] nums, int[] expected)
+        {
+            var actual = sut.MoveZeroes(nums);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

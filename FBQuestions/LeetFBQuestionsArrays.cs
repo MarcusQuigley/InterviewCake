@@ -213,5 +213,22 @@ namespace FBQuestions
             }
             return true;
         }
+
+        //https://leetcode.com/problems/move-zeroes/
+        //Easy
+        public int[] MoveZeroes(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            var n = nums.Length;
+            var zeros = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (nums[i] != 0)
+                    nums[zeros++] = nums[i];
+            }
+            while (zeros < n)
+                nums[zeros++] = 0;
+            return nums;
+        }
     }
 }
