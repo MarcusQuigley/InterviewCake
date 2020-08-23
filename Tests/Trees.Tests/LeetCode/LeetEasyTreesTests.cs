@@ -19,7 +19,7 @@ namespace Trees.Tests.LeetCode
         //[InlineData(new int[] { 1, 2, 3, 4, 5 }, 3)]
         public void TestMiddleNode(int[] values, int expected)
         {
-             var head = CreatTreeNodes(values);
+            var head = CreatTreeNodes(values);
             var actual = sut.DiameterOfBinaryTree(head);
             Assert.Equal(expected, actual);
         }
@@ -31,8 +31,17 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
+         [InlineData(new int[] { 4,2,7,1,3 }, 5, new int[] { })]
+        public void TestSearchBST(int[] values,int k, int[] expected)
+        {
+            var head = CreatTreeNodesNonGeneric(values);
+            //var expectedNode = CreatTreeNodesNonGeneric(expected);
+            var actual = sut.SearchBSTIter(head, k);
+            Assert.Equal(expected, ArrayFromTree(actual));
+        }
 
 
-       
     }
 }

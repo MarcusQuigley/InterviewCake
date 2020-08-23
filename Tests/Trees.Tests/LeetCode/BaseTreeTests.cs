@@ -75,6 +75,9 @@ namespace Trees.Tests.LeetCode
 
         public int[] ArrayFromTree(TreeNode node)
         {
+            if (node == null)
+                return new int[] { };
+
             List<int> list = new List<int>();
             var q = new Queue<TreeNode>();
             q.Enqueue(node);
