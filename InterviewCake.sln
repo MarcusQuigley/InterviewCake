@@ -64,9 +64,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonQuestions", "AmazonQu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonQuestions.Tests", "Tests\AmazonQuestions.Tests\AmazonQuestions.Tests.csproj", "{096B758D-A1C1-4952-A143-6334B70CDEBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorting", "Sorting\Sorting.csproj", "{1A77A4EF-BF9E-4EB3-929B-05EF98480EB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting.Tests", "Tests\Sorting.Tests\Sorting.Tests.csproj", "{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorting.Tests", "Tests\Sorting.Tests\Sorting.Tests.csproj", "{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchConsole", "ScratchConsole\ScratchConsole.csproj", "{F5C8D4EF-4335-40AD-9517-E36E83BB132B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -462,6 +464,18 @@ Global
 		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x64.Build.0 = Release|Any CPU
 		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{B5CFDC84-D9BD-45CB-BBF3-3D943C0D84AA}.Release|x86.Build.0 = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|x64.Build.0 = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|x64.Build.0 = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5C8D4EF-4335-40AD-9517-E36E83BB132B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
