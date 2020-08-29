@@ -735,7 +735,27 @@ namespace Arrays.LeetCode
 
         }
 
-         
+        //118 https://leetcode.com/problems/pascals-triangle/
+        public IList<IList<int>> Generate(int numRows)
+        {
+            List<IList<int>> matrix = new List<IList<int>>(numRows);
+            
+            for(int i = 0; i <= numRows; i++)
+            {
+                var cells = i + 1;
+                int[] list = new int[cells];
+               
+                for (int j = 0; j < cells; j++)
+                {
+                    list[j] = (j > 0 && j < cells-1) ? matrix[i - 1][j - 1] + matrix[i - 1][j] : 1;
+                }
+                matrix.Add(list);
+            }
+            return matrix;
+        }
+
+       
+
 
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
