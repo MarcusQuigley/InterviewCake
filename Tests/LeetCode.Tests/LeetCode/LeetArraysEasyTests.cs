@@ -398,15 +398,16 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
-        //[Theory]
-        //[InlineData(3, new int[] { 1, 1, 0, 1, 1, 1 })]
-        //[InlineData(0, new int[] { 1 })]
-        //[InlineData(1,new int[] { 1,1 })]
-        //public void Test_GetRowPascalTriangle(int rowIndex, int[] expected)
-        //{
-        //    var actual = sut.GetRow(rowIndex);
-        //    Assert.Equal(expected, actual);
-        //}
+        [Theory]
+        [InlineData(3, new int[] { 1, 3, 3, 1 })]
+        [InlineData(4, new int[] { 1, 4, 6, 4, 1 })]
+        [InlineData(0, new int[] { 1 })]
+        [InlineData(1,new int[] { 1,1 })]
+        public void Test_GetRowPascalTriangle(int rowIndex, int[] expected)
+        {
+            var actual = sut.GetRow(rowIndex);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Arrays.LeetCode
@@ -753,9 +754,28 @@ namespace Arrays.LeetCode
             }
             return matrix;
         }
-
-       
-
+        //https://leetcode.com/problems/pascals-triangle-ii/
+        public IList<int> GetRow(int rowIndex)
+        {
+            if (rowIndex == 0) return new int[] { 1 }.ToList();
+            int[][] matrix = new int[rowIndex+1][];
+            matrix[0] = new int[] { 0 };
+               PascalsTheorem2(rowIndex, 1, matrix);
+            return matrix[rowIndex].ToList(); ;
+        }
+       void  PascalsTheorem2(int rowIndex, int currentIndex, int[][] matrix)
+        {
+            matrix[currentIndex] = new int[currentIndex + 1];
+            matrix[currentIndex][0] = 1;
+            matrix[currentIndex][currentIndex ] = 1;
+            for (int i = 1; i < (currentIndex); i++)
+            {
+                matrix[currentIndex][i] = matrix[currentIndex - 1][i - 1] + matrix[currentIndex - 1][i];
+            }
+            if (currentIndex < rowIndex)
+                PascalsTheorem2(rowIndex, currentIndex + 1, matrix);
+           
+        }
 
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
@@ -839,5 +859,7 @@ namespace Arrays.LeetCode
             }
         }
         #endregion
+
+
     }
 }
