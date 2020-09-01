@@ -860,6 +860,17 @@ namespace Arrays.LeetCode
         }
         #endregion
 
+        Dictionary<int, int> map = new Dictionary<int, int>();
+        //https://leetcode.com/problems/fibonacci-number/
+        public int Fibonacci(int N)
+        {
+            if (N == 0 || N == 1)
+                return N;
+            if (!map.ContainsKey(N))
+                map.Add(N, Fibonacci(N - 1) + Fibonacci(N - 2));
+            return map[N];
+        }
+
 
     }
 }

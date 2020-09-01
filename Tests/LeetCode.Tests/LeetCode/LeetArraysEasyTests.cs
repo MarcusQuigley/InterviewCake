@@ -408,6 +408,15 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.GetRow(rowIndex);
             Assert.Equal(expected, actual);
         }
-        
+        [Theory]
+        [InlineData(3, 2)]
+        [InlineData(4, 3)]
+        [InlineData(2, 1)]
+        [InlineData(1,1)]
+        public void Test_Fibonacci(int n, int expected)
+        {
+            var actual = sut.Fibonacci(n);
+            Assert.Equal(expected, actual);
+        }
     }
 }
