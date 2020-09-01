@@ -418,5 +418,18 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.Fibonacci(n);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(3, 3)]
+        [InlineData(4, 5)]
+        [InlineData(2, 2)]
+        [InlineData(1, 1)]
+        [InlineData(44, 1134903170)]
+        public void Test_ClimbStairs(int n, int expected)
+        {
+            var actual = sut.ClimbStairs(n);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

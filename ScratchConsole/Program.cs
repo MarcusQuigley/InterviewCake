@@ -1,4 +1,5 @@
-﻿using DataStructures;
+﻿using Arrays.LeetCode;
+using DataStructures;
 using System;
 using Scr = Scratch;
 
@@ -13,7 +14,8 @@ namespace ScratchConsole
             // TestSwap();
             //TestLinkedLists();
            // TestScratchSearchBst(new int[] { 4, 2, 7, 1, 3 },2);
-            TestScratchSearchBstRecursion(new int[] { 4, 2, 7, 1, 3 }, 5);
+           // TestScratchSearchBstRecursion(new int[] { 4, 2, 7, 1, 3 }, 5);
+            TestClimbStairs();
         }
 
           static void TestLinkedLists()
@@ -106,6 +108,13 @@ namespace ScratchConsole
                 }
             }
             return root;
+        }
+
+        static void TestClimbStairs()
+        {
+            LeetEasyArrays leetEasy = new LeetEasyArrays();
+            leetEasy.ClimbStairs(5);
+
         }
     }
 }

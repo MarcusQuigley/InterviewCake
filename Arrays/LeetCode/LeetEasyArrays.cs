@@ -871,6 +871,39 @@ namespace Arrays.LeetCode
             return map[N];
         }
 
+        //https://leetcode.com/problems/climbing-stairs/
+         public int ClimbStairs(int n)
+        {
+            if (n == 0) return n;
+            return Climb(n, 0);
+        }
+        Dictionary<int, int> mapStairs = new Dictionary<int, int>();
+        int Climb(int n, int total)
+        {
+             if (total == n)
+                return 1;
+            else if (total > n)
+                return 0;
+            
+            var ones = 0;
+            var twos = 0;
+            if (!map.ContainsKey(total + 1))
+            {
+                ones = Climb(n, total + 1);
+                map.Add(total + 1, ones);
+            }
+            else
+                ones = map[total + 1];
 
+            if (!map.ContainsKey( total + 2))
+            {
+                twos = Climb(n, total + 2);
+                map.Add(total + 2, twos);
+            }
+            else
+                twos = map[total + 2];
+
+            return ones + twos;
+        }
     }
 }
