@@ -430,6 +430,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.ClimbStairs(n);
             Assert.Equal(expected, actual);
         }
-        
+
+        [Theory]
+        [InlineData("1789","15","1804")]
+        [InlineData("11", "22", "33")]
+        [InlineData("999", "0", "999")]
+        [InlineData("99", "9", "108")]
+        [InlineData("999", "888", "1887")]
+        public void Test_AddStrings(string num1, string num2, string expected)
+        {
+            var actual = sut.AddStrings(num1,num2);
+            Assert.Equal(expected, actual);
+        }
     }
 }

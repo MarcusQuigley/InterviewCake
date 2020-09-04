@@ -884,26 +884,47 @@ namespace Arrays.LeetCode
                 return 1;
             else if (total > n)
                 return 0;
-            
-            var ones = 0;
-            var twos = 0;
-            if (!map.ContainsKey(total + 1))
-            {
-                ones = Climb(n, total + 1);
-                map.Add(total + 1, ones);
-            }
-            else
-                ones = map[total + 1];
+            if (map.ContainsKey(total))
+                return map[total];
 
-            if (!map.ContainsKey( total + 2))
+            map[total] =( Climb(n, total + 1) + Climb(n, total + 2));
+            return map[total];
+        }
+        //https://leetcode.com/problems/add-strings/submissions/
+        public string AddStrings(string num1, string num2)
+        {
+            if (num1 ==null || num2 == null)
             {
-                twos = Climb(n, total + 2);
-                map.Add(total + 2, twos);
+                throw new ArgumentNullException("Either or both are null");
             }
-            else
-                twos = map[total + 2];
+            var l1 = num1.Length-1;
+            var l2 = num2.Length-1;
+            var carry = 0;
+            var sb = new StringBuilder();
+            while (l1 >= 0 || l2 >= 0)
+            {
 
-            return ones + twos;
+                var n1 = (l1>=0)? num1[l1--] - '0': 0;
+                var n2 =(l2>=0)? num2[l2--] - '0': 0;
+                var sum = (n1 + n2 + carry) ;
+                carry = sum / 10;
+                sb.Append(sum % 10);
+            }
+               if (carry > 0)
+            {
+                sb.Append(carry);
+            }
+            var resultLength = sb.Length - 1;
+            var index = 0;
+            while(index < resultLength)
+            {
+                var temp = sb[resultLength];
+                sb[resultLength] = sb[index];
+                sb[index] = temp;
+                index++;
+                resultLength--;
+            }
+            return sb.ToString();
         }
     }
 }
