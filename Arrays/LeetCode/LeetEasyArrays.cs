@@ -985,5 +985,41 @@ namespace Arrays.LeetCode
             }
             return results.ToArray();
         }
+
+        //https://leetcode.com/problems/intersection-of-two-arrays-ii/
+        public int[] Intersection2(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("Either or both are null");
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+            List<int> results = new List<int>();
+            var nums1Length = nums1.Length - 1;
+            var nums2Length = nums2.Length - 1;
+            var index1 = 0;
+            var index2 = 0;
+            while(index1 <=nums1Length && index2 <= nums2Length)
+            {
+                if (nums1[index1] == nums2[index2])
+                {
+                    results.Add(nums1[index1]);
+                    index1++;
+                    index2++;
+                }
+                else
+                {
+                    while (index1 <= nums1Length && nums1[index1] < nums2[index2])
+                         index1++;
+
+                    if (index1 > nums1Length)
+                        break;
+                    while (index2 <= nums2Length && nums2[index2] < nums1[index1])
+                        index2++;
+                }
+            }
+
+
+            return results.ToArray();
+        }
     }
 }
