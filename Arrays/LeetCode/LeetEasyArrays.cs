@@ -312,7 +312,7 @@ namespace Arrays.LeetCode
             int[] result = new int[2];
             int begin = 0;
             int end = numbers.Length - 1;
-            
+
             while (begin <= end)
             {
                 var sum = numbers[begin] + numbers[end];
@@ -683,7 +683,7 @@ namespace Arrays.LeetCode
                 sum += nums[j];
                 max = Math.Max(max, sum);
             }
-            return (max / k/1.0);
+            return (max / k / 1.0);
         }
 
 
@@ -723,15 +723,15 @@ namespace Arrays.LeetCode
             {
                 var sum = A[start] + A[end];
                 if (sum > K)
-                     end--;
-                 else
+                    end--;
+                else
                 {
                     if (sum < K)
                         max = Math.Max(max, sum);
                     start++;
                 }
             }
-            
+
             return max;
 
         }
@@ -740,15 +740,15 @@ namespace Arrays.LeetCode
         public IList<IList<int>> Generate(int numRows)
         {
             List<IList<int>> matrix = new List<IList<int>>(numRows);
-            
-            for(int i = 0; i <= numRows; i++)
+
+            for (int i = 0; i <= numRows; i++)
             {
                 var cells = i + 1;
                 int[] list = new int[cells];
-               
+
                 for (int j = 0; j < cells; j++)
                 {
-                    list[j] = (j > 0 && j < cells-1) ? matrix[i - 1][j - 1] + matrix[i - 1][j] : 1;
+                    list[j] = (j > 0 && j < cells - 1) ? matrix[i - 1][j - 1] + matrix[i - 1][j] : 1;
                 }
                 matrix.Add(list);
             }
@@ -758,23 +758,23 @@ namespace Arrays.LeetCode
         public IList<int> GetRow(int rowIndex)
         {
             if (rowIndex == 0) return new int[] { 1 }.ToList();
-            int[][] matrix = new int[rowIndex+1][];
+            int[][] matrix = new int[rowIndex + 1][];
             matrix[0] = new int[] { 0 };
-               PascalsTheorem2(rowIndex, 1, matrix);
+            PascalsTheorem2(rowIndex, 1, matrix);
             return matrix[rowIndex].ToList(); ;
         }
-       void  PascalsTheorem2(int rowIndex, int currentIndex, int[][] matrix)
+        void PascalsTheorem2(int rowIndex, int currentIndex, int[][] matrix)
         {
             matrix[currentIndex] = new int[currentIndex + 1];
             matrix[currentIndex][0] = 1;
-            matrix[currentIndex][currentIndex ] = 1;
+            matrix[currentIndex][currentIndex] = 1;
             for (int i = 1; i < (currentIndex); i++)
             {
                 matrix[currentIndex][i] = matrix[currentIndex - 1][i - 1] + matrix[currentIndex - 1][i];
             }
             if (currentIndex < rowIndex)
                 PascalsTheorem2(rowIndex, currentIndex + 1, matrix);
-           
+
         }
 
         #region Helpers
@@ -853,7 +853,7 @@ namespace Arrays.LeetCode
                     var temp = s[begin];
                     s[begin] = s[end];
                     s[end] = temp;
-                 }
+                }
                 begin++;
                 end--;
             }
@@ -872,7 +872,7 @@ namespace Arrays.LeetCode
         }
 
         //https://leetcode.com/problems/climbing-stairs/
-         public int ClimbStairs(int n)
+        public int ClimbStairs(int n)
         {
             if (n == 0) return n;
             return Climb(n, 0);
@@ -880,43 +880,43 @@ namespace Arrays.LeetCode
         Dictionary<int, int> mapStairs = new Dictionary<int, int>();
         int Climb(int n, int total)
         {
-             if (total == n)
+            if (total == n)
                 return 1;
             else if (total > n)
                 return 0;
             if (map.ContainsKey(total))
                 return map[total];
 
-            map[total] =( Climb(n, total + 1) + Climb(n, total + 2));
+            map[total] = (Climb(n, total + 1) + Climb(n, total + 2));
             return map[total];
         }
         //https://leetcode.com/problems/add-strings/submissions/
         public string AddStrings(string num1, string num2)
         {
-            if (num1 ==null || num2 == null)
+            if (num1 == null || num2 == null)
             {
                 throw new ArgumentNullException("Either or both are null");
             }
-            var l1 = num1.Length-1;
-            var l2 = num2.Length-1;
+            var l1 = num1.Length - 1;
+            var l2 = num2.Length - 1;
             var carry = 0;
             var sb = new StringBuilder();
             while (l1 >= 0 || l2 >= 0)
             {
 
-                var n1 = (l1>=0)? num1[l1--] - '0': 0;
-                var n2 =(l2>=0)? num2[l2--] - '0': 0;
-                var sum = (n1 + n2 + carry) ;
+                var n1 = (l1 >= 0) ? num1[l1--] - '0' : 0;
+                var n2 = (l2 >= 0) ? num2[l2--] - '0' : 0;
+                var sum = (n1 + n2 + carry);
                 carry = sum / 10;
                 sb.Append(sum % 10);
             }
-               if (carry > 0)
+            if (carry > 0)
             {
                 sb.Append(carry);
             }
             var resultLength = sb.Length - 1;
             var index = 0;
-            while(index < resultLength)
+            while (index < resultLength)
             {
                 var temp = sb[resultLength];
                 sb[resultLength] = sb[index];
@@ -925,6 +925,65 @@ namespace Arrays.LeetCode
                 resultLength--;
             }
             return sb.ToString();
+        }
+
+        //https://leetcode.com/problems/intersection-of-two-arrays/
+        public int[] Intersection(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+            {
+                throw new ArgumentNullException("Either or both are null");
+            }
+            List<int> result = new List<int>();
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            foreach (var item in nums1)
+            {
+                if (!map.ContainsKey(item))
+                    map.Add(item, 1);
+            }
+            foreach (var item in nums2)
+            {
+                if (map.ContainsKey(item))
+                {
+                    map[item] += 1;
+                    if (map[item] == 2)
+                        result.Add(item);
+                }
+            }
+            return result.ToArray();
+        }
+
+        //duplicates, negative values, single value lists, 0's, and empty list arguments.
+        public int[] IntersectionSorted(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("Either or both are null");
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+            HashSet<int> results = new HashSet<int>();
+            var nums1Length = nums1.Length - 1;
+            var nums2Length = nums2.Length - 1;
+            var index1 = 0;
+            var index2 = 0;
+            while (index1 <= nums1Length && index2 <= nums2Length)
+            {
+ 
+                while (index1 < nums1Length && (  nums1[index1] < nums2[index2] || nums1[index1] == nums1[index1 + 1]))
+                    index1 += 1;
+                while (index2 < nums2Length && (nums2[index2] < nums1[index1] || nums2[index2] == nums2[index2 + 1]))
+                    index2 += 1;
+                if (nums1[index1] == nums2[index2])
+                {
+                    results.Add(nums1[index1]);
+                    index1 += 1;
+                    index2 += 1;
+                }
+                else if (nums1[index1] < nums2[index2])
+                    index1 += 1;
+                else
+                    index2 += 1;
+            }
+            return results.ToArray();
         }
     }
 }
