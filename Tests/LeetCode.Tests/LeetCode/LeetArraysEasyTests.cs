@@ -499,5 +499,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.MergeRepeat(nums, nums1length, nums2, nums2length);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 2, 3 },true)]
+        [InlineData(new int[] { 6, 5, 4, 4 }, true)]
+        [InlineData(new int[] { 1,3,2 }, false)]
+        [InlineData(new int[] { -4, -3, 2, 2 }, true)]
+        [InlineData(new int[] { 1, 1,1 }, true)]
+        public void Test_IsMonotonic(int[] nums, bool expected)
+        {
+            var actual = sut.IsMonotonic(nums);
+            Assert.Equal(expected, actual);
+        }
     }
 }

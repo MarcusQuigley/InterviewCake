@@ -1041,5 +1041,33 @@ namespace Arrays.LeetCode
 
             return nums1;
         }
+        //https://leetcode.com/problems/monotonic-array/
+        public bool IsMonotonic(int[] A)
+        {
+            if (A == null)
+                throw new ArgumentNullException(nameof(A));
+            bool isIncreasing = false;
+            bool isDecreasing = false;
+
+            for (int i = 0; i < A.Length-1; i++)
+            {
+                if (A[i] > A[i + 1])
+                {
+                    if (isIncreasing)
+                        return false;
+                    if (!isDecreasing)
+                        isDecreasing = true;
+                }
+                else if (A[i] < A[i + 1])
+                {
+                    if (isDecreasing)
+                        return false;
+                    if (!isIncreasing)
+                        isIncreasing = true;
+                }
+            }
+ 
+            return true;
+        }
     }
 }
