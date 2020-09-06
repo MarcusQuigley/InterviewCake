@@ -48,10 +48,18 @@ namespace Trees.Tests.LeetCode
         public void Test_BinaryTreePaths(int[] values,  string[] expected)
         {
             var head = CreatTreeNodesNonGeneric(values);
-            //var expectedNode = CreatTreeNodesNonGeneric(expected);
-            var actual = sut.BinaryTreePaths(head );
+             var actual = sut.BinaryTreePaths(head );
             Assert.Equal(expected,  actual);
         }
-        
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, -666, 5 }, new string[] { "1->2->5", "1->3" })]
+        [InlineData(new int[] { 1, 2, 3, 5, 6 }, new string[] { "1->2->5", "1->2->6", "1->3" })]
+        public void Test_BinaryTreePathsWithStringBuilder(int[] values, string[] expected)
+        {
+            var head = CreatTreeNodesNonGeneric(values);
+            var actual = sut.BinaryTreePathsWithStringBuilder(head);
+            Assert.Equal(expected, actual);
+        }
     }
 }

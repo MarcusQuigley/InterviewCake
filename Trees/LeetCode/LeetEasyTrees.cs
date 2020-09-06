@@ -107,5 +107,35 @@ namespace Trees.LeetCode
                     dfsPaths(node.right, currentString, results);
             }
         }
+
+        public IList<string> BinaryTreePathsWithStringBuilder(TreeNode root)
+        {
+            List<string> results = new List<string>();
+            if (root == null)
+                return results;
+            StringBuilder sb = new StringBuilder();
+            dfsPathsSB(root, sb, results);
+
+            return results;
+        }
+
+          void dfsPathsSB(TreeNode root, StringBuilder sb, List<string> results)
+        {
+            if (root == null) return;
+            int tmp = sb.Length;
+            if(root.left==null && root.right == null)
+            {
+                sb.Append(root.val);
+                results.Add(sb.ToString());
+                sb.Remove(tmp, sb.Length-tmp);
+                return;
+            }
+            sb.Append(root.val + "->");
+            dfsPathsSB(root.left, sb, results);
+            dfsPathsSB(root.right, sb, results);
+            sb.Remove(tmp, sb.Length-tmp);
+            return;
+
+        }
     }
 }
