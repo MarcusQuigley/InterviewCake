@@ -140,9 +140,9 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(new int[] { 2, 7, 11, 15 }, 9, new int[] { 0,1 })]
-        [InlineData(new int[] { 12, 7, 11, 15,2,8 }, 9, new int[] {  1,4 })]
-        [InlineData(new int[] { 9,12, 13, 23, 28, 43, 44, 59, 60, 61, 68, 70, 86, 88, 92, 124, 125, 136, 168, 173, 173, 180, 199, 212, 221, 227, 230, 277, 282, 306, 314, 316, 321, 325, 328, 336, 337, 363, 365, 368, 370, 370, 371, 375, 384, 387, 394, 400, 404, 414, 422, 422, 427, 430, 435, 457, 493, 506, 527, 531, 538, 541, 546, 568, 583, 585, 587, 650, 652, 677, 691, 730, 737, 740, 751, 755, 764, 778, 783, 785, 789, 794, 803, 809, 815, 847, 858, 863, 863, 874, 887, 896, 916, 920, 926, 927, 930, 933, 957, 981, 997 },
+        [InlineData(new int[] { 2, 7, 11, 15 }, 9, new int[] { 0, 1 })]
+        [InlineData(new int[] { 12, 7, 11, 15, 2, 8 }, 9, new int[] { 1, 4 })]
+        [InlineData(new int[] { 9, 12, 13, 23, 28, 43, 44, 59, 60, 61, 68, 70, 86, 88, 92, 124, 125, 136, 168, 173, 173, 180, 199, 212, 221, 227, 230, 277, 282, 306, 314, 316, 321, 325, 328, 336, 337, 363, 365, 368, 370, 370, 371, 375, 384, 387, 394, 400, 404, 414, 422, 422, 427, 430, 435, 457, 493, 506, 527, 531, 538, 541, 546, 568, 583, 585, 587, 650, 652, 677, 691, 730, 737, 740, 751, 755, 764, 778, 783, 785, 789, 794, 803, 809, 815, 847, 858, 863, 863, 874, 887, 896, 916, 920, 926, 927, 930, 933, 957, 981, 997 },
                                 542, new int[] { 24, 32 })]
 
         public void Test_TwoSum(int[] numbers, int target, int[] expected)
@@ -325,14 +325,14 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[]{1,2,2,3,5,6})]
-        [InlineData(new int[] { 1,  0 }, 1, new int[] { 1 }, 1, new int[] { 1, 1 })]
-        [InlineData(new int[] {  0 },  0, new int[] { 1 }, 1, new int[] { 1  })]
-        [InlineData(new int[] { 1, 2, 3, 0 }, 3, new int[] { 1 }, 1, new int[] {1, 1, 2,3 })]
+        [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[] { 1, 2, 2, 3, 5, 6 })]
+        [InlineData(new int[] { 1, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 1 })]
+        [InlineData(new int[] { 0 }, 0, new int[] { 1 }, 1, new int[] { 1 })]
+        [InlineData(new int[] { 1, 2, 3, 0 }, 3, new int[] { 1 }, 1, new int[] { 1, 1, 2, 3 })]
         [InlineData(new int[] { 2, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 2 })]
-        public void Test_Merge(int[] nums,int nums1length, int[] nums2, int nums2length, int[] expected)
+        public void Test_Merge(int[] nums, int nums1length, int[] nums2, int nums2length, int[] expected)
         {
-            sut.Merge(nums, nums1length,  nums2,  nums2length);
+            sut.Merge(nums, nums1length, nums2, nums2length);
             Assert.Equal(expected, nums);
         }
 
@@ -351,20 +351,20 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(new int[] { 1, 12, -5, -6, 50, 3 }, 4,12.75)]
-        [InlineData(new int[] {  -5, -6, 5, -3 }, 2, 1.0)]
+        [InlineData(new int[] { 1, 12, -5, -6, 50, 3 }, 4, 12.75)]
+        [InlineData(new int[] { -5, -6, 5, -3 }, 2, 1.0)]
         //[InlineData(new int[] { 1 }, 1)]
         public void Test_FindMaxAverage(int[] nums, int k, double expected)
         {
-            var actual = sut.FindMaxAverage(nums,k);
+            var actual = sut.FindMaxAverage(nums, k);
             Assert.Equal(expected, actual);
         }
         [Theory]
         [InlineData(new int[] { 2, 7, 11, 15 }, 9, new int[] { 1, 2 })]
-        [InlineData(new int[] { 12, 13, 23, 28, 43, 44, 59, 60, 61, 68, 70, 86, 88, 92, 124, 125, 136, 168, 173, 173, 180, 199, 212, 221, 227, 230, 277, 
-            282, 306, 314, 316, 321, 325, 328, 336, 337, 363, 365, 368, 370, 370, 371, 375, 384, 387, 394, 400, 404, 414, 422, 422, 427, 430, 435, 457, 
-            493, 506, 527, 531, 538, 541, 546, 568, 583, 585, 587, 650, 652, 677, 691, 730, 737, 740, 751, 755, 764, 778, 783, 785, 789, 794, 803, 809, 
-            815, 847, 858, 863, 863, 874, 887, 896, 916, 920, 926, 927, 930, 933, 957, 981, 997 }, 542, new int[] { 24, 32 })]   
+        [InlineData(new int[] { 12, 13, 23, 28, 43, 44, 59, 60, 61, 68, 70, 86, 88, 92, 124, 125, 136, 168, 173, 173, 180, 199, 212, 221, 227, 230, 277,
+            282, 306, 314, 316, 321, 325, 328, 336, 337, 363, 365, 368, 370, 370, 371, 375, 384, 387, 394, 400, 404, 414, 422, 422, 427, 430, 435, 457,
+            493, 506, 527, 531, 538, 541, 546, 568, 583, 585, 587, 650, 652, 677, 691, 730, 737, 740, 751, 755, 764, 778, 783, 785, 789, 794, 803, 809,
+            815, 847, 858, 863, 863, 874, 887, 896, 916, 920, 926, 927, 930, 933, 957, 981, 997 }, 542, new int[] { 24, 32 })]
         //[]
 
         public void Test_TwoSum2(int[] numbers, int target, int[] expected)
@@ -373,12 +373,12 @@ namespace Arrays.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
-        
-             [Theory]
+
+        [Theory]
         [InlineData(new int[] { 34, 23, 1, 24, 75, 33, 54, 8 }, 60, 58)]
         [InlineData(new int[] { 0, 20, 30 }, 15, -1)]
         [InlineData(new int[] { 254,914,110,900,147,441,209,122,571,942,136,350,160,127,178,839,201,386,462,45,735,467,153,415,875,282,204,534,639,994,284,
-                                320,865,468,1,838,275,370,295,574,309,268,415,385,786,62,359,78,854,944 }, 200 , 198)]
+                                320,865,468,1,838,275,370,295,574,309,268,415,385,786,62,359,78,854,944 }, 200, 198)]
         public void Test_TwoSumLessThanK(int[] nums, int k, int expected)
         {
             var actual = sut.TwoSumLessThanK(nums, k);
@@ -386,12 +386,12 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(3, new int[] { 1 }, new int[] { 1, 1 }, 
+        [InlineData(3, new int[] { 1 }, new int[] { 1, 1 },
             new int[] { 1, 2, 1 }, new int[] { 1, 3, 3, 1 })]
-        [InlineData(4, new int[] { 1 }, new int[] { 1,1 }, new int[] { 1,2,1 }, 
-            new int[] { 1,3,3,1 }, new int[] { 1, 4,6,4, 1 })]
+        [InlineData(4, new int[] { 1 }, new int[] { 1, 1 }, new int[] { 1, 2, 1 },
+            new int[] { 1, 3, 3, 1 }, new int[] { 1, 4, 6, 4, 1 })]
         [InlineData(0, new int[] { 1 })]
-         [InlineData(1, new int[] { 1 }, new int[] { 1, 1 })]
+        [InlineData(1, new int[] { 1 }, new int[] { 1, 1 })]
         public void Test_GeneratePascalTriangle(int numRows, params int[][] expected)
         {
             var actual = sut.Generate(numRows);
@@ -402,7 +402,7 @@ namespace Arrays.Tests.LeetCode
         [InlineData(3, new int[] { 1, 3, 3, 1 })]
         [InlineData(4, new int[] { 1, 4, 6, 4, 1 })]
         [InlineData(0, new int[] { 1 })]
-        [InlineData(1,new int[] { 1,1 })]
+        [InlineData(1, new int[] { 1, 1 })]
         public void Test_GetRowPascalTriangle(int rowIndex, int[] expected)
         {
             var actual = sut.GetRow(rowIndex);
@@ -412,7 +412,7 @@ namespace Arrays.Tests.LeetCode
         [InlineData(3, 2)]
         [InlineData(4, 3)]
         [InlineData(2, 1)]
-        [InlineData(1,1)]
+        [InlineData(1, 1)]
         public void Test_Fibonacci(int n, int expected)
         {
             var actual = sut.Fibonacci(n);
@@ -432,39 +432,39 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData("1789","15","1804")]
+        [InlineData("1789", "15", "1804")]
         [InlineData("11", "22", "33")]
         [InlineData("999", "0", "999")]
         [InlineData("99", "9", "108")]
         [InlineData("999", "888", "1887")]
         public void Test_AddStrings(string num1, string num2, string expected)
         {
-            var actual = sut.AddStrings(num1,num2);
+            var actual = sut.AddStrings(num1, num2);
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData( new int[] { 1, 3, 3, 1 }, new int[] {   3, 3  }, new int[] { 3 })]
-        [InlineData(new int[] { 4, 9, 5 }, new int[] { 9, 4, 9, 8, 4 }, new int[] {   9,4  })]
-        [InlineData(new int[] {1 }, new int[] {2}, new int[] {   })]
-        [InlineData(new int[] { 1 }, new int[] { 1 }, new int[] { 1})]
-        public void Test_Intersection(int[] nums1, int[] nums2, int[] expected)
-        {
-            var actual = sut.Intersection(nums1,nums2);
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData(new int[] { 1,1, 3, 3 }, new int[] { 3, 3 }, new int[] { 3 })]
-        [InlineData(new int[] { 4, 5,9 }, new int[] { 9, 4, 9, 8, 4 }, new int[] {  4 ,9})]
+        [InlineData(new int[] { 1, 3, 3, 1 }, new int[] { 3, 3 }, new int[] { 3 })]
+        [InlineData(new int[] { 4, 9, 5 }, new int[] { 9, 4, 9, 8, 4 }, new int[] { 9, 4 })]
         [InlineData(new int[] { 1 }, new int[] { 2 }, new int[] { })]
         [InlineData(new int[] { 1 }, new int[] { 1 }, new int[] { 1 })]
-        [InlineData(new int[] { 1,1,2,2,2 }, new int[] {  }, new int[] {  })]
-        [InlineData(new int[] {  }, new int[] { }, new int[] { })]
-        [InlineData(new int[] {-2,-1,-1,-1,0,0,1}, new int[] {-1,-1,1 }, new int[] {-1,1 })]
+        public void Test_Intersection(int[] nums1, int[] nums2, int[] expected)
+        {
+            var actual = sut.Intersection(nums1, nums2);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 3, 3 }, new int[] { 3, 3 }, new int[] { 3 })]
+        [InlineData(new int[] { 4, 5, 9 }, new int[] { 9, 4, 9, 8, 4 }, new int[] { 4, 9 })]
+        [InlineData(new int[] { 1 }, new int[] { 2 }, new int[] { })]
+        [InlineData(new int[] { 1 }, new int[] { 1 }, new int[] { 1 })]
+        [InlineData(new int[] { 1, 1, 2, 2, 2 }, new int[] { }, new int[] { })]
+        [InlineData(new int[] { }, new int[] { }, new int[] { })]
+        [InlineData(new int[] { -2, -1, -1, -1, 0, 0, 1 }, new int[] { -1, -1, 1 }, new int[] { -1, 1 })]
         [InlineData(new int[] { 7, 2, 2, 4, 7, 0, 3, 4, 5 }, new int[] { 3, 9, 8, 6, 1, 9 }, new int[] { 3 })]
 
-   
+
         public void Test_IntersectionSorted(int[] nums1, int[] nums2, int[] expected)
         {
             var actual = sut.IntersectionSorted(nums1, nums2);
@@ -472,19 +472,31 @@ namespace Arrays.Tests.LeetCode
         }
 
         [Theory]
-        [InlineData(new int[] { 1, 3, 3, 1 }, new int[] { 3, 3 }, new int[] { 3,3 })]
-        [InlineData(new int[] { 4, 9, 5 }, new int[] { 9, 4, 9, 8, 4 }, new int[] { 4,9 })]
+        [InlineData(new int[] { 1, 3, 3, 1 }, new int[] { 3, 3 }, new int[] { 3, 3 })]
+        [InlineData(new int[] { 4, 9, 5 }, new int[] { 9, 4, 9, 8, 4 }, new int[] { 4, 9 })]
         [InlineData(new int[] { 1 }, new int[] { 2 }, new int[] { })]
         [InlineData(new int[] { 1 }, new int[] { 1 }, new int[] { 1 })]
         [InlineData(new int[] { 1, 1, 2, 2, 2 }, new int[] { }, new int[] { })]
         [InlineData(new int[] { }, new int[] { }, new int[] { })]
         [InlineData(new int[] { -2, -1, -1, -1, 0, 0, 1 }, new int[] { -1, -1, 1 }, new int[] { -1, -1, 1 })]
         [InlineData(new int[] { 7, 2, 2, 4, 7, 0, 3, 4, 5 }, new int[] { 3, 9, 8, 6, 1, 9 }, new int[] { 3 })]
-        [InlineData(new int[] { 1, 2, 2, 1 }, new int[] { 2,2}, new int[] {2,2 })]
-      
+        [InlineData(new int[] { 1, 2, 2, 1 }, new int[] { 2, 2 }, new int[] { 2, 2 })]
         public void Test_Intersection2(int[] nums1, int[] nums2, int[] expected)
         {
             var actual = sut.Intersection2(nums1, nums2);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { 2, 5, 6 }, 3, new int[] { 1, 2, 2, 3, 5, 6 })]
+        [InlineData(new int[] { 1, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 1 })]
+        [InlineData(new int[] { 0 }, 0, new int[] { 1 }, 1, new int[] { 1 })]
+        [InlineData(new int[] { 1, 2, 3, 0 }, 3, new int[] { 1 }, 1, new int[] { 1, 1, 2, 3 })]
+        [InlineData(new int[] { 2, 0 }, 1, new int[] { 1 }, 1, new int[] { 1, 2 })]
+        [InlineData(new int[] { 1, 0 }, 1, new int[] { 2 }, 1, new int[] { 1, 2 })]
+        public void Test_MergeRepeat(int[] nums, int nums1length, int[] nums2, int nums2length, int[] expected)
+        {
+            var actual = sut.MergeRepeat(nums, nums1length, nums2, nums2length);
             Assert.Equal(expected, actual);
         }
     }

@@ -1021,5 +1021,25 @@ namespace Arrays.LeetCode
 
             return results.ToArray();
         }
+        //https://leetcode.com/problems/merge-sorted-array/
+        public int[] MergeRepeat(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("one or both arrays null");
+            int mIndex = m - 1;
+            int nIndex = n - 1;
+            int currentIndex = nums1.Length - 1;
+            while (mIndex >= 0 && nIndex >= 0)
+            {
+                nums1[currentIndex] = (nums2[nIndex] >= nums1[mIndex]) ? nums1[currentIndex] = nums2[nIndex--] : nums1[currentIndex] = nums1[mIndex--];
+                currentIndex--;
+            }
+            while (nIndex >= 0)
+            {
+                nums1[currentIndex--] = nums2[nIndex--];
+            }
+
+            return nums1;
+        }
     }
 }
