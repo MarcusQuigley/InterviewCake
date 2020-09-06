@@ -42,6 +42,16 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, ArrayFromTree(actual));
         }
 
-
+        [Theory]
+        [InlineData(new int[] { 1,2,3,-666,5} , new string[] { "1->2->5", "1->3" })]
+        [InlineData(new int[] { 1, 2, 3, 5,6}, new string[] { "1->2->5", "1->2->6", "1->3" })]
+        public void Test_BinaryTreePaths(int[] values,  string[] expected)
+        {
+            var head = CreatTreeNodesNonGeneric(values);
+            //var expectedNode = CreatTreeNodesNonGeneric(expected);
+            var actual = sut.BinaryTreePaths(head );
+            Assert.Equal(expected,  actual);
+        }
+        
     }
 }

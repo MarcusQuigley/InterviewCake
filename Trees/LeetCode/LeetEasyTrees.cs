@@ -70,5 +70,42 @@ namespace Trees.LeetCode
             }
             return root;// (root.val > val) ? SearchBST(root.left, val) : SearchBST(root.right, val);
         }
+
+        //https://leetcode.com/problems/binary-tree-paths/
+        public IList<string> BinaryTreePaths(TreeNode root)
+        {
+            List<string> results = new List<string>();
+            if (root == null)
+                return results;
+             
+            string currentString = root.val.ToString();
+            if (root.left == null && root.right == null)
+                results.Add(currentString);
+            else
+            {
+                if (root.left != null)
+                    dfsPaths(root.left, currentString, results);
+                if (root.right != null)
+                    dfsPaths(root.right, currentString, results);
+            }
+ 
+            return results;
+        }
+
+        void dfsPaths(TreeNode node, string currentString, List<string> results)
+        {
+            currentString += "->" + node.val;
+            if (node.left == null && node.right == null) { 
+                results.Add(currentString);
+                return;
+            }
+            else
+            {
+                if (node.left != null)
+                    dfsPaths(node.left, currentString, results);
+                if (node.right != null)
+                    dfsPaths(node.right, currentString, results);
+            }
+        }
     }
 }
