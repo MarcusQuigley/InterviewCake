@@ -511,5 +511,21 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.IsMonotonic(nums);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("()", true)]
+        [InlineData("()[]{}", true)]
+        [InlineData("(]", false)]
+        [InlineData("([)]", false)]
+        [InlineData("{[]}", true)]
+        [InlineData("([{{(", false)]
+        [InlineData("(", false)]
+        [InlineData("]", false)]
+        public void Test_IsValid(string s, bool expected)
+        {
+            var actual = sut.IsValid(s);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }
