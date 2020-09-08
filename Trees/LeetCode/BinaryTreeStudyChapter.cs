@@ -31,17 +31,17 @@ namespace Trees.LeetCode
         {
             List<int> results = new List<int>();
             if (root == null)
-                return results; 
-            
+                return results;
+
             Stack<TreeNode> stack = new Stack<TreeNode>();
             stack.Push(root);
-            while (stack.Count>0)
+            while (stack.Count > 0)
             {
                 TreeNode current = stack.Pop();
                 results.Add(current.val);
                 if (current.right != null) stack.Push(current.right);
                 if (current.left != null) stack.Push(current.left);
-               
+
             }
 
             return results;
@@ -55,11 +55,11 @@ namespace Trees.LeetCode
 
             TreeNode current = root;
             Stack<TreeNode> stack = new Stack<TreeNode>();
-            while(stack.Count>0 || current!=null)
+            while (stack.Count > 0 || current != null)
             {
-                while(current!= null  )
+                while (current != null)
                 {
-                 
+
                     stack.Push(current);
                     current = current.left;
                 }
@@ -67,9 +67,9 @@ namespace Trees.LeetCode
                 results.Add(current.val);
                 current = current.right;
             }
-            
-            return results;
 
+            return results;
+       
         }
         //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
         public IList<int> InorderTraversalRecursion(TreeNode root)
@@ -86,5 +86,31 @@ namespace Trees.LeetCode
             results.Add(root.val);
             InorderWork(root.right, results);
         }
+
+        //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/930/
+        public IList<int> PostorderTraversal(TreeNode root)
+        {
+            List<int> results = new List<int>();
+            if (root == null)
+                return results;
+            Stack<TreeNode> leftStack = new Stack<TreeNode>();
+            Stack<TreeNode> rightStack = new Stack<TreeNode>();
+            leftStack.Push(root);
+            while (leftStack.Count > 0)
+            {
+                var current = leftStack.Pop();
+                if (current.left != null) leftStack.Push(current.left);
+                if (current.right != null) leftStack.Push(current.right);
+                rightStack.Push(current);
+            }
+            while (rightStack.Count > 0)
+            {
+                results.Add(rightStack.Pop().val);
+            }
+            return results;
+        }
+
+
+     
     }
 }

@@ -61,5 +61,19 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
 
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 4, 3, 2 }, new int[] { 2, 4, 3, 1 })]
+        [InlineData(new int[] { 1, -666, 2, -666, -666, 3 }, new int[] {   3, 2,1 })]
+        [InlineData(new int[] { }, new int[] { })]
+        [InlineData(new int[] { 1,2}, new int[] { 2,1})]
+        [InlineData(new int[] { 1,-666, 2 }, new int[] { 2, 1 })]
+        public void Test_PostorderTraversal(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.PostorderTraversal(root);
+            Assert.Equal(expected, actual);
+
+        } 
     }
 }
