@@ -46,45 +46,45 @@ namespace Trees.LeetCode
 
             return results;
         }
-        ////https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
-        //public IList<int> InorderTraversal(TreeNode root)
-        //{
-        //    List<int> results = new List<int>();
-        //    if (root == null)
-        //        return results;
+        //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
+        public IList<int> InorderTraversal(TreeNode root)
+        {
+            List<int> results = new List<int>();
+            if (root == null)
+                return results;
 
-        //    TreeNode current = root;
-        //    Stack<TreeNode> stack = new Stack<TreeNode>();
-        //    while(stack.Count>0 || current!=null)
-        //    {
-        //        while(current!= null  )
-        //        {
+            TreeNode current = root;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            while(stack.Count>0 || current!=null)
+            {
+                while(current!= null  )
+                {
                  
-        //            stack.Push(current);
-        //            current = current.left;
-        //        }
-        //        current = stack.Pop();
-        //        results.Add(current.val);
-        //        current = current.right;
-        //    }
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                results.Add(current.val);
+                current = current.right;
+            }
             
-        //    return results;
+            return results;
 
-        //}
-        ////https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
-        //public IList<int> InorderTraversalRecursion(TreeNode root)
-        //{
-        //    List<int> result = new List<int>();
-        //    InorderWork(root, result);
-        //    return result;
-        //}
-        //void InorderWork(TreeNode root, List<int> results)
-        //{
-        //    if (root == null)
-        //        return;
-        //    InorderWork(root.left, results);
-        //    results.Add(root.val);
-        //    InorderWork(root.right, results);
-        //}
+        }
+        //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
+        public IList<int> InorderTraversalRecursion(TreeNode root)
+        {
+            List<int> result = new List<int>();
+            InorderWork(root, result);
+            return result;
+        }
+        void InorderWork(TreeNode root, List<int> results)
+        {
+            if (root == null)
+                return;
+            InorderWork(root.left, results);
+            results.Add(root.val);
+            InorderWork(root.right, results);
+        }
     }
 }
