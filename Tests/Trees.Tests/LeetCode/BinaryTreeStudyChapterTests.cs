@@ -96,7 +96,26 @@ namespace Trees.Tests.LeetCode
             var actual = sut.LevelOrderTraversal(root);
             Assert.Equal(expected, actual);
         }
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { }, 0)]
+        public void Test_MaxDepthBFS(int[] nums, int expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepthBFS(treeNode);
+            Assert.Equal(expected, actual);
+        }
 
-        
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { }, 0)]
+        public void Test_MaxDepth(int[] nums, int expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepth(treeNode);
+            Assert.Equal(expected, actual);
+        }
     }
 }

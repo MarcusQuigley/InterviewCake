@@ -167,7 +167,68 @@ namespace Trees.LeetCode
 
             return results;
         }
+        //Recursion
+        //Top down
 
-       
+        private int answer;     // don't forget to initialize answer before call maximum_depth
+        private void maximum_depth(TreeNode root, int depth)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            if (root.left == null && root.right == null)
+            {
+                answer = Math.Max(answer, depth);
+            }
+            maximum_depth(root.left, depth + 1);
+            maximum_depth(root.right, depth + 1);
+        }
+
+        //Bottom up
+        public int maximum_depth(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;                                   // return 0 for null node
+            }
+            int left_depth = maximum_depth(root.left);
+            int right_depth = maximum_depth(root.right);
+            return Math.Max(left_depth, right_depth) + 1;   // return depth of the subtree rooted at root
+        }
+
+        public int MaxDepthBFS(TreeNode root)
+        {
+
+            if (root == null) return 0;
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            var result = 0;
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                result += 1;
+                var count = q.Count;
+                //  int[] list = new int[count];
+                for (int i = 0; i < count; i++)
+                {
+                    var node = q.Dequeue();
+                    //       list[i] = node.val;
+                    if (node.left != null) q.Enqueue(node.left);
+                    if (node.right != null) q.Enqueue(node.right);
+                }
+                //    results.Add(list);
+            }
+
+            return result;
+        }
+
+        public int MaxDepth(TreeNode root)
+        {
+
+            if (root == null) return 0;
+            int left = MaxDepth(root.left);
+            int right = MaxDepth(root.right);
+            return Math.Max(left, right) + 1;
+        }
     }
 }
