@@ -109,7 +109,7 @@ namespace Trees.LeetCode
             return results;
         }
 
-      
+
 
         public List<int> postorderTraversal2Tushar(TreeNode root)
         {
@@ -144,5 +144,30 @@ namespace Trees.LeetCode
             }
             return results;
         }
+
+        public IList<IList<int>> LevelOrderTraversal(TreeNode root)
+        {
+            List<IList<int>> results = new List<IList<int>>();
+            if (root == null) return results;
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var count = q.Count;
+                int[] list = new int[count];
+                for (int i = 0; i < count; i++)
+                {
+                    var node = q.Dequeue();
+                    list[i] = node.val;
+                    if (node.left != null) q.Enqueue(node.left);
+                    if (node.right != null) q.Enqueue(node.right);
+                }
+                results.Add(list);
+            }
+
+            return results;
+        }
+
+       
     }
 }

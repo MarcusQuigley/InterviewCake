@@ -83,5 +83,20 @@ namespace Trees.Tests.LeetCode
             var actual = sut.postorderTraversal2Tushar(root);
             Assert.Equal(expected, actual);
          }
-     }
+
+        [Theory]
+        [InlineData(new int[] { 1, 4, 3, 2 }, new int[] { 1 }, new int[] { 4,3 }, new int[] { 2 })]
+        [InlineData(new int[] {3,9,20,-666,-666,15,7 }, new int[] { 3 }, new int[] {9,20 }, new int[] { 15,7 })]
+    //    [InlineData(new int[] { }, new int[] { })]
+        [InlineData(new int[] { 1, 2 }, new int[] { 1  },new int[] {  2 })]
+        [InlineData(new int[] { 1, -666, 2 }, new int[] {   1 }, new int[] { 2 })]
+        public void Test_LevelOrderTraversal(int[] values, params int[][] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.LevelOrderTraversal(root);
+            Assert.Equal(expected, actual);
+        }
+
+        
+    }
 }
