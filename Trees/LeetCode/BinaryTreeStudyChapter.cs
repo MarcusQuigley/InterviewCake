@@ -69,7 +69,7 @@ namespace Trees.LeetCode
             }
 
             return results;
-       
+
         }
         //https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/929/
         public IList<int> InorderTraversalRecursion(TreeNode root)
@@ -99,18 +99,50 @@ namespace Trees.LeetCode
             while (leftStack.Count > 0)
             {
                 var current = leftStack.Pop();
+                rightStack.Push(current);
                 if (current.left != null) leftStack.Push(current.left);
                 if (current.right != null) leftStack.Push(current.right);
-                rightStack.Push(current);
             }
+
             while (rightStack.Count > 0)
-            {
                 results.Add(rightStack.Pop().val);
-            }
             return results;
         }
 
+      
 
-     
+        public List<int> postorderTraversal2Tushar(TreeNode root)
+        {
+            TreeNode current = root;
+            List<int> results = new List<int>();
+            Stack<TreeNode> stack2 = new Stack<TreeNode>();
+            while (current != null || stack2.Count > 0)
+            {
+                if (current != null)
+                {
+                    stack2.Push(current);
+                    current = current.left;
+                }
+                else
+                {
+                    TreeNode temp = stack2.Peek().right;
+                    if (temp == null)
+                    {
+                        temp = stack2.Pop();
+                        results.Add(temp.val);
+                        while (stack2.Count > 0 && temp == stack2.Peek().right)
+                        {
+                            temp = stack2.Pop();
+                            results.Add(temp.val);
+                        }
+                    }
+                    else
+                    {
+                        current = temp;
+                    }
+                }
+            }
+            return results;
+        }
     }
 }
