@@ -128,5 +128,16 @@ namespace Trees.Tests.LeetCode
             var actual = sut.HasPathSum(treeNode, sum);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 2, 3, 4, 4, 3 }, true)]
+        [InlineData(new int[] { 1, 2, 2, -666, 3, -666, 3 }, false)]
+        [InlineData(new int[] { 3 }, true)]
+        public void Test_IsSymmetric(int[] nums, bool expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.IsSymmetric(treeNode);
+            Assert.Equal(expected, actual);
+        }
     }
 }

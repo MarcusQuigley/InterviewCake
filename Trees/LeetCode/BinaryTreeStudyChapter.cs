@@ -231,8 +231,25 @@ namespace Trees.LeetCode
             return Math.Max(left, right) + 1;
         }
 
-        ////https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/536/
- 
+        //https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/536/
+        public bool IsSymmetric(TreeNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            return (IsSymmetricWork(root.left, root.right) );
+        }
+
+        bool IsSymmetricWork(TreeNode left, TreeNode right)
+        {
+            if (left == null && right == null)
+                return true;
+
+            if (left == null || right == null )
+                return false;
+            if (left.val != right.val) return false;
+            //if (left.val == right.val) return true;
+            return (IsSymmetricWork(left.left, right.right) && IsSymmetricWork(left.right, right.left));
+        }
 
         //https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/537/
         public bool HasPathSum(TreeNode root, int sum)
