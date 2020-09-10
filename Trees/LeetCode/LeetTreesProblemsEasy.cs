@@ -54,6 +54,39 @@ namespace Trees.LeetCode
                 if (node.right != null) q.Enqueue(node.right);
             }
             return results;
-        } 
+        }
+
+        //https://leetcode.com/problems/range-sum-of-bst/
+        public int RangeSumBST(TreeNode root, int L, int R)
+        {
+            if (root == null)
+                return 0;
+            if (root.val < L) 
+                return RangeSumBST(root.right, L, R);
+            if (root.val > R) 
+                return RangeSumBST(root.left, L, R);
+            return (root.val + RangeSumBST(root.right, L, R) + RangeSumBST(root.left, L, R));
+        }  
+      
+
+       
+
+        public int RangeSumBSTIter(TreeNode root, int L, int R)
+        {
+            if (root == null)
+                return 0;
+            int result = 0;
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var current = q.Dequeue();
+                if (current.val >= L && current.val <= R)
+                    result += current.val;
+                if (current.val >= L && current.left != null) q.Enqueue(current.left);
+                if (current.val <= R && current.right != null) q.Enqueue(current.right);
+            }
+            return result;
+        }
     }
 }
