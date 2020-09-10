@@ -117,5 +117,16 @@ namespace Trees.Tests.LeetCode
             var actual = sut.MaxDepth(treeNode);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 5, 4, 8, 11, -666, 13, 4, 7, 2, -666, -666, -666, 1 }, 22, true)]
+        [InlineData(new int[] { 3, 9, 20, }, 23, true)]
+        [InlineData(new int[] { 3, 9, 20, 8, 11 }, 18, false)]
+        public void Test_HasPathSum(int[] nums, int sum, bool expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.HasPathSum(treeNode, sum);
+            Assert.Equal(expected, actual);
+        }
     }
 }

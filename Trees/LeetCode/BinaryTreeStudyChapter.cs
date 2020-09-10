@@ -169,7 +169,7 @@ namespace Trees.LeetCode
         }
         //Recursion
         //Top down
-
+        //https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/535/
         private int answer;     // don't forget to initialize answer before call maximum_depth
         private void maximum_depth(TreeNode root, int depth)
         {
@@ -230,5 +230,22 @@ namespace Trees.LeetCode
             int right = MaxDepth(root.right);
             return Math.Max(left, right) + 1;
         }
+
+        ////https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/536/
+ 
+
+        //https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/537/
+        public bool HasPathSum(TreeNode root, int sum)
+        {
+            if (root == null)
+                return false;
+            if (root.left == null && root.right == null)
+                return (root.val - sum == 0);
+          var left =  HasPathSum(root.left, sum - root.val);
+          var right=  HasPathSum(root.right, sum - root.val);
+            return left || right;
+         }
+
+        
     }
 }
