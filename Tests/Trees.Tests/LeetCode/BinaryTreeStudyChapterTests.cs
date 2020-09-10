@@ -139,5 +139,41 @@ namespace Trees.Tests.LeetCode
             var actual = sut.IsSymmetric(treeNode);
             Assert.Equal(expected, actual);
         }
+
+        //[Theory]
+        //[InlineData(new int[] { 5, 1, 5, 5, 5, -666, 5 }, 4)]
+        //[InlineData(new int[] {  }, 0)]
+        //[InlineData(new int[] { 5, 5, 5, 5, 5, -666, 5 }, 6)]
+        //[InlineData(new int[] { 1 }, 1)]
+        //[InlineData(new int[] { 1,1 }, 2)]
+        //[InlineData(new int[] { 1 ,2}, 1)]
+        //[InlineData(new int[] { 1 ,2,1}, 2)]
+        //[InlineData(new int[] { 1, 1, 1 }, 3)]
+        //[InlineData(new int[] { 1, 1, 1, 5, 5, -666, 5 }, 3)]
+        //[InlineData(new int[] { 0, 1,0,  -666, -666, 1,0, -666, -666, -666, -666, 1, 1 }, 5)]
+        //public void Test_CountUnivalSubtrees(int[] nums, int expected)
+        //{
+        //    var treeNode = base.CreatTreeNodesNonGeneric(nums);
+        //    var actual = sut.CountUnivalSubtrees(treeNode);
+        //    Assert.Equal(expected, actual);
+        //}
+        
+        [Theory]
+        [InlineData(new int[] { 1,   }, true)]
+        [InlineData(new int[] { 1, 2 }, false)]
+        [InlineData(new int[] { 3 ,3}, true)]
+        [InlineData(new int[] { 1,1, 2 }, false)]
+        [InlineData(new int[] { 5, 5, 5, 5, 5, -666, 5 }, true)]
+        [InlineData(new int[] { 5, 5, 5, 5, 4, -666, 5 }, false)]
+        [InlineData(new int[] { 5, 5, 5, -666, -666, 5, 5, -666, -666, -666, -666, 5, 5 }, true)]
+        public void Test_IsUnivalTree(int[] nums, bool expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.IsUnivalTree(treeNode);
+            Assert.Equal(expected, actual);
+        }
+
+
+        
     }
 }

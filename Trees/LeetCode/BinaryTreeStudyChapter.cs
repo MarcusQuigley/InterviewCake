@@ -236,7 +236,7 @@ namespace Trees.LeetCode
         {
             if (root == null)
                 throw new ArgumentNullException(nameof(root));
-            return (IsSymmetricWork(root.left, root.right) );
+            return (IsSymmetricWork(root.left, root.right));
         }
 
         bool IsSymmetricWork(TreeNode left, TreeNode right)
@@ -244,7 +244,7 @@ namespace Trees.LeetCode
             if (left == null && right == null)
                 return true;
 
-            if (left == null || right == null )
+            if (left == null || right == null)
                 return false;
             if (left.val != right.val) return false;
             //if (left.val == right.val) return true;
@@ -258,11 +258,95 @@ namespace Trees.LeetCode
                 return false;
             if (root.left == null && root.right == null)
                 return (root.val - sum == 0);
-          var left =  HasPathSum(root.left, sum - root.val);
-          var right=  HasPathSum(root.right, sum - root.val);
+            var left = HasPathSum(root.left, sum - root.val);
+            var right = HasPathSum(root.right, sum - root.val);
             return left || right;
+        }
+
+        //        the question says "each subtree" ... the 5 at the root will not be considered a univalued subtree as its children are 1 and 5 ... 
+        //for a sub tree to be considered univalued the node and its 2 children and the children of it's children need to be of the same value or null.
+
+        //thus we have 4 univalued subtrees in this example.
+
+        //the three leaf nodes, 5, 5 and 5 which are univalued subtrees in itself
+        //and the right subtree of root
+
+        //5 (right child of root)
+        // \
+        //  5 (leaf)
+
+        ////https://leetcode.com/problems/count-univalue-subtrees/
+        //int count = 0;
+        //public int CountUnivalSubtrees(TreeNode root)
+        //{
+        //    if (root == null) return 0;
+
+        //    //CountUnivalSubtreesWork(root);
+        //    int numElements = 0;
+        //    var total = CountUnivalSubtreesWork2(root, numElements);
+        //    return (numElements == total) ? total + 1 : total;
+        //}
+
+        //void CountUnivalSubtreesWork(TreeNode root)
+        //{
+        //    if (root == null) return;
+        //    if (root.left == null && root.right == null)
+        //    {
+        //        count += 1;
+        //        return;
+        //    }
+        //    if (root.left == null || root.right == null)
+        //        if ((root.left == null && root.val == root.right.val) ||
+        //            (root.right == null && root.val == root.left.val))
+        //            count += 1;
+
+        //    if (root.left != null && root.right != null)
+        //        if (root.val == root.left.val && root.val == root.right.val)
+        //            count += 1;
+        //    CountUnivalSubtreesWork(root.left);
+        //    CountUnivalSubtreesWork(root.right);
+        //}
+
+        int CountUnivalSubtreesWork2(TreeNode root, int numElements)
+        {
+            if (root == null) return 0;
+            numElements += 1;
+            if (root.left == null && root.right == null)
+            {
+                 return 1;
+            }
+            var cnt = 0;
+            if (root.left == null || root.right == null)
+            {
+                if ((root.left == null && root.val == root.right.val) ||
+                    (root.right == null && root.val == root.left.val))
+                    cnt += 1;
+            }
+            else
+            {
+                if (root.left != null && root.right != null)
+                    if (root.val == root.left.val && root.val == root.right.val)
+                        cnt += 1;
+            }
+           return ( CountUnivalSubtreesWork2(root.left, numElements) + CountUnivalSubtreesWork2(root.right, numElements) ) + cnt;
+        }
+
+        public bool IsUnivalTree(TreeNode root)
+        {
+            if (root == null) return true;
+ 
+            if (root.left != null && root.val != root.left.val)
+                return false;
+            if (root.right != null && root.val != root.right.val)
+                return false;
+
+            //if (root.left == null && root.right == null)
+            //    return true;
+            if (IsUnivalTree(root.left) && IsUnivalTree(root.right))
+                return true;
+            return false;
          }
 
-        
+
     }
 }
