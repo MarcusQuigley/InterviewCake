@@ -61,15 +61,12 @@ namespace Trees.LeetCode
         {
             if (root == null)
                 return 0;
-            if (root.val < L) 
+            if (root.val < L)
                 return RangeSumBST(root.right, L, R);
-            if (root.val > R) 
+            if (root.val > R)
                 return RangeSumBST(root.left, L, R);
             return (root.val + RangeSumBST(root.right, L, R) + RangeSumBST(root.left, L, R));
-        }  
-      
-
-       
+        }
 
         public int RangeSumBSTIter(TreeNode root, int L, int R)
         {
@@ -88,5 +85,43 @@ namespace Trees.LeetCode
             }
             return result;
         }
+
+        //https://leetcode.com/problems/merge-two-binary-trees/
+        public TreeNode MergeTrees(TreeNode t1, TreeNode t2)
+        {
+            if (t1 == null)
+                return t2;
+            if (t2 == null)
+                return t1;
+            t1.val += t2.val;
+            t1.left = (t1.left == null) ? t2.left : MergeTrees(t1.left, t2.left);
+            t1.right = (t1.right == null) ? t2.right: MergeTrees(t1.right, t2.right);
+            
+            return t1;
+
+        }
+
+        public TreeNode MergeTreesIter(TreeNode t1, TreeNode t2)
+        {
+            if (t1 == null) return t2;
+            Stack<TreeNode[]> stack = new Stack<TreeNode[]>();
+            stack.Push(new TreeNode[] { t1, t2 });
+            while (stack.Count > 0)
+            {
+                TreeNode[] t = stack.Pop();
+                if (t[0] == null || t[1] == null) continue;
+                t[0].val += t[1].val;
+                if (t[0].left == null)
+                    t[0].left = t[1].left;
+                else
+                    stack.Push(new TreeNode[] { t[0].left, t[1].left });
+                if (t[0].right == null)
+                    t[0].right = t[1].right;
+                else
+                    stack.Push(new TreeNode[] { t[0].right, t[1].right });
+            }
+            return t1;
+        }
+
     }
 }
