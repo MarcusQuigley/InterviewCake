@@ -95,10 +95,8 @@ namespace Trees.LeetCode
                 return t1;
             t1.val += t2.val;
             t1.left = (t1.left == null) ? t2.left : MergeTrees(t1.left, t2.left);
-            t1.right = (t1.right == null) ? t2.right: MergeTrees(t1.right, t2.right);
-            
+            t1.right = (t1.right == null) ? t2.right : MergeTrees(t1.right, t2.right);
             return t1;
-
         }
 
         public TreeNode MergeTreesIter(TreeNode t1, TreeNode t2)
@@ -123,5 +121,34 @@ namespace Trees.LeetCode
             return t1;
         }
 
+        //https://leetcode.com/problems/search-in-a-binary-search-tree/
+        TreeNode result = null;
+        public TreeNode SearchBST(TreeNode root, int val)
+        {
+            if (root == null)
+                return null;
+
+            if (root.val == val)
+            {
+                result = new TreeNode(val);
+                result.left = root.left;
+                result.right = root.right;
+                //   return result;
+            }
+            SearchBST(root.left, val);
+            SearchBST(root.right, val);
+            return result;
+        }
+        public TreeNode SearchBSTIter(TreeNode root, int val)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            var current = root;
+            while (current != null && current.val != val)
+            {
+                  current = (current.val > val) ? current.left : current.right;
+            }
+            return current;
+        }
     }
 }

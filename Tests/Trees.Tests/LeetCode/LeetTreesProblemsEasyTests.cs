@@ -77,6 +77,31 @@ namespace Trees.Tests.LeetCode
             var actual = sut.MergeTreesIter(t1, t2);
             Assert.Equal(expected, base.ArrayFromTree(actual));
         }
-        
+
+        [Theory]
+        [InlineData(new int[] { 4,2,7,1,3},2, new int[] { 2,1,3 })]
+        [InlineData(new int[] { 4, 2, 7,-666,-666,4 }, 2, new int[] { 2 })]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+       // [InlineData(new int[] { 63, 20, -666, 2, 40, -666, -666, -666, -666, -666, -666, -666, -666, 52 }, 63, new int[] {63,20 })]
+        //
+        public void Test_SearchBSTIter(int[] values, int val, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SearchBSTIter(root, val);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
+        [InlineData(new int[] { 4, 2, 7, -666, -666, 4 }, 2, new int[] { 2 })]
+        [InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+        // [InlineData(new int[] { 63, 20, -666, 2, 40, -666, -666, -666, -666, -666, -666, -666, -666, 52 }, 63, new int[] {63,20 })]
+        //
+        public void Test_SearchBST(int[] values, int val, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SearchBST(root, val);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
     }
 }
