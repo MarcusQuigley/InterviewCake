@@ -106,7 +106,7 @@ namespace Trees.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 5, 3, 6 }, new int[] { 3, -666, 5, -666, 6 })]
-        [InlineData(new int[] { 5, 3, 6, 2, 4, -666, 8, 1, -666, -666, -666, -666, -666, 7, 9 }, new int[] { 1, -666, 2, -666,3,-666, 4, -666, 5, -666, 6, -666, 7, -666, 8, -666, 9 })]
+        [InlineData(new int[] { 5, 3, 6, 2, 4, -666, 8, 1, -666, -666, -666, -666, -666, 7, 9 }, new int[] { 1, -666, 2, -666, 3, -666, 4, -666, 5, -666, 6, -666, 7, -666, 8, -666, 9 })]
         public void Test_IncreasingBST(int[] values, int[] expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
@@ -114,5 +114,24 @@ namespace Trees.Tests.LeetCode
             var exp = base.ArrayFromTree(actual);
             Assert.Equal(expected, exp);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, 0, 1 }, 22)]
+
+        [InlineData(new int[] { 1, 0, 1, 0, 1, -666, 1 }, 16)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1, 1 }, 3)]
+        [InlineData(new int[]{1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, -666, 1, 0, -666, 1, 1, 1, 1, -666, 0, -666, -666, -666, -666, -666, -666, 1, -666, 0, -666, -666, -666, -666, -666, 0, 1, 1, 0,
+        0, 0, 0, -666, -666, -666, 0, -666, -666, -666, 0, -666, 0, -666, -666, -666, -666, 1, -666, -666, 0, 0, 0, -666, -666, -666, 1, -666, -666, -666, 0, 0, -666, -666, -666, -666,
+            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 },643 )]
+        public void Test_SumRootToLeaf(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SumRootToLeaf(root );
+            Assert.Equal(expected, actual);
+        }
+        
+
     }
 }

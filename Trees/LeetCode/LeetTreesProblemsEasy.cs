@@ -225,5 +225,28 @@ namespace Trees.LeetCode
 
                 return temp;// result;
         }
+
+        //https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+        public int SumRootToLeaf(TreeNode root)
+        {
+            Stack<KeyValuePair<TreeNode, int>> stack = new Stack<KeyValuePair<TreeNode, int>>();
+            stack.Push(new KeyValuePair<TreeNode,int>(root,root.val));
+             int sum = 0;
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                var currentNode = current.Key;
+                if (currentNode.left == null && currentNode.right == null)
+                {
+                     sum += current.Value ;
+                }
+                 else
+                {
+                    if (currentNode.left != null) stack.Push(new KeyValuePair<TreeNode, int>(currentNode.left, (current.Value * 2) + currentNode.left.val));
+                    if (currentNode.right != null) stack.Push(new KeyValuePair<TreeNode, int>(currentNode.right, (current.Value * 2) + currentNode.right.val));
+                }
+             }
+            return sum;
+        }
     }
 }
