@@ -194,5 +194,36 @@ namespace Trees.LeetCode
             }
             return results;
         }
+
+        //https://leetcode.com/problems/increasing-order-search-tree/
+        public TreeNode IncreasingBST(TreeNode root)
+        {
+            TreeNode result = null;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            var current = root;
+            TreeNode temp = null;
+            while(stack.Count > 0 || current != null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                if (result == null)
+                {
+                    result = new TreeNode(current.val);
+                    temp = result;
+                }
+                else
+                {
+                    result.right = new TreeNode(current.val);
+                    result = result.right;
+                }
+                current = current.right;
+            }
+
+                return temp;// result;
+        }
     }
 }
