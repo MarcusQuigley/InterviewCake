@@ -248,5 +248,27 @@ namespace Trees.LeetCode
              }
             return sum;
         }
+
+        //https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+        public int MaxDepthNary(NaryNode root)
+        {
+            if (root == null)
+                return 0;
+            int level = 0;
+            Queue<NaryNode> q = new Queue<NaryNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var count = q.Count;
+                level += 1;
+                for (int i = 0; i < count; i++)
+                {
+                    var node = q.Dequeue();
+                    for (int j = 0; j < node.children.Count; j++)
+                        q.Enqueue(node.children[j]);
+                }
+            }
+            return level;
+        }
     }
 }
