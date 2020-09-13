@@ -122,7 +122,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/search-in-a-binary-search-tree/
-        TreeNode result = null;
+        TreeNode resultBst = null;
         public TreeNode SearchBST(TreeNode root, int val)
         {
             if (root == null)
@@ -130,14 +130,14 @@ namespace Trees.LeetCode
 
             if (root.val == val)
             {
-                result = new TreeNode(val);
-                result.left = root.left;
-                result.right = root.right;
+                resultBst = new TreeNode(val);
+                resultBst.left = root.left;
+                resultBst.right = root.right;
                 //   return result;
             }
             SearchBST(root.left, val);
             SearchBST(root.right, val);
-            return result;
+            return resultBst;
         }
         public TreeNode SearchBSTIter(TreeNode root, int val)
         {
@@ -149,6 +149,30 @@ namespace Trees.LeetCode
                   current = (current.val > val) ? current.left : current.right;
             }
             return current;
+        }
+        //https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+        public IList<int> NaryPostorder(NaryNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+
+            IList<int> results = new List<int>();
+            Stack<NaryNode> leftStack = new Stack<NaryNode>();
+            Stack<NaryNode> rightStack = new Stack<NaryNode>();
+            leftStack.Push(root);
+            while (leftStack.Count > 0)
+            {
+                var current = leftStack.Pop();
+                //for (int i = current.children.Count - 1; i >= 0; i--)
+                for (int i =0;i <  current.children.Count; i++)
+                    leftStack.Push(current.children[i]);
+
+                rightStack.Push(current);
+            }
+            while (rightStack.Count > 0)
+                results.Add(rightStack.Pop().val);
+
+            return results;
         }
     }
 }
