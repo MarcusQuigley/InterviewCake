@@ -124,18 +124,18 @@ namespace Trees.Tests.LeetCode
         [InlineData(new int[] { 1, 1 }, 3)]
         [InlineData(new int[]{1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, -666, 1, 0, -666, 1, 1, 1, 1, -666, 0, -666, -666, -666, -666, -666, -666, 1, -666, 0, -666, -666, -666, -666, -666, 0, 1, 1, 0,
         0, 0, 0, -666, -666, -666, 0, -666, -666, -666, 0, -666, 0, -666, -666, -666, -666, 1, -666, -666, 0, 0, 0, -666, -666, -666, 1, -666, -666, -666, 0, 0, -666, -666, -666, -666,
-            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 },643 )]
+            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 }, 643)]
         public void Test_SumRootToLeaf(int[] values, int expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
-            var actual = sut.SumRootToLeaf(root );
+            var actual = sut.SumRootToLeaf(root);
             Assert.Equal(expected, actual);
         }
 
         [Theory]
         [InlineData(new int[] { 1, 1, 1, 1, 1, 1, 1 }, true)]
-         [InlineData(new int[] { 2, 2, 2, 5, 2 }, false)]
-         public void Test_IsUnivalTree(int[] values, bool expected)
+        [InlineData(new int[] { 2, 2, 2, 5, 2 }, false)]
+        public void Test_IsUnivalTree(int[] values, bool expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
             var actual = sut.IsUnivalTree(root);
@@ -155,7 +155,7 @@ namespace Trees.Tests.LeetCode
         [Theory]
         [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
         [InlineData(new int[] { 1 }, 1)]
-        [InlineData(new int[] { 1,2,2,3 }, 3)]
+        [InlineData(new int[] { 1, 2, 2, 3 }, 3)]
         [InlineData(new int[] { }, 0)]
         [InlineData(new int[] { 4, 9, 20, 6, -666, -666, 15, 7, -666, -666, -666, -666, -666, -666, 15 }, 4)]
         [InlineData(new int[] { 3, 9, 20, 6, -666, -666, 15, 7 }, 4)]
@@ -179,12 +179,35 @@ namespace Trees.Tests.LeetCode
         [InlineData(new int[] { }, 0)]
         [InlineData(new int[] { 3, 9, 20, 6, -666, -666, 15, 7, -666, -666, -666, -666, -666, -666, 15 }, 4)]
         [InlineData(new int[] { 4, 9, 20, 6, -666, -666, 15, 7 }, 4)]
-        [InlineData(new int[] { 3, 9, 20, 6}, 3)]
+        [InlineData(new int[] { 3, 9, 20, 6 }, 3)]
         public void Test_MaxDepthIter(int[] nums, int expected)
         {
             var treeNode = base.CreatTreeNodesNonGeneric(nums);
             var actual = sut.MaxDepthIter(treeNode);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
+        //[InlineData(new int[] { 4, 2, 7, -666, -666, 4 }, 2, new int[] { 2 })]
+        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+        public void Test_InvertTree(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.InvertTree(root);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
+        //[InlineData(new int[] { 4, 2, 7, -666, -666, 4 }, 2, new int[] { 2 })]
+        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+        public void Test_InvertTreeIter(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.InvertTreeIter(root);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
     }
 }

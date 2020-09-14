@@ -341,5 +341,37 @@ namespace Trees.LeetCode
             }
             return level;
         }
+
+        //https://leetcode.com/problems/invert-binary-tree/
+
+        public TreeNode InvertTree(TreeNode root)
+        {
+            if (root == null)
+                return null;
+
+            TreeNode right = InvertTree(root.right);
+            TreeNode left = InvertTree(root.left);
+            root.left = right;
+            root.right = left;
+            return root;
+
+        }
+        public TreeNode InvertTreeIter(TreeNode root)
+        {
+            if (root == null)
+                return root;
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var node = q.Dequeue();
+                var temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+                if (node.left != null) q.Enqueue(node.left);
+                if (node.right != null) q.Enqueue(node.right);
+            }
+            return root;
+        }
     }
 }
