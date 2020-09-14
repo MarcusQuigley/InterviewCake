@@ -209,5 +209,19 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, base.ArrayFromTree(actual));
         }
 
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, }, new int[] { 34, 7, 2 }, false)]
+        [InlineData(new int[] { 4, 2, 7, }, new int[] { 34, 2, 7 }, true)]
+        [InlineData(new int[] { 1, 2 }, new int[] {2,2 }, true)]
+
+        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+        public void Test_LeafSimilar(int[] values1, int[] values2, bool expected)
+        {
+            var root1 = base.CreatTreeNodesNonGeneric(values1);
+            var root2 = base.CreatTreeNodesNonGeneric(values2);
+            var actual = sut.LeafSimilar(root1,root2);
+            Assert.Equal(expected, actual);
+        }
+ 
     }
 }

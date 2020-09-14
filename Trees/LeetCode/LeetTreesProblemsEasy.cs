@@ -286,7 +286,7 @@ namespace Trees.LeetCode
 
             var rightResult = (node != null && node.val == value);
             if (node.right != null) rightResult &= IsUnivalTreeWorker(node.right, value);
-             
+
             return leftResult && rightResult;
         }
 
@@ -308,16 +308,16 @@ namespace Trees.LeetCode
             return true;
         }
 
-      //  int maxdepthResult = 0;
+        //  int maxdepthResult = 0;
         //https://leetcode.com/problems/maximum-depth-of-binary-tree/
         public int MaxDepth(TreeNode root)
         {
-            if (root==null)
+            if (root == null)
                 return 0;
             var left = MaxDepth(root.left) + 1;
             var right = MaxDepth(root.right) + 1;
             //maxdepthResult = Math.Max(maxdepthResult, Math.Max(left, right));
-            return Math.Max(left,right);
+            return Math.Max(left, right);
         }
 
         public int MaxDepthIter(TreeNode root)
@@ -329,10 +329,10 @@ namespace Trees.LeetCode
             q.Enqueue(root);
             while (q.Count > 0)
             {
-                
+
                 var count = q.Count;
                 level += 1;
-                for(int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     var c = q.Dequeue();
                     if (c.left != null) q.Enqueue(c.left);
@@ -372,6 +372,40 @@ namespace Trees.LeetCode
                 if (node.right != null) q.Enqueue(node.right);
             }
             return root;
+        }
+
+        //https://leetcode.com/problems/leaf-similar-trees/
+        public bool LeafSimilar(TreeNode root1, TreeNode root2)
+        {
+            if (root1 == null || root2 == null)
+                return false;
+            var values1 = new List<int>();
+            var values2 = new List<int>();
+            LeafSimilarWorker(root1, values1);
+            LeafSimilarWorker(root2, values2);
+
+            if (values1.Count != values2.Count)
+                return false;
+            for (int i = 0; i < values1.Count; i++)
+            {
+                if (values1[i] != values2[i])
+                    return false;
+            }
+            return true;
+        }
+        void LeafSimilarWorker(TreeNode node, List<int> values)
+        {
+            if (node.left == null && node.right == null)
+            {
+                values.Add(node.val);
+                return;
+            }
+            else
+            {
+                if (node.left != null) LeafSimilarWorker(node.left, values);
+                if (node.right != null) LeafSimilarWorker(node.right, values);
+            }
+            return;
         }
     }
 }
