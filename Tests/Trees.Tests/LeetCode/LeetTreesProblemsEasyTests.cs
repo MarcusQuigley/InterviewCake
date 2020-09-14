@@ -131,7 +131,60 @@ namespace Trees.Tests.LeetCode
             var actual = sut.SumRootToLeaf(root );
             Assert.Equal(expected, actual);
         }
-        
 
+        [Theory]
+        [InlineData(new int[] { 1, 1, 1, 1, 1, 1, 1 }, true)]
+         [InlineData(new int[] { 2, 2, 2, 5, 2 }, false)]
+         public void Test_IsUnivalTree(int[] values, bool expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.IsUnivalTree(root);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 1, 1, 1, 1, 1, 1 }, true)]
+        [InlineData(new int[] { 2, 2, 2, 5, 2 }, false)]
+        public void Test_IsUnivalTreeIter(int[] values, bool expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.IsUnivalTreeIter(root);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1,2,2,3 }, 3)]
+        [InlineData(new int[] { }, 0)]
+        [InlineData(new int[] { 4, 9, 20, 6, -666, -666, 15, 7, -666, -666, -666, -666, -666, -666, 15 }, 4)]
+        [InlineData(new int[] { 3, 9, 20, 6, -666, -666, 15, 7 }, 4)]
+        public void Test_MaxDepth(int[] nums, int expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepth(treeNode);
+            Assert.Equal(expected, actual);
+        }
+
+
+
+
+
+
+
+        [Theory]
+        [InlineData(new int[] { 3, 9, 20, -666, -666, 15, 7 }, 3)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1, 2, 2, 3 }, 3)]
+        [InlineData(new int[] { }, 0)]
+        [InlineData(new int[] { 3, 9, 20, 6, -666, -666, 15, 7, -666, -666, -666, -666, -666, -666, 15 }, 4)]
+        [InlineData(new int[] { 4, 9, 20, 6, -666, -666, 15, 7 }, 4)]
+        [InlineData(new int[] { 3, 9, 20, 6}, 3)]
+        public void Test_MaxDepthIter(int[] nums, int expected)
+        {
+            var treeNode = base.CreatTreeNodesNonGeneric(nums);
+            var actual = sut.MaxDepthIter(treeNode);
+            Assert.Equal(expected, actual);
+        }
     }
 }

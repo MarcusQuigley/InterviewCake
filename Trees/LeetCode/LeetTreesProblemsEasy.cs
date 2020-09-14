@@ -146,7 +146,7 @@ namespace Trees.LeetCode
             var current = root;
             while (current != null && current.val != val)
             {
-                  current = (current.val > val) ? current.left : current.right;
+                current = (current.val > val) ? current.left : current.right;
             }
             return current;
         }
@@ -164,7 +164,7 @@ namespace Trees.LeetCode
             {
                 var current = leftStack.Pop();
                 //for (int i = current.children.Count - 1; i >= 0; i--)
-                for (int i =0;i <  current.children.Count; i++)
+                for (int i = 0; i < current.children.Count; i++)
                     leftStack.Push(current.children[i]);
 
                 rightStack.Push(current);
@@ -187,7 +187,7 @@ namespace Trees.LeetCode
             {
                 var current = stack.Pop();
                 results.Add(current.val);
-                for (int i = current.children.Count-1; i >=0; i--)
+                for (int i = current.children.Count - 1; i >= 0; i--)
                 {
                     stack.Push(current.children[i]);
                 }
@@ -202,7 +202,7 @@ namespace Trees.LeetCode
             Stack<TreeNode> stack = new Stack<TreeNode>();
             var current = root;
             TreeNode temp = null;
-            while(stack.Count > 0 || current != null)
+            while (stack.Count > 0 || current != null)
             {
                 while (current != null)
                 {
@@ -223,29 +223,29 @@ namespace Trees.LeetCode
                 current = current.right;
             }
 
-                return temp;// result;
+            return temp;// result;
         }
 
         //https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
         public int SumRootToLeaf(TreeNode root)
         {
             Stack<KeyValuePair<TreeNode, int>> stack = new Stack<KeyValuePair<TreeNode, int>>();
-            stack.Push(new KeyValuePair<TreeNode,int>(root,root.val));
-             int sum = 0;
+            stack.Push(new KeyValuePair<TreeNode, int>(root, root.val));
+            int sum = 0;
             while (stack.Count > 0)
             {
                 var current = stack.Pop();
                 var currentNode = current.Key;
                 if (currentNode.left == null && currentNode.right == null)
                 {
-                     sum += current.Value ;
+                    sum += current.Value;
                 }
-                 else
+                else
                 {
                     if (currentNode.left != null) stack.Push(new KeyValuePair<TreeNode, int>(currentNode.left, (current.Value * 2) + currentNode.left.val));
                     if (currentNode.right != null) stack.Push(new KeyValuePair<TreeNode, int>(currentNode.right, (current.Value * 2) + currentNode.right.val));
                 }
-             }
+            }
             return sum;
         }
 
@@ -266,6 +266,77 @@ namespace Trees.LeetCode
                     var node = q.Dequeue();
                     for (int j = 0; j < node.children.Count; j++)
                         q.Enqueue(node.children[j]);
+                }
+            }
+            return level;
+        }
+
+        //https://leetcode.com/problems/univalued-binary-tree/
+        public bool IsUnivalTree(TreeNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            return IsUnivalTreeWorker(root, root.val);
+        }
+        bool IsUnivalTreeWorker(TreeNode node, int value)
+        {
+
+            var leftResult = (node != null && node.val == value);
+            if (node.left != null) leftResult &= IsUnivalTreeWorker(node.left, value);
+
+            var rightResult = (node != null && node.val == value);
+            if (node.right != null) rightResult &= IsUnivalTreeWorker(node.right, value);
+             
+            return leftResult && rightResult;
+        }
+
+        public bool IsUnivalTreeIter(TreeNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            int val = root.val;
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                if (current.val != val)
+                    return false;
+                if (current.left != null) stack.Push(current.left);
+                if (current.right != null) stack.Push(current.right);
+            }
+            return true;
+        }
+
+      //  int maxdepthResult = 0;
+        //https://leetcode.com/problems/maximum-depth-of-binary-tree/
+        public int MaxDepth(TreeNode root)
+        {
+            if (root==null)
+                return 0;
+            var left = MaxDepth(root.left) + 1;
+            var right = MaxDepth(root.right) + 1;
+            //maxdepthResult = Math.Max(maxdepthResult, Math.Max(left, right));
+            return Math.Max(left,right);
+        }
+
+        public int MaxDepthIter(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            int level = 0;
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                
+                var count = q.Count;
+                level += 1;
+                for(int i = 0; i < count; i++)
+                {
+                    var c = q.Dequeue();
+                    if (c.left != null) q.Enqueue(c.left);
+                    if (c.right != null) q.Enqueue(c.right);
                 }
             }
             return level;
