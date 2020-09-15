@@ -163,7 +163,6 @@ namespace Trees.LeetCode
             while (leftStack.Count > 0)
             {
                 var current = leftStack.Pop();
-                //for (int i = current.children.Count - 1; i >= 0; i--)
                 for (int i = 0; i < current.children.Count; i++)
                     leftStack.Push(current.children[i]);
 
@@ -176,7 +175,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/n-ary-tree-preorder-traversal/
-        public IList<int> NaryPreorder(NaryNode root)
+        public IList<int> NaryPreorderIter(NaryNode root)
         {
             IList<int> results = new List<int>();
             if (root == null)
@@ -195,8 +194,27 @@ namespace Trees.LeetCode
             return results;
         }
 
-        //https://leetcode.com/problems/increasing-order-search-tree/
-        public TreeNode IncreasingBST(TreeNode root)
+        public IList<int> NaryPreorder(NaryNode root)
+        {
+            IList<int> results = new List<int>();
+            if (root != null)
+                NaryPreorderWorker(root, results);
+            return results;
+        }
+
+        void NaryPreorderWorker(NaryNode node, IList<int> results) {
+            if (node== null)
+                return;
+            results.Add(node.val);
+            for (int i = 0;i< node.children.Count; i++)
+            {
+                NaryPreorderWorker(node.children[i], results);
+            }
+            return;
+        }
+
+            //https://leetcode.com/problems/increasing-order-search-tree/
+            public TreeNode IncreasingBST(TreeNode root)
         {
             TreeNode result = null;
             Stack<TreeNode> stack = new Stack<TreeNode>();
