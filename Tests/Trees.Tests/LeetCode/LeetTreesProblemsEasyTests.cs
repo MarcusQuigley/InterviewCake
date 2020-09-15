@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Trees.LeetCode;
 using Xunit;
@@ -222,6 +223,18 @@ namespace Trees.Tests.LeetCode
             var actual = sut.LeafSimilar(root1,root2);
             Assert.Equal(expected, actual);
         }
- 
+
+        [Theory]
+        [InlineData(new int[] { 3,9,20,-666,-666,15,7 }, new double[] { 3,14.5,11 })]
+     
+
+        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+        public void Test_AverageOfLevels(int[] values, double[]   expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.AverageOfLevels(root);
+            Assert.Equal(expected, actual.ToArray());
+        }
+        
     }
 }

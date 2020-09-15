@@ -343,8 +343,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/invert-binary-tree/
-
-        public TreeNode InvertTree(TreeNode root)
+         public TreeNode InvertTree(TreeNode root)
         {
             if (root == null)
                 return null;
@@ -375,6 +374,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/leaf-similar-trees/
+        //no recursion
         public bool LeafSimilar(TreeNode root1, TreeNode root2)
         {
             if (root1 == null || root2 == null)
@@ -406,6 +406,32 @@ namespace Trees.LeetCode
                 if (node.right != null) LeafSimilarWorker(node.right, values);
             }
             return;
+        }
+
+        //https://leetcode.com/problems/average-of-levels-in-binary-tree/
+        //no recursion
+        public IList<double> AverageOfLevels(TreeNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            IList<double> result = new List<double>();
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                var count = q.Count;
+                double sum = 0d;
+                for (int i = 0; i < count; i++)
+                {
+                    var current = q.Dequeue();
+                    if (current.left != null) q.Enqueue(current.left);
+                    if (current.right != null) q.Enqueue(current.right);
+                    sum += current.val;
+                }
+                result.Add(sum / count);
+                
+            }
+            return result;
         }
     }
 }
