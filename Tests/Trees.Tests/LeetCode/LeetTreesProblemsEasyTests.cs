@@ -226,14 +226,24 @@ namespace Trees.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 3,9,20,-666,-666,15,7 }, new double[] { 3,14.5,11 })]
-     
-
-        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
+         //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
         public void Test_AverageOfLevels(int[] values, double[]   expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
             var actual = sut.AverageOfLevels(root);
             Assert.Equal(expected, actual.ToArray());
+        }
+
+        [Theory]
+        [InlineData(new int[] {1,0,2 },1,2, new int[] { 1,-666,2 })]
+       // [InlineData(new int[] {3,0,4,-666,2,-666,-666,1}, 1,3, new int[] {3,2,-666,1 })]
+        [InlineData(new int[] { 1, -666, 2 }, 1, 3, new int[] { 1, -666, 2 })]
+        [InlineData(new int[] { 1, -666, 2 }, 2, 4, new int[] { 2 })]
+        public void Test_TrimBST(int[] values,int low, int high, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.TrimBST(root, low, high);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
         }
         
     }
