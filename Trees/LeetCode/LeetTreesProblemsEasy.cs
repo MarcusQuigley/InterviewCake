@@ -464,5 +464,28 @@ namespace Trees.LeetCode
             root.right = (TrimBST(root.right, low, high));
             return root;
         }
+
+        //https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+        public bool FindTarget(TreeNode root, int k)
+        {
+            if (root == null)
+                return false;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                if (!map.ContainsKey(current.val))
+                {
+                    map.Add(k - current.val, current.val);
+                    if (current.left != null) stack.Push(current.left);
+                    if (current.right != null) stack.Push(current.right);
+                }
+                else
+                    return true;
+             }
+            return false;
+        }
     }
 }
