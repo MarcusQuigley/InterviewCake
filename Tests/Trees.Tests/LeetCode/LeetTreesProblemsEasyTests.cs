@@ -249,10 +249,7 @@ namespace Trees.Tests.LeetCode
         [Theory]
         [InlineData(new int[] { 5, 3, 6, 2, 4, -666, 7 },22,  false)]
         [InlineData(new int[] {5,3,6,2,4,-666,7 }, 9,true)]
-        
-
-        //[InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
-        public void Test_FindTarget(int[] values, int k,bool expected)
+         public void Test_FindTarget(int[] values, int k,bool expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
             
@@ -270,7 +267,29 @@ namespace Trees.Tests.LeetCode
             var actual = sut.ConvertBST(root );
             Assert.Equal(expected, base.ArrayFromTree(actual));
         }
-        
+
+        [Theory]
+        [InlineData(new int[] {2,1,3 },1)]
+        [InlineData(new int[] {1,-666,2 },1)]
+        [InlineData(new int[] { 1, -666,3, -666, -666, 2 }, 1)]
+        public void Test_GetMinimumDifference(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.GetMinimumDifference(root);
+            Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData(new int[] { 2, 1, 3 }, 1)]
+        [InlineData(new int[] { 1, -666, 2 }, 1)]
+        [InlineData(new int[] { 1, -666, 3, -666, -666, 2 }, 1)]
+        public void Test_GetMinimumDifferenceIter(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.GetMinimumDifferenceIter(root);
+            Assert.Equal(expected, actual);
+        }
 
     }
 }

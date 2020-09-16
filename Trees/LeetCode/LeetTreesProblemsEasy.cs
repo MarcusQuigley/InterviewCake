@@ -510,5 +510,47 @@ namespace Trees.LeetCode
              }
             return root;
         }
-    }
+
+        //https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+        public int GetMinimumDifferenceIter(TreeNode root)
+        {
+            List<int> array = new List<int>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            var current = root;
+            int prev = int.MaxValue;
+            int min = int.MaxValue;
+            while (stack.Count > 0 || current != null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+
+                if (prev != int.MaxValue)
+                    min = Math.Min(min, current.val - prev);
+                prev = current.val;
+                current = current.right;
+            }
+            return min;
+        }
+
+        int prevMinDiff = int.MaxValue;
+        int minMinDiff = int.MaxValue;
+        public int GetMinimumDifference(TreeNode root)
+        {
+            if (root == null)
+                return minMinDiff;
+
+            GetMinimumDifference(root.left);
+            if (prevMinDiff != int.MaxValue)
+            {
+                minMinDiff = Math.Min(minMinDiff, root.val - prevMinDiff);
+            }
+            prevMinDiff = root.val;
+            GetMinimumDifference(root.right);
+            return minMinDiff;
+        }
+        }
 }
