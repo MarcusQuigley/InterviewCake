@@ -259,6 +259,18 @@ namespace Trees.Tests.LeetCode
             var actual = sut.FindTarget(root,k);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 5,2,13 } , new int[] {18,20,13 })]
+        [InlineData(new int[] {  }, new int[] { })]
+        [InlineData(new int[] { 10,5,13,2,7,12,15} , new int[] {  50,62,28,64,57,40,15 })]
+        public void Test_ConvertBST(int[] values,  int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.ConvertBST(root );
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
         
+
     }
 }

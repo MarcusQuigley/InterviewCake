@@ -487,5 +487,28 @@ namespace Trees.LeetCode
              }
             return false;
         }
+
+        //https://leetcode.com/problems/convert-bst-to-greater-tree/
+        public TreeNode ConvertBST(TreeNode root)
+        {
+            if (root == null)
+                return root;
+            TreeNode node = root;
+            int max = 0;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            while (stack.Count > 0 || node != null)
+            {
+                while (node != null)
+                {
+                    stack.Push(node);
+                    node = node.right;
+                }
+                node = stack.Pop();
+                max += node.val;
+                node.val = max;
+                node = node.left;
+             }
+            return root;
+        }
     }
 }
