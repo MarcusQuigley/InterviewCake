@@ -1,6 +1,7 @@
 ﻿using DataStructures;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Trees.LeetCode
@@ -552,5 +553,30 @@ namespace Trees.LeetCode
             GetMinimumDifference(root.right);
             return minMinDiff;
         }
+        //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+        public IList<IList<int>> LevelOrderBottom(TreeNode root)
+        {
+            
+            if (root == null)
+                return new List<IList<int>>();
+            Queue<TreeNode> q = new Queue<TreeNode>();
+            Stack<IList<int>> tempResults = new Stack<IList<int>>();
+            q.Enqueue(  root  );
+            while (q.Count > 0)
+            {
+                var count = q.Count;
+                int[] vals = new int[count];
+                 IList<TreeNode> list = new List<TreeNode>();
+                for (int i = 0; i < count; i++)
+                {
+                    TreeNode c = q.Dequeue();
+                     vals[i] = c.val;
+                    if (c.left != null) q.Enqueue(c.left);
+                    if (c.right != null) q.Enqueue(c.right);
+                 }
+                tempResults.Push(vals);
+            }
+           return tempResults.ToList();
         }
+    }
 }

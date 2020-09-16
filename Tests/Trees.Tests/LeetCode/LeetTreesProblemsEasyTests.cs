@@ -291,5 +291,16 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 3,9,20 }, new int[] { 9, 20 }, new int[] { 3} )]
+         [InlineData(new int[] { 3, 9, 20,-666,-666,15,7 }, new int[] { 15, 7 }, new int[] { 9, 20 }, new int[] { 3 })]
+        public void Test_LevelOrderBottom(int[] values, params  int[][] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.LevelOrderBottom(root);
+            Assert.Equal(expected, actual);
+        }
+        
+
     }
 }
