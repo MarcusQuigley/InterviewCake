@@ -363,6 +363,19 @@ namespace Trees.Tests.LeetCode
             var actual = sut.IsCousins(root,x,y);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] {3,9,20,-666,-666,15,7 }, 24)]
+        [InlineData(new int[] { 4, 2, 6, 1, 3 }, 1)]
+        [InlineData(new int[] { 1,2,3,4,5 }, 4)]
+        public void Test_SumOfLeftLeaves(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.SumOfLeftLeaves(root);
+            Assert.Equal(expected, actual);
+        }
         
+
     }
 }

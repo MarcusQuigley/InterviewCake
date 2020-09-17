@@ -662,7 +662,7 @@ namespace Trees.LeetCode
         public bool IsCousins(TreeNode root, int x, int y)
         {
             Queue<TreeNode> q = new Queue<TreeNode>();
-              q.Enqueue(root);
+            q.Enqueue(root);
             while (q.Count > 0)
             {
                 int count = q.Count;
@@ -674,12 +674,12 @@ namespace Trees.LeetCode
                     var node = q.Dequeue();
                     if (node != null)
                     {
-                       // bool bothFalse = (isX == false && isY == false);
+                        // bool bothFalse = (isX == false && isY == false);
                         if (node.val == x) isX = true;
                         if (node.val == y) isY = true;
                         if (isX == true && isY == true)
                             return diffParent;
-                                                     
+
                         if (node.left != null) q.Enqueue(node.left);
                         if (node.right != null) q.Enqueue(node.right);
                         q.Enqueue(null);
@@ -689,8 +689,25 @@ namespace Trees.LeetCode
                 }
                 if (isX != isY) //means one is true but since were at the end of the level we can return as teh answer will be false
                     break;
-             }
+            }
             return false;
         }
-     }
+
+        //https://leetcode.com/problems/sum-of-left-leaves/
+        //  int leftLeafsSum = 0;
+        public int SumOfLeftLeaves(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            return SumOfLeftLeavesWorker(root, false);
+        }
+        int SumOfLeftLeavesWorker(TreeNode root, bool isLeft)
+        {
+            if (root == null)
+                return 0;
+            if (root.left == null && root.right == null && isLeft)
+                return root.val;
+            return SumOfLeftLeavesWorker(root.left, true) + SumOfLeftLeavesWorker(root.right, false);
+        }
+    }
 }
