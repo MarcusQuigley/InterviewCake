@@ -300,7 +300,29 @@ namespace Trees.Tests.LeetCode
             var actual = sut.LevelOrderBottom(root);
             Assert.Equal(expected, actual);
         }
-        
 
+        [Theory]
+        [InlineData(new int[] { 1,2,3 }, new int[] { 1,2,3 }, true)]
+        [InlineData(new int[] { 1, 2 }, new int[] { 1, -666, 2 }, false)]
+        [InlineData(new int[] { 1, 2, 1 }, new int[] { 1, 1,2}, false)]
+        public void Test_IsSameTree(int[] pvalues, int[] qvalues, bool expected)
+        {
+            var rootp = base.CreatTreeNodesNonGeneric(pvalues);
+            var rootq = base.CreatTreeNodesNonGeneric(qvalues);
+            var actual = sut.IsSameTree(rootp,rootq);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }, true)]
+        [InlineData(new int[] { 1, 2 }, new int[] { 1, -666, 2 }, false)]
+        [InlineData(new int[] { 1, 2, 1 }, new int[] { 1, 1, 2 }, false)]
+        public void Test_IsSameTreeIter(int[] pvalues, int[] qvalues, bool expected)
+        {
+            var rootp = base.CreatTreeNodesNonGeneric(pvalues);
+            var rootq = base.CreatTreeNodesNonGeneric(qvalues);
+            var actual = sut.IsSameTreeIter(rootp, rootq);
+            Assert.Equal(expected, actual);
+        }
     }
 }

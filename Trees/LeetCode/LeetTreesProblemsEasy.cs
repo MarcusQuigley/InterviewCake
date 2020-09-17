@@ -203,19 +203,20 @@ namespace Trees.LeetCode
             return results;
         }
 
-        void NaryPreorderWorker(NaryNode node, IList<int> results) {
-            if (node== null)
+        void NaryPreorderWorker(NaryNode node, IList<int> results)
+        {
+            if (node == null)
                 return;
             results.Add(node.val);
-            for (int i = 0;i< node.children.Count; i++)
+            for (int i = 0; i < node.children.Count; i++)
             {
                 NaryPreorderWorker(node.children[i], results);
             }
             return;
         }
 
-            //https://leetcode.com/problems/increasing-order-search-tree/
-            public TreeNode IncreasingBST(TreeNode root)
+        //https://leetcode.com/problems/increasing-order-search-tree/
+        public TreeNode IncreasingBST(TreeNode root)
         {
             TreeNode result = null;
             Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -362,7 +363,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/invert-binary-tree/
-         public TreeNode InvertTree(TreeNode root)
+        public TreeNode InvertTree(TreeNode root)
         {
             if (root == null)
                 return null;
@@ -448,7 +449,7 @@ namespace Trees.LeetCode
                     sum += current.val;
                 }
                 result.Add(sum / count);
-                
+
             }
             return result;
         }
@@ -460,7 +461,7 @@ namespace Trees.LeetCode
                 return null;
             if (root.val > high) return TrimBST(root.left, low, high);
             if (root.val < low) return TrimBST(root.right, low, high);
-       
+
             root.left = (TrimBST(root.left, low, high));
             root.right = (TrimBST(root.right, low, high));
             return root;
@@ -485,7 +486,7 @@ namespace Trees.LeetCode
                 }
                 else
                     return true;
-             }
+            }
             return false;
         }
 
@@ -508,7 +509,7 @@ namespace Trees.LeetCode
                 max += node.val;
                 node.val = max;
                 node = node.left;
-             }
+            }
             return root;
         }
 
@@ -556,27 +557,67 @@ namespace Trees.LeetCode
         //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
         public IList<IList<int>> LevelOrderBottom(TreeNode root)
         {
-            
+
             if (root == null)
                 return new List<IList<int>>();
             Queue<TreeNode> q = new Queue<TreeNode>();
             Stack<IList<int>> tempResults = new Stack<IList<int>>();
-            q.Enqueue(  root  );
+            q.Enqueue(root);
             while (q.Count > 0)
             {
                 var count = q.Count;
                 int[] vals = new int[count];
-                 IList<TreeNode> list = new List<TreeNode>();
+                IList<TreeNode> list = new List<TreeNode>();
                 for (int i = 0; i < count; i++)
                 {
                     TreeNode c = q.Dequeue();
-                     vals[i] = c.val;
+                    vals[i] = c.val;
                     if (c.left != null) q.Enqueue(c.left);
                     if (c.right != null) q.Enqueue(c.right);
-                 }
+                }
                 tempResults.Push(vals);
             }
-           return tempResults.ToList();
+            return tempResults.ToList();
+        }
+
+        //https://leetcode.com/problems/same-tree/
+
+        public bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            if (p == null && q == null) return true;
+            if (p == null || q == null) return false;
+            if (p.val != q.val) return false;
+            return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
+
+        }
+        public bool IsSameTreeIter(TreeNode p, TreeNode q)
+        {
+            Queue<TreeNode> p1 = new Queue<TreeNode>();
+            Queue<TreeNode> q1 = new Queue<TreeNode>();
+            q1.Enqueue(q);
+            p1.Enqueue(p);
+
+            while (q1.Count > 0 && p1.Count > 0)
+            {
+                var nodep = p1.Dequeue();
+                var nodeq = q1.Dequeue();
+
+                if (nodep == null && nodeq == null)
+                    continue;
+                if (nodep == null || nodeq == null) return false;
+                if (nodep.val != nodeq.val) return false;
+
+                if (nodep.left == null && nodeq.left != null) return false;
+                if (nodep.left != null && nodeq.left == null) return false;
+                if (nodep.right == null && nodeq.right != null) return false;
+                if (nodep.right != null && nodeq.right == null) return false;
+                if (nodep.left != null) p1.Enqueue(nodep.left);
+                if (nodeq.left != null) q1.Enqueue(nodeq.left);
+                if (nodep.right != null) p1.Enqueue(nodep.right);
+                if (nodeq.right != null) q1.Enqueue(nodeq.right);
+                // if (q1.Count != p1.Count) return false;
+            }
+            return true;
         }
     }
 }
