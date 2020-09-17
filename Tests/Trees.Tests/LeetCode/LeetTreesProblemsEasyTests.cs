@@ -350,5 +350,19 @@ namespace Trees.Tests.LeetCode
             var actual = sut.MinDiffInBSTIter(root);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, 4 }, 4,3,false)]
+        [InlineData(new int[] { 1, 2, 3, -666, 4,-666, 5 }, 5,4,true)]
+        [InlineData(new int[] { 1, 2, 3, -666, 4 }, 2,3,false)]
+        [InlineData(new int[] { 1, 2, 3, -666, -666, 4, 5 }, 4, 5, false)]
+        
+        public void Test_IsCousins(int[] values, int x, int y, bool expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.IsCousins(root,x,y);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

@@ -657,5 +657,40 @@ namespace Trees.LeetCode
             MinDiffInBST(root.right);
             return minMinDiffInBST;
         }
-    }
+
+        //https://leetcode.com/problems/cousins-in-binary-tree/
+        public bool IsCousins(TreeNode root, int x, int y)
+        {
+            Queue<TreeNode> q = new Queue<TreeNode>();
+              q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                int count = q.Count;
+                bool isX = false;
+                bool isY = false;
+                bool diffParent = false;
+                for (int i = 0; i < count; i++)
+                {
+                    var node = q.Dequeue();
+                    if (node != null)
+                    {
+                       // bool bothFalse = (isX == false && isY == false);
+                        if (node.val == x) isX = true;
+                        if (node.val == y) isY = true;
+                        if (isX == true && isY == true)
+                            return diffParent;
+                                                     
+                        if (node.left != null) q.Enqueue(node.left);
+                        if (node.right != null) q.Enqueue(node.right);
+                        q.Enqueue(null);
+                    }
+                    else
+                        diffParent = true;
+                }
+                if (isX != isY) //means one is true but since were at the end of the level we can return as teh answer will be false
+                    break;
+             }
+            return false;
+        }
+     }
 }
