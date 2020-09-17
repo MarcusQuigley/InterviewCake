@@ -619,5 +619,43 @@ namespace Trees.LeetCode
             }
             return true;
         }
+
+        public int MinDiffInBSTIter(TreeNode root)
+        {
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            int min = int.MaxValue;
+            int prev = int.MaxValue;
+            var current = root;
+            while (stack.Count > 0 || current != null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                if (prev != int.MaxValue)
+                    min = Math.Min(min, current.val - prev);
+                prev = current.val;
+
+                current = current.right;
+            }
+            return min;
+        }
+
+        //https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+        int prevMinDiffInBST = int.MaxValue;
+        int minMinDiffInBST = int.MaxValue;
+        public int MinDiffInBST(TreeNode root)
+        {
+            if (root == null)
+                return minMinDiffInBST;
+            MinDiffInBST(root.left);
+            if (prevMinDiffInBST != int.MaxValue)
+                minMinDiffInBST = Math.Min(minMinDiffInBST, root.val - prevMinDiffInBST);
+            prevMinDiffInBST = root.val;
+            MinDiffInBST(root.right);
+            return minMinDiffInBST;
+        }
     }
 }

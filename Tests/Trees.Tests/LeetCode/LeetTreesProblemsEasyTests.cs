@@ -324,5 +324,31 @@ namespace Trees.Tests.LeetCode
             var actual = sut.IsSameTreeIter(rootp, rootq);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 3 }, 1)]
+        [InlineData(new int[] { 1, -666, 2 }, 1)]
+        [InlineData(new int[] { 1, -666, 3, -666, -666, 2 }, 1)]
+        [InlineData(new int[] { 4, 2, 6, 1, 3 }, 1)]
+        public void Test_MinDiffInBST(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.MinDiffInBST(root);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 3 }, 1)]
+        [InlineData(new int[] { 1, -666, 2 }, 1)]
+        [InlineData(new int[] { 1, -666, 3, -666, -666, 2 }, 1)]
+        [InlineData(new int[] { 4, 2, 6, 1, 3 }, 1)]
+        public void Test_MinDiffInBSTIter(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.MinDiffInBSTIter(root);
+            Assert.Equal(expected, actual);
+        }
     }
 }
