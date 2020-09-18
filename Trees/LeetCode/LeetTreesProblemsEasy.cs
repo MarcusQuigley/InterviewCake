@@ -709,5 +709,63 @@ namespace Trees.LeetCode
                 return root.val;
             return SumOfLeftLeavesWorker(root.left, true) + SumOfLeftLeavesWorker(root.right, false);
         }
+
+        //https://leetcode.com/problems/binary-tree-paths/
+        public IList<string> BinaryTreePaths(TreeNode root)
+        {
+            if (root == null)
+                return new string[] { };
+            IList<string> results = new List<string>();
+            
+            BinaryTreePathsWorker(root, "", results);
+            return results;
+
+        }
+
+        void BinaryTreePathsWorker(TreeNode node, string str, IList<string> list)
+        {
+            if (node == null)
+                return;
+            str = str.Length>0  ? str + "->" + node.val: node.val.ToString() ;
+            if (node.left == null && node.right == null)
+                list.Add(str);
+            BinaryTreePathsWorker(node.left, str, list);
+            BinaryTreePathsWorker(node.right, str, list);
+        }
+
+            public IList<string> BinaryTreePathsIter(TreeNode root)
+        {
+            IList<string> results = new List<string>();
+            if (root != null)
+            {
+                Stack<BtpObject> stack = new Stack<BtpObject>();
+                stack.Push(new BtpObject(root, new StringBuilder()));
+                while (stack.Count > 0)
+                {
+                    var current = stack.Pop();
+                    current.Sb.Append(current.Sb.Length == 0 ? current.Node.val.ToString() : "->" + current.Node.val);
+                    if (current.Node.left == null && current.Node.right == null)
+                        results.Add(current.Sb.ToString());
+                    else
+                    {
+                        if (current.Node.right != null) stack.Push(new BtpObject(current.Node.right, new StringBuilder(current.Sb.ToString())));
+                        if (current.Node.left != null) stack.Push(new BtpObject(current.Node.left, new StringBuilder(current.Sb.ToString())));
+                    }
+                }
+            }
+            return results;
+        }
+        
+        private class BtpObject
+        {
+            public TreeNode Node { get; set; }
+            public StringBuilder Sb { get; set; }
+
+            public BtpObject(TreeNode node, StringBuilder value)
+            {
+                Node = node;
+                Sb = value;
+            }
+        }
     }
 }
