@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -394,5 +395,34 @@ namespace Trees.Tests.LeetCode
             var actual = sut.BinaryTreePaths(head);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 3 }, 1, 3, 2)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2, 8, 6)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2, 4, 2)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 5, 0, 2)]
+        public void Test_LowestCommonAncestor(int[] values, int p, int q, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var nodeP = new TreeNode(p);
+            var nodeQ = new TreeNode(q);
+            var actual = sut.LowestCommonAncestor(root, nodeP, nodeQ);
+            Assert.Equal(expected, actual.val);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 3 }, 1,3,2)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2,8,6)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2, 4, 2)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 5, 0, 2)]
+        public void Test_LowestCommonAncestorIter(int[] values, int p, int q, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var nodeP = new TreeNode(p);
+            var nodeQ = new TreeNode(q);
+            var actual = sut.LowestCommonAncestorIter(root, nodeP,nodeQ);
+            Assert.Equal(expected, actual.val);
+        }
+        
     }
 }

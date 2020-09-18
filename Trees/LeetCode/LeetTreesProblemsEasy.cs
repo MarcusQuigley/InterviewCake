@@ -716,11 +716,9 @@ namespace Trees.LeetCode
             if (root == null)
                 return new string[] { };
             IList<string> results = new List<string>();
-            
             BinaryTreePathsWorker(root, "", results);
             return results;
-
-        }
+         }
 
         void BinaryTreePathsWorker(TreeNode node, string str, IList<string> list)
         {
@@ -766,6 +764,40 @@ namespace Trees.LeetCode
                 Node = node;
                 Sb = value;
             }
+        }
+
+        //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+        public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+        {
+            if (root == null)
+                return null;
+            if (root.val > p.val && root.val > q.val)
+                return LowestCommonAncestor(root.left, p, q);
+            else if (root.val < p.val && root.val < q.val)
+                return LowestCommonAncestor(root.right, p, q);
+            return root;
+
+        }
+
+
+        public TreeNode LowestCommonAncestorIter(TreeNode root, TreeNode p, TreeNode q)
+        {
+            int pVal = p.val;
+            int qVal = q.val;
+            TreeNode node = root;
+            while (node != null)
+            {
+                int parentVal = node.val;
+                if (pVal > parentVal && qVal > parentVal)
+                    node = node.right;
+                else if (pVal < parentVal && qVal < parentVal)
+                    node = node.left;
+                else
+                    return node;
+            }
+
+            return null;
         }
     }
 }
