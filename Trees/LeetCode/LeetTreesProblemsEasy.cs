@@ -799,5 +799,39 @@ namespace Trees.LeetCode
 
             return null;
         }
+
+        //https://leetcode.com/problems/closest-binary-search-tree-value/
+        //Note NOT using binary tree properties so O(n) as opposed to O(logn). NEed to fix
+        public int ClosestValue(TreeNode root, double target)
+        {
+            List<int> list = new List<int>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            var current = root;
+            while (stack.Count > 0 || current != null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                list.Add(current.val);
+                current = current.right;
+
+            }
+            var diff = Math.Abs(target - list[0]);
+            var result = list[0];
+            
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (Math.Abs(target - list[i]) <= diff)
+                {
+                    diff = Math.Abs(target - list[i]);
+                    result = list[i];
+                }
+                    
+            }
+            return (int) result;
+        }
     }
 }

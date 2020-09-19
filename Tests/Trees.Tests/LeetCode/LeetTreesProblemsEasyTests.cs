@@ -423,6 +423,19 @@ namespace Trees.Tests.LeetCode
             var actual = sut.LowestCommonAncestorIter(root, nodeP,nodeQ);
             Assert.Equal(expected, actual.val);
         }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 5, 1, 3}, 3.71428, 4)]
+        [InlineData(new int[] { 4, 2, 5, 1, 3 }, 1.22323, 1)]
+        [InlineData(new int[] { 0 }, 2147483648.0, 0)]
+        public void Test_ClosestValue(int[] values, double target, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
         
+            var actual = sut.ClosestValue(root, target);
+            Assert.Equal(expected, actual);
+        }
+        
+
     }
 }
