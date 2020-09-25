@@ -35,5 +35,83 @@ namespace Trees.LeetCode
             }
             return sum;
         }
+
+        public IList<int> GetLonelyNodes(TreeNode root)
+        {
+            var results = new List<int>();
+            GetLonelyNodesWorkerCleaner(root,false, results);
+            return results;
+        }
+
+        void GetLonelyNodesWorkerCleaner(TreeNode node,bool isLonely, IList<int> list)
+        {
+            if (node == null)
+                return;
+            if (isLonely)
+                list.Add(node.val);
+            GetLonelyNodesWorkerCleaner(node.left, node.right == null, list);
+            GetLonelyNodesWorkerCleaner(node.right, node.left == null, list);
+        }
+
+        void GetLonelyNodesWorker(TreeNode node, IList<int> list)
+        {
+            if (node == null)
+                return;
+            if (node.left == null && node.right == null)
+                return;
+            if (node.left == null && node.right != null)
+            {
+                list.Add(node.right.val);
+                GetLonelyNodesWorker(node.right, list);
+            }
+            else if (node.right == null && node.left != null)
+            {
+                list.Add(node.left.val);
+                GetLonelyNodesWorker(node.left, list);
+            }
+            else
+            {
+                GetLonelyNodesWorker(node.left, list);
+                GetLonelyNodesWorker(node.right, list);
+            }
+
+        }
+
+        public IList<int> GetLonelyNodesIter(TreeNode root)
+        {
+            var results = new List<int>();
+            if (root!=null)
+            {
+                var stack = new Stack<TreeNode>();
+                stack.Push(root);
+                while (stack.Count > 0)
+                {
+                    var node = stack.Pop();
+                    if (node.left == null)
+                    {
+                        if (node.right != null)
+                        {
+                            results.Add(node.right.val);
+                            stack.Push(node.right);
+                        }
+                    }
+                    else if (node.right == null)
+                    {
+                        if (node.left != null)
+                        {
+                            results.Add(node.left.val);
+                            stack.Push(node.left);
+                        }
+                    }
+                    else
+                    {
+                        stack.Push(node.right);
+                        stack.Push(node.left);
+                    }
+
+                }
+            }
+            return results;
+        }
     }
 }
