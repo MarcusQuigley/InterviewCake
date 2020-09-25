@@ -590,6 +590,7 @@ namespace Trees.LeetCode
             return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
 
         }
+
         public bool IsSameTreeIter(TreeNode p, TreeNode q)
         {
             Queue<TreeNode> p1 = new Queue<TreeNode>();
@@ -833,5 +834,17 @@ namespace Trees.LeetCode
             }
             return (int) result;
         }
+ 
+        public int MaxHeightOfTree(TreeNode root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+            var left = MaxHeightOfTree(root.left);
+            var right = MaxHeightOfTree(root.right);
+            return Math.Max(left, right) + 1;
+        }
+
     }
 }

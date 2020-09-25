@@ -435,7 +435,18 @@ namespace Trees.Tests.LeetCode
             var actual = sut.ClosestValue(root, target);
             Assert.Equal(expected, actual);
         }
-        
 
+        [Theory]
+        [InlineData(new int[] { 4, 2, 5, 1, 3 },   3)]
+        [InlineData(new int[] { 2, 1, 3 },    2)]
+        [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 },  4)]
+        public void Test_MaxHeightOfTree(int[] values,  int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+
+            var actual = sut.MaxHeightOfTree(root);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }
