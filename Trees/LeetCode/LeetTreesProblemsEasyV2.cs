@@ -30,7 +30,7 @@ namespace Trees.LeetCode
                 var node = stack.Pop();
                 if (node.val >= L && node.val <= R)
                     sum += node.val;
-                if (node.val >= L && node.left != null ) stack.Push(node.left);
+                if (node.val >= L && node.left != null) stack.Push(node.left);
                 if (node.val <= R && node.right != null) stack.Push(node.right);
             }
             return sum;
@@ -39,11 +39,11 @@ namespace Trees.LeetCode
         public IList<int> GetLonelyNodes(TreeNode root)
         {
             var results = new List<int>();
-            GetLonelyNodesWorkerCleaner(root,false, results);
+            GetLonelyNodesWorkerCleaner(root, false, results);
             return results;
         }
 
-        void GetLonelyNodesWorkerCleaner(TreeNode node,bool isLonely, IList<int> list)
+        void GetLonelyNodesWorkerCleaner(TreeNode node, bool isLonely, IList<int> list)
         {
             if (node == null)
                 return;
@@ -74,12 +74,12 @@ namespace Trees.LeetCode
                 GetLonelyNodesWorker(node.left, list);
                 GetLonelyNodesWorker(node.right, list);
             }
-         }
+        }
 
         public IList<int> GetLonelyNodesIter(TreeNode root)
         {
             var results = new List<int>();
-            if (root!=null)
+            if (root != null)
             {
                 var stack = new Stack<TreeNode>();
                 stack.Push(root);
@@ -114,7 +114,7 @@ namespace Trees.LeetCode
         }
 
         public TreeNode MergeTrees(TreeNode t1, TreeNode t2)
-        { 
+        {
             if (t1 == null)
                 return t2;
             if (t2 == null)
@@ -150,6 +150,26 @@ namespace Trees.LeetCode
                     stack.Push(new TreeNode[] { nodes[0].right, nodes[1].right });
             }
             return t1;
+        }
+
+        public TreeNode SearchBST(TreeNode root, int val)
+        {
+            if (root == null || root.val == val)
+                return root;
+            return (val > root.val) ? SearchBST(root.right, val) : SearchBST(root.left, val);
+        }
+
+        public TreeNode SearchBSTIter(TreeNode root, int val)
+        {
+            if (root == null)
+                return null;
+            while (root != null)
+            {
+                if (root.val == val)
+                    return root;
+                root = (val > root.val) ? root.right : root.left;
+            }
+            return root;
         }
     }
 }
