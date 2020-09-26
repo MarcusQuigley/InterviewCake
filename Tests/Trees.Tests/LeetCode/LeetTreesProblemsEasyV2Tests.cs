@@ -62,5 +62,31 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 1, 2 }, new int[] { 2, 2, 2 }, new int[] { 3, 4, 2 })]
+        [InlineData(new int[] { 1, 2, 3 }, new int[] { 2, 2, 2 }, new int[] { 3, 4, 5 })]
+        [InlineData(new int[] { 1, 3, 2, 5 }, new int[] { 2, 1, 3, -666, 4, -666, 7 }, new int[] { 3, 4, 5, 5, 4, -666, 7 })]
+        [InlineData(new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 2, 2, 2, 2, 2, 2, 2 }, new int[] { 3, 3, 3, 3, 3, 3, 3 })]
+        public void Test_MergeTrees(int[] n1, int[] n2, int[] expected)
+        {
+            var t1 = base.CreatTreeNodesNonGeneric(n1);
+            var t2 = base.CreatTreeNodesNonGeneric(n2);
+            var actual = sut.MergeTrees(t1, t2);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2 }, new int[] { 2, 2, 2 }, new int[] { 3, 4, 2 })]
+        [InlineData(new int[] { 1, 2, 3 }, new int[] { 2, 2, 2 }, new int[] { 3, 4, 5 })]
+        [InlineData(new int[] { 1, 3, 2, 5 }, new int[] { 2, 1, 3, -666, 4, -666, 7 }, new int[] { 3, 4, 5, 5, 4, -666, 7 })]
+        [InlineData(new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 2, 2, 2, 2, 2, 2, 2 }, new int[] { 3, 3, 3, 3, 3, 3, 3 })]
+        public void Test_MergeTreesIter(int[] n1, int[] n2, int[] expected)
+        {
+            var t1 = base.CreatTreeNodesNonGeneric(n1);
+            var t2 = base.CreatTreeNodesNonGeneric(n2);
+            var actual = sut.MergeTreesIter(t1, t2);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
     }
 }
