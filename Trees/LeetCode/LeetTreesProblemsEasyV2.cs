@@ -171,5 +171,45 @@ namespace Trees.LeetCode
             }
             return root;
         }
+
+        public IList<int> NaryPostorder(NaryNode root)
+        {
+            var results = new List<int>();
+            NaryPostorderWorker(root, results);
+            return results;
+        }
+
+        void NaryPostorderWorker(NaryNode node, IList<int> results)
+        {
+            if (node == null)
+                return;
+            var children = node.children;
+            for (int i = 0; i < children.Count; i++)
+                 NaryPostorderWorker(children[i], results);
+            results.Add(node.val);
+            return;
+        }
+
+        public IList<int> NaryPostorderIter(NaryNode root)
+        {
+            var results = new List<int>();
+            if (root == null)
+                return results;
+            Stack<NaryNode> stackLeft = new Stack<NaryNode>();
+            Stack<int> stackRight = new Stack<int>();
+            stackLeft.Push(root);
+            while (stackLeft.Count > 0)
+            {
+                var current = stackLeft.Pop();
+                foreach (var item in current.children)
+                {
+                    stackLeft.Push(item);
+                }
+                stackRight.Push(current.val);
+            }
+            while (stackRight.Count > 0)
+                results.Add(stackRight.Pop());
+            return results;
+        }
     }
 }
