@@ -185,7 +185,7 @@ namespace Trees.LeetCode
                 return;
             var children = node.children;
             for (int i = 0; i < children.Count; i++)
-                 NaryPostorderWorker(children[i], results);
+                NaryPostorderWorker(children[i], results);
             results.Add(node.val);
             return;
         }
@@ -209,6 +209,42 @@ namespace Trees.LeetCode
             }
             while (stackRight.Count > 0)
                 results.Add(stackRight.Pop());
+            return results;
+        }
+
+        public IList<int> NaryPreorder(NaryNode root)
+        {
+            var results = new List<int>();
+            NaryPreorderWorker(root, results);
+            return results;
+        }
+
+        void NaryPreorderWorker(NaryNode node, IList<int> results)
+        {
+            if (node == null)
+                return;
+            results.Add(node.val);
+            foreach (var item in node.children)
+                NaryPreorderWorker(item, results);
+            return;
+        }
+
+        public IList<int> NaryPreorderIter(NaryNode root)
+        {
+            var results = new List<int>();
+            if (root == null)
+                return results;
+            Stack<NaryNode> stack = new Stack<NaryNode>();
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                var node = stack.Pop();
+                results.Add(node.val);
+                if (node.children == null)
+                    continue;
+                for (int i = node.children.Count-1; i >=0 ; i--)
+                     stack.Push(node.children[i]);
+             }
             return results;
         }
     }
