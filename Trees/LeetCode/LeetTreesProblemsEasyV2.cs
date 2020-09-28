@@ -281,10 +281,10 @@ namespace Trees.LeetCode
         public TreeNode IncreasingBSTIter(TreeNode root)
         {
             Stack<TreeNode> stack = new Stack<TreeNode>();
-            TreeNode result = null;
-            TreeNode xx = null;
+            TreeNode result = new TreeNode(-1);
+            TreeNode temp = result;
             var current = root;
-            while (stack.Count > 0 || current!=null)
+            while (stack.Count > 0 || current != null)
             {
                 while (current != null)
                 {
@@ -293,20 +293,33 @@ namespace Trees.LeetCode
                 }
                 current = stack.Pop();
 
-                if (result == null)
-                {
-                    result = new TreeNode(current.val);
-                    xx = result;
-                }
-                else
-                {
-                    result.right = new TreeNode(current.val);
-                    result = result.right;
-                }
+                temp.right = new TreeNode(current.val);
+                temp = temp.right;
                 current = current.right;
-
             }
-            return xx;
+            return result.right;
+        }
+
+        public TreeNode IncreasingBSTIterBetter(TreeNode root)
+        {
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode result = new TreeNode(-1);
+            TreeNode temp = result;
+            var current = root;
+            while (stack.Count > 0 || current != null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                 current.left = null;
+                temp.right = current;
+                temp = temp.right;
+                current = current.right;
+            }
+            return result.right;
         }
     }
 }
