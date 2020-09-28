@@ -110,5 +110,28 @@ namespace Trees.Tests.LeetCode
             var actual = sut.SearchBST(root, val);
             Assert.Equal(expected, base.ArrayFromTree(actual));
         }
+
+        [Theory]
+        [InlineData(new int[] { 5, 3, 6 }, new int[] { 3, -666, 5, -666, 6 })]
+        [InlineData(new int[] { 5, 3, 6, 2, 4, -666, 8, 1, -666, -666, -666, -666, -666, 7, 9 }, new int[] { 1, -666, 2, -666, 3, -666, 4, -666, 5, -666, 6, -666, 7, -666, 8, -666, 9 })]
+        public void Test_IncreasingBST(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.IncreasingBST(root);
+            var exp = base.ArrayFromTree(actual);
+            Assert.Equal(expected, exp);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 5, 3, 6 }, new int[] { 3, -666, 5, -666, 6 })]
+        [InlineData(new int[] { 5, 3, 6, 2, 4, -666, 8, 1, -666, -666, -666, -666, -666, 7, 9 }, new int[] { 1, -666, 2, -666, 3, -666, 4, -666, 5, -666, 6, -666, 7, -666, 8, -666, 9 })]
+        public void Test_IncreasingBSTIter(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.IncreasingBSTIter(root);
+            var exp = base.ArrayFromTree(actual);
+            Assert.Equal(expected, exp);
+        }
+
     }
 }

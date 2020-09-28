@@ -227,7 +227,7 @@ namespace Trees.LeetCode
             foreach (var item in node.children)
                 NaryPreorderWorker(item, results);
             return;
-        }
+        } 
 
         public IList<int> NaryPreorderIter(NaryNode root)
         {
@@ -246,6 +246,67 @@ namespace Trees.LeetCode
                      stack.Push(node.children[i]);
              }
             return results;
+        }
+
+       
+        public TreeNode IncreasingBST(TreeNode root)
+        {
+            List<int> list = new List<int>();
+            IncreasingBSTWorker(root, list);
+            TreeNode result = null;
+            TreeNode temp = null;
+            if (list.Count > 0)
+            {
+                temp = new TreeNode(0);
+                result = temp;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    temp.right = new TreeNode(list[i]);
+                    temp = temp.right;
+                }
+            }
+            return result.right;
+        }
+
+        void IncreasingBSTWorker(TreeNode root, List<int> list)
+        {
+            if (root == null)
+                return;
+            IncreasingBSTWorker(root.left, list);
+            list.Add(root.val);
+            IncreasingBSTWorker(root.right, list);
+            return;
+        }
+
+        public TreeNode IncreasingBSTIter(TreeNode root)
+        {
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode result = null;
+            TreeNode xx = null;
+            var current = root;
+            while (stack.Count > 0 || current!=null)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+
+                if (result == null)
+                {
+                    result = new TreeNode(current.val);
+                    xx = result;
+                }
+                else
+                {
+                    result.right = new TreeNode(current.val);
+                    result = result.right;
+                }
+                current = current.right;
+
+            }
+            return xx;
         }
     }
 }
