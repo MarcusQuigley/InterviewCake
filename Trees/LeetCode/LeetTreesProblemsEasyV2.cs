@@ -446,6 +446,55 @@ namespace Trees.LeetCode
             }
             return sum;
         }
+
+        public int MaxDepthNaryIter(NaryNode root)
+        {
+            var level = 0;
+            if (root != null)
+            {
+                Queue<NaryNode> q = new Queue<NaryNode>();
+                q.Enqueue(root);
+                while (q.Count > 0)
+                {
+                    level += 1;
+                    var count = q.Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        var node = q.Dequeue();
+                        foreach (NaryNode item in node.children)
+                            q.Enqueue(item);
+                    }
+                }
+            }
+            return level;
+        }
+        int MaxDepthNaryLevel = 0;
+        public int MaxDepthNary(NaryNode root)
+        {
+            MaxDepthNaryWorker(root);
+            return MaxDepthNaryLevel;
+        }
+        void MaxDepthNaryWorker(NaryNode root)
+        {
+            if (root == null)
+                return;
+            MaxDepthNaryLevel += 1;
+            for (int i = 0; i < root.children.Count; i++)
+            {
+                MaxDepthNary(root.children[i]);
+            }
+        }
+
+        public int MaxDepthNary2(NaryNode root)
+        {
+            if (root == null)
+                return 0;
+            int max = 0;
+            for(int i = 0; i < root.children.Count; i++)
+                 max = Math.Max(max, MaxDepthNary2(root.children[i]));
+             return max + 1;
+        }
+
     }
 }
 
