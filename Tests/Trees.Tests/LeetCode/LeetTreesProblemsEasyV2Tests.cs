@@ -143,5 +143,54 @@ namespace Trees.Tests.LeetCode
             var exp = base.ArrayFromTree(actual);
             Assert.Equal(expected, exp);
         }
+
+        [Theory]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, 0, 1 }, 22)]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, -666, 1 }, 16)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1, 1 }, 3)]
+        [InlineData(new int[]{1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, -666, 1, 0, -666, 1, 1, 1, 1, -666, 0, -666, -666, -666, -666, -666, -666, 1, -666, 0, -666, -666, -666, -666, -666, 0, 1, 1, 0,
+        0, 0, 0, -666, -666, -666, 0, -666, -666, -666, 0, -666, 0, -666, -666, -666, -666, 1, -666, -666, 0, 0, 0, -666, -666, -666, 1, -666, -666, -666, 0, 0, -666, -666, -666, -666,
+            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 }, 643)]
+        public void Test_SumRootToLeafIter(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SumRootToLeafIter(root);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, 0, 1 }, 22)]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, -666, 1 }, 16)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1, 1 }, 3)]
+        [InlineData(new int[]{1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, -666, 1, 0, -666, 1, 1, 1, 1, -666, 0, -666, -666, -666, -666, -666, -666, 1, -666, 0, -666, -666, -666, -666, -666, 0, 1, 1, 0,
+        0, 0, 0, -666, -666, -666, 0, -666, -666, -666, 0, -666, 0, -666, -666, -666, -666, 1, -666, -666, 0, 0, 0, -666, -666, -666, 1, -666, -666, -666, 0, 0, -666, -666, -666, -666,
+            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 }, 643)]
+        public void Test_SumRootToLeaf(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SumRootToLeaf(root);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, 0, 1 }, 22)]
+        [InlineData(new int[] { 1, 0, 1, 0, 1, -666, 1 }, 16)]
+        [InlineData(new int[] { 0 }, 0)]
+        [InlineData(new int[] { 1 }, 1)]
+        [InlineData(new int[] { 1, 1 }, 3)]
+        [InlineData(new int[]{1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, -666, 1, 0, -666, 1, 1, 1, 1, -666, 0, -666, -666, -666, -666, -666, -666, 1, -666, 0, -666, -666, -666, -666, -666, 0, 1, 1, 0,
+        0, 0, 0, -666, -666, -666, 0, -666, -666, -666, 0, -666, 0, -666, -666, -666, -666, 1, -666, -666, 0, 0, 0, -666, -666, -666, 1, -666, -666, -666, 0, 0, -666, -666, -666, -666,
+            -666, 0, -666, -666, -666, -666, 1, -666, -666, -666, 0, 1, -666, 0 }, 643)]
+        public void Test_SumRootToLeafMorris(int[] values, int expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.SumRootToLeafMorris(root);
+            Assert.Equal(expected, actual);
+        }
+        
     }
 }

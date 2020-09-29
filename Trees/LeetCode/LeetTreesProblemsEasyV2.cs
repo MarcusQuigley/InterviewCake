@@ -227,7 +227,7 @@ namespace Trees.LeetCode
             foreach (var item in node.children)
                 NaryPreorderWorker(item, results);
             return;
-        } 
+        }
 
         public IList<int> NaryPreorderIter(NaryNode root)
         {
@@ -242,13 +242,13 @@ namespace Trees.LeetCode
                 results.Add(node.val);
                 if (node.children == null)
                     continue;
-                for (int i = node.children.Count-1; i >=0 ; i--)
-                     stack.Push(node.children[i]);
-             }
+                for (int i = node.children.Count - 1; i >= 0; i--)
+                    stack.Push(node.children[i]);
+            }
             return results;
         }
 
-       
+
         public TreeNode IncreasingBST(TreeNode root)
         {
             List<int> list = new List<int>();
@@ -314,12 +314,138 @@ namespace Trees.LeetCode
                     current = current.left;
                 }
                 current = stack.Pop();
-                 current.left = null;
+                current.left = null;
                 temp.right = current;
                 temp = temp.right;
                 current = current.right;
             }
             return result.right;
         }
+
+        public int SumRootToLeafIter(TreeNode root)
+        {
+            int sum = 0;
+            Stack<ItemSumRootToLeaf> stack = new Stack<ItemSumRootToLeaf>();
+            stack.Push(new ItemSumRootToLeaf(root, 0));
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                var node = current.Node;
+                var value = current.Value;
+
+                if (node != null)
+                {
+                    value = (value << 1) | node.val;
+                    if (node.left == null && node.right == null)
+                    {
+                        sum += value;
+                    }
+                    else
+                    {
+                        stack.Push(new ItemSumRootToLeaf(node.right, value));
+                        stack.Push(new ItemSumRootToLeaf(node.left, value));
+                    }
+                }
+            }
+
+            return sum;
+        }
+        private class ItemSumRootToLeaf
+        {
+            public TreeNode Node { get; }
+            public int Value { get; set; }
+
+            public ItemSumRootToLeaf(TreeNode node)
+            {
+                Node = node;
+            }
+            public ItemSumRootToLeaf(TreeNode node, int val) : this(node)
+            {
+                Value = val;
+            }
+        }
+
+        int ItemSumRootToLeafsum = 0;
+        public int SumRootToLeaf(TreeNode root)
+        {
+            if (root != null)
+                SumRootToLeafWorker(root);
+            return ItemSumRootToLeafsum;
+        }
+
+        void SumRootToLeafWorker(TreeNode root)
+        {
+            if (root.left == null && root.right == null)
+                ItemSumRootToLeafsum += root.val;
+            else
+            {
+                if (root.left != null)
+                {
+                    root.left.val += root.val << 1;
+                    //root.left.val += root.val * 2; 
+                    SumRootToLeafWorker(root.left);
+                }
+                if (root.right != null)
+                {
+                    root.right.val += root.val << 1;
+                    //root.right.val += root.val * 2; 
+                    SumRootToLeafWorker(root.right);
+                }
+            }
+        }
+
+        public int SumRootToLeafMorris(TreeNode root)
+        {
+            if (root == null)
+                throw new ArgumentNullException(nameof(root));
+            int sum = 0;
+            int currNumber = 0;
+            int steps;
+            TreeNode current = root;
+            while (current != null)
+            {
+                if (current.left == null)
+                {
+                    currNumber = currNumber << 1 | current.val;
+                    if (current.right == null)
+                        sum += currNumber;
+                    //action on c
+                    current = current.right;
+                }
+                else
+                {
+                    var prev = current.left;
+                    steps = 1;
+                    while (prev.right != null && prev.right != current)
+                    {
+                        prev = prev.right;
+                        steps += 1;
+                    }
+                    if (prev.right == null)
+                    {
+                        currNumber = currNumber << 1 | current.val;
+                        prev.right = current;
+                        current = current.left;
+                    }
+                    else
+                    {
+                        if (prev.left == null)
+                        {
+                            sum += currNumber;
+                        }
+                        for (int i = 0; i < steps; i++)
+                        {
+                            currNumber >>= 1;
+                        }
+                        prev.right = null;
+                        //action c
+                        current = current.right;
+                    }
+
+                }
+            }
+            return sum;
+        }
     }
 }
+
