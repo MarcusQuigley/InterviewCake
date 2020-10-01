@@ -191,6 +191,29 @@ namespace Trees.Tests.LeetCode
             var actual = sut.SumRootToLeafMorris(root);
             Assert.Equal(expected, actual);
         }
-        
+
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
+        [InlineData(new int[] { 1, 2 }, new int[] { 1, -666, 2 })]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 1, 3, 2, -666, -666, -666, 4 })]
+        public void Test_InvertTree(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.InvertTree(root);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
+        [Theory]
+        [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
+        [InlineData(new int[] {1,2  } , new int[] {1,-666, 2 })]
+        [InlineData(new int[] { 1,2,3,4 }, new int[] { 1, 3, 2,-666,-666,-666,4 })]
+        public void Test_InvertTreeIter(int[] values, int[] expected)
+        {
+            var root = base.CreatTreeNodesNonGeneric(values);
+            var actual = sut.InvertTreeIter(root);
+            Assert.Equal(expected, base.ArrayFromTree(actual));
+        }
+
     }
 }
