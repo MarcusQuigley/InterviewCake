@@ -53,5 +53,89 @@ namespace Trees.LeetCode
 
             return root;
         }
+
+        //700 https://leetcode.com/problems/search-in-a-binary-search-tree/
+        public TreeNode SearchBST(TreeNode root, int val)
+        {
+            if (root == null || root.val == val) return root;
+            return (root.val > val) ? SearchBST(root.left, val) : SearchBST(root.right, val);
+        }
+
+        public TreeNode SearchBSTIter(TreeNode root, int val)
+        {
+            if (root == null || root.val == val) return root;
+            while (root != null && root.val != val)
+            {
+                root = (root.val > val) ? root.left : root.right;
+            }
+            return root;// (root.val > val) ? SearchBST(root.left, val) : SearchBST(root.right, val);
+        }
+
+        //https://leetcode.com/problems/binary-tree-paths/
+        public IList<string> BinaryTreePaths(TreeNode root)
+        {
+            List<string> results = new List<string>();
+            if (root == null)
+                return results;
+             
+            string currentString = root.val.ToString();
+            if (root.left == null && root.right == null)
+                results.Add(currentString);
+            else
+            {
+                if (root.left != null)
+                    dfsPaths(root.left, currentString, results);
+                if (root.right != null)
+                    dfsPaths(root.right, currentString, results);
+            }
+ 
+            return results;
+        }
+
+        void dfsPaths(TreeNode node, string currentString, List<string> results)
+        {
+            currentString += "->" + node.val;
+            if (node.left == null && node.right == null) { 
+                results.Add(currentString);
+                return;
+            }
+            else
+            {
+                if (node.left != null)
+                    dfsPaths(node.left, currentString, results);
+                if (node.right != null)
+                    dfsPaths(node.right, currentString, results);
+            }
+        }
+
+        public IList<string> BinaryTreePathsWithStringBuilder(TreeNode root)
+        {
+            List<string> results = new List<string>();
+            if (root == null)
+                return results;
+            StringBuilder sb = new StringBuilder();
+            dfsPathsSB(root, sb, results);
+
+            return results;
+        }
+
+          void dfsPathsSB(TreeNode root, StringBuilder sb, List<string> results)
+        {
+            if (root == null) return;
+            int tmp = sb.Length;
+            if(root.left==null && root.right == null)
+            {
+                sb.Append(root.val);
+                results.Add(sb.ToString());
+                sb.Remove(tmp, sb.Length-tmp);
+                return;
+            }
+            sb.Append(root.val + "->");
+            dfsPathsSB(root.left, sb, results);
+            dfsPathsSB(root.right, sb, results);
+            sb.Remove(tmp, sb.Length-tmp);
+            return;
+
+        }
     }
 }

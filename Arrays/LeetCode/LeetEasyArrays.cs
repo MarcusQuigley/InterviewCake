@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Arrays.LeetCode
@@ -304,28 +305,30 @@ namespace Arrays.LeetCode
             return true;
         }
         //167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-        public int[] TwoSum(int[] numbers, int target)
+        //array is   sorted.
+        public int[] TwoSum2(int[] numbers, int target)
         {
-            if (numbers == null || numbers.Length < 2)
-                throw new ArgumentNullException(nameof(numbers));
-            int leftIndex = 0;
-            int rightIndex = numbers.Length - 1;
-            while (leftIndex < rightIndex)
+            if (numbers == null) throw new ArgumentNullException(nameof(numbers));
+            int[] result = new int[2];
+            int begin = 0;
+            int end = numbers.Length - 1;
+
+            while (begin <= end)
             {
-                var sum = numbers[leftIndex] + numbers[rightIndex];
+                var sum = numbers[begin] + numbers[end];
                 if (sum == target)
+                {
+                    result[0] = begin + 1;
+                    result[1] = end + 1;
                     break;
+                }
+                if (sum > target)
+                    end--;
                 else if (sum < target)
-                    leftIndex += 1;
-                else// (sum > target)
-                    rightIndex -= 1;
-                //if (numbers[rightIndex] > target)
-                //    rightIndex -= 1;
-                //if (numbers[leftIndex] < target)
-                //    leftIndex += 1;
+                    begin++;
 
             }
-            return new int[] { leftIndex + 1, rightIndex + 1 };
+            return result;
         }
 
         //844 https://leetcode.com/problems/backspace-string-compare/
@@ -659,6 +662,121 @@ namespace Arrays.LeetCode
             while (secondpointer >= 0)
                 nums1[index--] = nums2[secondpointer--];
         }
+
+        //643 https://leetcode.com/problems/maximum-average-subarray-i/
+        public double FindMaxAverage(int[] nums, int k)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            if (nums.Length == 0) return 0d;
+
+            int n = nums.Length;
+            double sum = 0;
+            for (int i = 0; i < k; i++)
+            {
+                sum += nums[i];
+            }
+            double max = sum;
+
+            for (int j = k; j < n; j++)
+            {
+                sum -= nums[j - k];
+                sum += nums[j];
+                max = Math.Max(max, sum);
+            }
+            return (max / k / 1.0);
+        }
+
+
+        //1 https://leetcode.com/problems/two-sum/
+        //array is not sorted.
+        public int[] TwoSum(int[] nums, int target)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            int[] result = new int[2];
+            Dictionary<int, int> hash = new Dictionary<int, int>(nums.Length);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var val = nums[i];
+                var newTarget = target - val;
+                if (hash.ContainsKey(newTarget))
+                {
+                    result[0] = hash[newTarget];
+                    result[1] = i;
+                    break;
+                }
+                if (!hash.ContainsKey(val))
+                    hash.Add(nums[i], i);
+            }
+            return result;
+        }
+
+        //1099. https://leetcode.com/problems/two-sum-less-than-k/
+        public int TwoSumLessThanK(int[] A, int K)
+        {
+            if (A == null) throw new ArgumentNullException(nameof(A));
+
+            Array.Sort(A);
+            var max = -1;
+            var start = 0;
+            var end = A.Length - 1;
+            while (start < end)
+            {
+                var sum = A[start] + A[end];
+                if (sum > K)
+                    end--;
+                else
+                {
+                    if (sum < K)
+                        max = Math.Max(max, sum);
+                    start++;
+                }
+            }
+
+            return max;
+
+        }
+
+        //118 https://leetcode.com/problems/pascals-triangle/
+        public IList<IList<int>> Generate(int numRows)
+        {
+            List<IList<int>> matrix = new List<IList<int>>(numRows);
+
+            for (int i = 0; i <= numRows; i++)
+            {
+                var cells = i + 1;
+                int[] list = new int[cells];
+
+                for (int j = 0; j < cells; j++)
+                {
+                    list[j] = (j > 0 && j < cells - 1) ? matrix[i - 1][j - 1] + matrix[i - 1][j] : 1;
+                }
+                matrix.Add(list);
+            }
+            return matrix;
+        }
+        //https://leetcode.com/problems/pascals-triangle-ii/
+        public IList<int> GetRow(int rowIndex)
+        {
+            if (rowIndex == 0) return new int[] { 1 }.ToList();
+            int[][] matrix = new int[rowIndex + 1][];
+            matrix[0] = new int[] { 0 };
+            PascalsTheorem2(rowIndex, 1, matrix);
+            return matrix[rowIndex].ToList(); ;
+        }
+        void PascalsTheorem2(int rowIndex, int currentIndex, int[][] matrix)
+        {
+            matrix[currentIndex] = new int[currentIndex + 1];
+            matrix[currentIndex][0] = 1;
+            matrix[currentIndex][currentIndex] = 1;
+            for (int i = 1; i < (currentIndex); i++)
+            {
+                matrix[currentIndex][i] = matrix[currentIndex - 1][i - 1] + matrix[currentIndex - 1][i];
+            }
+            if (currentIndex < rowIndex)
+                PascalsTheorem2(rowIndex, currentIndex + 1, matrix);
+
+        }
+
         #region Helpers
         double CalculateSlope(int[] p1, int[] p2)
         {
@@ -735,11 +853,251 @@ namespace Arrays.LeetCode
                     var temp = s[begin];
                     s[begin] = s[end];
                     s[end] = temp;
-                 }
+                }
                 begin++;
                 end--;
             }
         }
         #endregion
+
+        Dictionary<int, int> map = new Dictionary<int, int>();
+        //https://leetcode.com/problems/fibonacci-number/
+        public int Fibonacci(int N)
+        {
+            if (N == 0 || N == 1)
+                return N;
+            if (!map.ContainsKey(N))
+                map.Add(N, Fibonacci(N - 1) + Fibonacci(N - 2));
+            return map[N];
+        }
+
+        //https://leetcode.com/problems/climbing-stairs/
+        public int ClimbStairs(int n)
+        {
+            if (n == 0) return n;
+            return Climb(n, 0);
+        }
+        Dictionary<int, int> mapStairs = new Dictionary<int, int>();
+        int Climb(int n, int total)
+        {
+            if (total == n)
+                return 1;
+            else if (total > n)
+                return 0;
+            if (map.ContainsKey(total))
+                return map[total];
+
+            map[total] = (Climb(n, total + 1) + Climb(n, total + 2));
+            return map[total];
+        }
+        //https://leetcode.com/problems/add-strings/submissions/
+        public string AddStrings(string num1, string num2)
+        {
+            if (num1 == null || num2 == null)
+            {
+                throw new ArgumentNullException("Either or both are null");
+            }
+            var l1 = num1.Length - 1;
+            var l2 = num2.Length - 1;
+            var carry = 0;
+            var sb = new StringBuilder();
+            while (l1 >= 0 || l2 >= 0)
+            {
+
+                var n1 = (l1 >= 0) ? num1[l1--] - '0' : 0;
+                var n2 = (l2 >= 0) ? num2[l2--] - '0' : 0;
+                var sum = (n1 + n2 + carry);
+                carry = sum / 10;
+                sb.Append(sum % 10);
+            }
+            if (carry > 0)
+            {
+                sb.Append(carry);
+            }
+            var resultLength = sb.Length - 1;
+            var index = 0;
+            while (index < resultLength)
+            {
+                var temp = sb[resultLength];
+                sb[resultLength] = sb[index];
+                sb[index] = temp;
+                index++;
+                resultLength--;
+            }
+            return sb.ToString();
+        }
+
+        //https://leetcode.com/problems/intersection-of-two-arrays/
+        public int[] Intersection(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+            {
+                throw new ArgumentNullException("Either or both are null");
+            }
+            List<int> result = new List<int>();
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            foreach (var item in nums1)
+            {
+                if (!map.ContainsKey(item))
+                    map.Add(item, 1);
+            }
+            foreach (var item in nums2)
+            {
+                if (map.ContainsKey(item))
+                {
+                    map[item] += 1;
+                    if (map[item] == 2)
+                        result.Add(item);
+                }
+            }
+            return result.ToArray();
+        }
+
+        //duplicates, negative values, single value lists, 0's, and empty list arguments.
+        public int[] IntersectionSorted(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("Either or both are null");
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+            HashSet<int> results = new HashSet<int>();
+            var nums1Length = nums1.Length - 1;
+            var nums2Length = nums2.Length - 1;
+            var index1 = 0;
+            var index2 = 0;
+            while (index1 <= nums1Length && index2 <= nums2Length)
+            {
+ 
+                while (index1 < nums1Length && (  nums1[index1] < nums2[index2] || nums1[index1] == nums1[index1 + 1]))
+                    index1 += 1;
+                while (index2 < nums2Length && (nums2[index2] < nums1[index1] || nums2[index2] == nums2[index2 + 1]))
+                    index2 += 1;
+                if (nums1[index1] == nums2[index2])
+                {
+                    results.Add(nums1[index1]);
+                    index1 += 1;
+                    index2 += 1;
+                }
+                else if (nums1[index1] < nums2[index2])
+                    index1 += 1;
+                else
+                    index2 += 1;
+            }
+            return results.ToArray();
+        }
+
+        //https://leetcode.com/problems/intersection-of-two-arrays-ii/
+        public int[] Intersection2(int[] nums1, int[] nums2)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("Either or both are null");
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+            List<int> results = new List<int>();
+            var nums1Length = nums1.Length - 1;
+            var nums2Length = nums2.Length - 1;
+            var index1 = 0;
+            var index2 = 0;
+            while(index1 <=nums1Length && index2 <= nums2Length)
+            {
+                if (nums1[index1] == nums2[index2])
+                {
+                    results.Add(nums1[index1]);
+                    index1++;
+                    index2++;
+                }
+                else
+                {
+                    while (index1 <= nums1Length && nums1[index1] < nums2[index2])
+                         index1++;
+
+                    if (index1 > nums1Length)
+                        break;
+                    while (index2 <= nums2Length && nums2[index2] < nums1[index1])
+                        index2++;
+                }
+            }
+
+
+            return results.ToArray();
+        }
+        //https://leetcode.com/problems/merge-sorted-array/
+        public int[] MergeRepeat(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (nums1 == null || nums2 == null)
+                throw new ArgumentNullException("one or both arrays null");
+            int mIndex = m - 1;
+            int nIndex = n - 1;
+            int currentIndex = nums1.Length - 1;
+            while (mIndex >= 0 && nIndex >= 0)
+            {
+                nums1[currentIndex] = (nums2[nIndex] >= nums1[mIndex]) ? nums1[currentIndex] = nums2[nIndex--] : nums1[currentIndex] = nums1[mIndex--];
+                currentIndex--;
+            }
+            while (nIndex >= 0)
+            {
+                nums1[currentIndex--] = nums2[nIndex--];
+            }
+
+            return nums1;
+        }
+        //https://leetcode.com/problems/monotonic-array/
+        public bool IsMonotonic(int[] A)
+        {
+            if (A == null)
+                throw new ArgumentNullException(nameof(A));
+            bool isIncreasing = false;
+            bool isDecreasing = false;
+
+            for (int i = 0; i < A.Length-1; i++)
+            {
+                if (A[i] > A[i + 1])
+                {
+                    if (isIncreasing)
+                        return false;
+                    if (!isDecreasing)
+                        isDecreasing = true;
+                }
+                else if (A[i] < A[i + 1])
+                {
+                    if (isDecreasing)
+                        return false;
+                    if (!isIncreasing)
+                        isIncreasing = true;
+                }
+            }
+ 
+            return true;
+        }
+
+        //https://leetcode.com/problems/valid-parentheses/
+        public bool IsValid(string s)
+        {
+            Stack<char> stack = new Stack<char>(s.Length);
+            for (int i = 0; i < s.Length; i++)
+            {
+                switch (s[i])
+                {
+                    case '{':
+                    case '[':
+                    case '(':
+                        stack.Push(s[i]);
+                        break;
+                    case '}':
+                        if (stack.Count == 0 || stack.Pop() != '{')
+                            return false;
+                        break;
+                    case ']':
+                        if (stack.Count == 0 || stack.Pop() != '[')
+                            return false;
+                        break;
+                    case ')':
+                        if (stack.Count == 0 || stack.Pop() != '(')
+                            return false;
+                        break;
+                }
+            }
+            return stack.Count == 0;
+        }
     }
 }

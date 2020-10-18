@@ -29,7 +29,7 @@ namespace FBQuestions
             int i = 0;
             int j = 0;
             int compareDiff = 0;
-            while(i<word1.Length &&  j < word2.Length && compareDiff == 0)
+            while (i < word1.Length && j < word2.Length && compareDiff == 0)
             {
                 compareDiff = map[word1[i] - 'a'] - map[word2[i] - 'a'];
                 i++;
@@ -49,11 +49,11 @@ namespace FBQuestions
             var results = new List<int[]>();
             var aIndex = 0;
             var bIndex = 0;
-             while(aIndex<A.Length && bIndex < B.Length)
+            while (aIndex < A.Length && bIndex < B.Length)
             {
                 var maxStart = Math.Max(A[aIndex][0], B[bIndex][0]);
                 var minEnd = Math.Min(A[aIndex][1], B[bIndex][1]);
-                if(maxStart <= minEnd)
+                if (maxStart <= minEnd)
                     results.Add(new int[] { maxStart, minEnd });
 
                 if (minEnd == A[aIndex][1])
@@ -71,7 +71,7 @@ namespace FBQuestions
             {
                 if (pointA[1] == pointB[1]) //both equal
                     return new CompareResult() { Intersects = true, Intersection = pointA, IncrementAIndex = true, IncrementBIndex = true };
-                if(pointA[1]<pointB[1])
+                if (pointA[1] < pointB[1])
                     return new CompareResult() { Intersects = true, Intersection = pointA, IncrementAIndex = true, IncrementBIndex = false };
                 else
                     return new CompareResult() { Intersects = true, Intersection = pointB, IncrementAIndex = false, IncrementBIndex = true };
@@ -93,7 +93,7 @@ namespace FBQuestions
             public int[] Intersection { get; set; }
         }
 
-        public bool ValidPalindrome(string s)
+        public bool ValidPalindromeOld(string s)
         {
             if (string.IsNullOrEmpty(s))
                 throw new ArgumentNullException(nameof(s));
@@ -113,16 +113,16 @@ namespace FBQuestions
                 arr[s[begin] - 'a'] += 1;
                 if (begin != end)
                 {
-                     arr[s[end] - 'a'] += 1;
+                    arr[s[end] - 'a'] += 1;
                 }
 
-                if (s[begin]-'a'!=s[end]-'a')
+                if (s[begin] - 'a' != s[end] - 'a')
                 {
                     if (matches == false)
                         return false;
                     matches = false;
-                 }
-               
+                }
+
                 begin++;
                 end--;
             }
@@ -138,10 +138,97 @@ namespace FBQuestions
                             return false;
                     }
                 }
-               
+
             }
             return true;
         }
 
+        //125 https://leetcode.com/problems/valid-palindrome/
+        //Easy
+        public bool IsPalindrome(string s)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (s.Trim() == "") return true;
+            var n = s.Length - 1;
+            var begin = 0;
+            var end = n;
+            while (begin < end)
+            {
+                while (!IsLegitChar(s[begin]) && begin < n)
+                    begin++;
+                while (!IsLegitChar(s[end]) && end > 0)
+                    end--;
+                if (begin >= end)
+                    break;
+                var charBegin = s[begin];
+                var charEnd = s[end];
+                if (charBegin < 97)
+                    charBegin += ' ';
+                if (charEnd < 97)
+                    charEnd += ' ';
+                if (charBegin != charEnd)
+                    return false;
+                begin++;
+                end--;
+            }
+            return true;
+        }
+
+        bool IsLegitChar(char c)
+        {
+            if (c > 47 && c < 123)
+            {
+                if ((c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123))
+                    return true;
+            }
+            return false;
+        }
+        //https://leetcode.com/problems/valid-palindrome-ii/
+        //Medium
+        public bool ValidPalindrome(string s)
+        {
+            var start = 0;
+            var end = s.Length - 1;
+            while(start < end)
+            {
+                if (s[start]!= s[end])
+                {
+                    return (IsPal(s, start + 1, end) || IsPal(s, start, end - 1));
+                }
+                start++;
+                end--;
+            }
+            return true;
+        }
+
+        private bool IsPal(string s, int i, int j)
+        {
+            while(i < j)
+            {
+                if (s[i] != s[j])
+                    return false;
+                i++;
+                j--;
+            }
+            return true;
+        }
+
+        //https://leetcode.com/problems/move-zeroes/
+        //Easy
+        public int[] MoveZeroes(int[] nums)
+        {
+            if (nums == null) throw new ArgumentNullException(nameof(nums));
+            var n = nums.Length;
+            var zeros = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (nums[i] != 0)
+                    nums[zeros++] = nums[i];
+            }
+            while (zeros < n)
+                nums[zeros++] = 0;
+            return nums;
+        }
     }
 }

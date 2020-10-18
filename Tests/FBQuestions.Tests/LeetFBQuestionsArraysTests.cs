@@ -56,7 +56,7 @@ namespace FBQuestions.Tests
 
         [Theory]
         [InlineData(  "aba", true)]
-        //[InlineData(  "abca", true)]
+        [InlineData(  "abca", true)]
         [InlineData("abc", false)]
         [InlineData("tebbem", false)]
         [InlineData("deeee", true)]
@@ -66,6 +66,26 @@ namespace FBQuestions.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("race a car", false)]
+        [InlineData("A man, a plan, a canal: Panama", true)]
+        [InlineData(".,", true)]
+        public void Test_IsPalindrome(string word, bool expected)
+        {
+            var actual = sut.IsPalindrome(word);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12,0,0 })]
+        [InlineData(new int[] { 0, 1, }, new int[] { 1,0 })]
+        [InlineData(new int[] {0 }, new int[] { 0})]
+        [InlineData(new int[] { 1,2 }, new int[] { 1,2 })]
+        public void Test_MoveZeroes(int[] nums, int[] expected)
+        {
+            var actual = sut.MoveZeroes(nums);
+            Assert.Equal(expected, actual);
+        }
         
     }
 }

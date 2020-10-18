@@ -275,6 +275,17 @@ namespace Arrays.Tests.LeetCode
             var actual = sut.FrequencySort(s);
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new int[] { -1, 0, 1, 2, -1, -4 }, new int[] { -1, 0, 1 }, new int[] { 2, -1, -1 })]
+        [InlineData(new int[] { 1,2,-2,-1 }, new int[] {})]
+        [InlineData(new int[] { 1, 2, -1, 6 }, new int[] { })]
+        public void Test_ThreeSum(int[] nums, params int[][] expected)
+        {
+            var actual = sut.ThreeSum(nums);
+            Assert.Equal(expected, actual);
+        }
         
+
     }
 }
