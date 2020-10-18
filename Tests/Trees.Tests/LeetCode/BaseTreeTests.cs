@@ -88,9 +88,7 @@ namespace Trees.Tests.LeetCode
                 if (current != null)
                 {
                     list.Add(current.val);
-                    //if (current.left != null) q.Enqueue(current.left);
-                    // if (current.right != null) q.Enqueue(current.right);
-                    q.Enqueue(current.left);
+                     q.Enqueue(current.left);
                     q.Enqueue(current.right);
                 }
                 else

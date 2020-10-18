@@ -33,7 +33,7 @@ namespace DataStructures
                 DoubleArray();
             values[count] = value;
             int index = count;
-            while (index > 0 && values[index].CompareTo(values[Parent(index)]) > 0)
+            while (index > 0 && values[index].CompareTo(values[Parent(index)]) > 0) //its greater than its parent
             {
                 Swap(index, Parent(index));
                 index = Parent(index);
@@ -46,10 +46,10 @@ namespace DataStructures
             if (count == 0)
                 throw new InvalidOperationException("No items exist to remove.");
             var result = values[0];
-            values[0] = values[count - 1];
+            values[0] = values[count - 1]; // puts last value in root posn
             count -= 1;
             int index = 0;
-            while (index < count)
+            while (index < count) //TODO no idea whats going on here
             {
                 int left = (index * 2) + 1;
                 int right = (index * 2) + 2;
@@ -89,14 +89,7 @@ namespace DataStructures
             }
             else
             {
-                if (values[left].CompareTo(values[right]) > 0)
-                {
-                    maxChildIndex = left;
-                }
-                else
-                {
-                    maxChildIndex = right;
-                }
+                maxChildIndex =  values[left].CompareTo(values[right]) > 0 ?  left: right;
             }
             return maxChildIndex;
         }

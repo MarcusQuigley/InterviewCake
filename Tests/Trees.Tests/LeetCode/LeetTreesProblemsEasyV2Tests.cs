@@ -15,10 +15,10 @@ namespace Trees.Tests.LeetCode
         {
             sut = new LeetTreesProblemsEasyV2();
         }
- 
+
         [Theory]
         [InlineData(new int[] { 5, 1, 7, -666, -666, -666, 8 }, 3, 5, 5)]
-         [InlineData(new int[] { 10, 5, 15, 3, 7, -666, 18 }, 7, 15, 32)]
+        [InlineData(new int[] { 10, 5, 15, 3, 7, -666, 18 }, 7, 15, 32)]
         [InlineData(new int[] { 10, 5, 15, 3, 7, 13, 18, 1, -666, 6 }, 6, 10, 23)]
         public void Test_RangeSumBST(int[] values, int left, int right, int expected)
         {
@@ -29,7 +29,7 @@ namespace Trees.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 5, 1, 7, -666, -666, -666, 8 }, 3, 5, 5)]
-         [InlineData(new int[] { 10, 5, 15, 3, 7, -666, 18 }, 7, 15, 32)]
+        [InlineData(new int[] { 10, 5, 15, 3, 7, -666, 18 }, 7, 15, 32)]
         [InlineData(new int[] { 10, 5, 15, 3, 7, 13, 18, 1, -666, 6 }, 6, 10, 23)]
         public void Test_RangeSumBSTIter(int[] values, int left, int right, int expected)
         {
@@ -92,7 +92,7 @@ namespace Trees.Tests.LeetCode
         [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
         [InlineData(new int[] { 4, 2, 7, -666, -666, 4 }, 2, new int[] { 2 })]
         [InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
-         //
+        //
         public void Test_SearchBSTIter(int[] values, int val, int[] expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
@@ -104,7 +104,7 @@ namespace Trees.Tests.LeetCode
         [InlineData(new int[] { 4, 2, 7, 1, 3 }, 2, new int[] { 2, 1, 3 })]
         [InlineData(new int[] { 4, 2, 7, -666, -666, 4 }, 2, new int[] { 2 })]
         [InlineData(new int[] { 4, 2, 7, 1, 3 }, 6, new int[] { })]
-         public void Test_SearchBST(int[] values, int val, int[] expected)
+        public void Test_SearchBST(int[] values, int val, int[] expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
             var actual = sut.SearchBST(root, val);
@@ -192,7 +192,6 @@ namespace Trees.Tests.LeetCode
             Assert.Equal(expected, actual);
         }
 
-
         [Theory]
         [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
         [InlineData(new int[] { 1, 2 }, new int[] { 1, -666, 2 })]
@@ -206,8 +205,8 @@ namespace Trees.Tests.LeetCode
 
         [Theory]
         [InlineData(new int[] { 4, 2, 7, 1, 3, 6, 9 }, new int[] { 4, 7, 2, 9, 6, 3, 1 })]
-        [InlineData(new int[] {1,2  } , new int[] {1,-666, 2 })]
-        [InlineData(new int[] { 1,2,3,4 }, new int[] { 1, 3, 2,-666,-666,-666,4 })]
+        [InlineData(new int[] { 1, 2 }, new int[] { 1, -666, 2 })]
+        [InlineData(new int[] { 1, 2, 3, 4 }, new int[] { 1, 3, 2, -666, -666, -666, 4 })]
         public void Test_InvertTreeIter(int[] values, int[] expected)
         {
             var root = base.CreatTreeNodesNonGeneric(values);
