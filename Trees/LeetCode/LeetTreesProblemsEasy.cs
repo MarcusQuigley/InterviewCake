@@ -695,8 +695,7 @@ namespace Trees.LeetCode
         }
 
         //https://leetcode.com/problems/sum-of-left-leaves/
-        //  int leftLeafsSum = 0;
-        public int SumOfLeftLeaves(TreeNode root)
+         public int SumOfLeftLeaves(TreeNode root)
         {
             if (root == null)
                 return 0;
@@ -754,7 +753,63 @@ namespace Trees.LeetCode
             }
             return results;
         }
-        
+
+        public IList<string> BinaryTreePathsBest(TreeNode root)
+        {
+            IList<String> result = new List<String>();
+            if (root != null)
+                BinaryTreePathsBestWorker(root, result, new StringBuilder());
+            return result;
+        }
+
+        void BinaryTreePathsBestWorker(TreeNode root, IList<String> list,StringBuilder sb) {
+            if (root == null)
+                return;
+            var len = sb.Length;
+            sb.Append(root.val);
+            if (root.left == null && root.right == null)
+                list.Add(sb.ToString());
+            else
+            {
+                sb.Append("->");
+                BinaryTreePathsBestWorker(root.left, list, sb);
+                BinaryTreePathsBestWorker(root.right, list, sb);
+            }
+            sb.Length = len;
+        }
+
+        public  List<String> binaryTreePathsIter2(TreeNode root)
+        {
+            List<String> result = new List<string>();
+            if (root == null)
+                return result;
+
+            StringBuilder sb = new StringBuilder();
+
+            Stack<KeyValuePair<TreeNode, int>> stack = new Stack<KeyValuePair<TreeNode, int>>();
+            stack.Push(new KeyValuePair<TreeNode, int>(root, 0));
+            while (stack.Count>0 )
+            {
+                var curKvp = stack.Pop();
+                var current = curKvp.Key;
+                sb.Length = curKvp.Value;
+                sb.Append(current.val);
+
+                if (current.left == null && current.right == null)
+                    result.Add(sb.ToString());
+                else
+                {
+                    sb.Append("->");
+                    var len = sb.Length;
+                    if (current.right != null)
+                        stack.Push(new KeyValuePair<TreeNode, int>(current.right, len));
+                    if (current.left != null)
+                        stack.Push(new KeyValuePair<TreeNode, int>(current.left, len));
+                }
+            }
+            return result;
+        }
+
         private class BtpObject
         {
             public TreeNode Node { get; set; }

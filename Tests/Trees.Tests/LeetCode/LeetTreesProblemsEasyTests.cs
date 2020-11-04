@@ -390,6 +390,28 @@ namespace Trees.Tests.LeetCode
         }
 
         [Theory]
+        [InlineData(new int[] { 1, 2, 3, -666, 5 }, new string[] { "1->2->5", "1->3" })]
+        [InlineData(new int[] { 1, 2, 3, 5, 6 }, new string[] { "1->2->5", "1->2->6", "1->3" })]
+        public void Test_BinaryTreePathsBest(int[] values, string[] expected)
+        {
+            var head = CreatTreeNodesNonGeneric(values);
+            var actual = sut.BinaryTreePathsBest(head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 3, -666, 5 }, new string[] { "1->2->5", "1->3" })]
+        [InlineData(new int[] { 1, 2, 3, 5, 6 }, new string[] { "1->2->5", "1->2->6", "1->3" })]
+        [InlineData(new int[] { 1, 2, 3, -666,-666, 4 }, new string[] { "1->2",  "1->3->4" })]
+        public void Test_BinaryTreePathsIter2(int[] values, string[] expected)
+        {
+            var head = CreatTreeNodesNonGeneric(values);
+            var actual = sut.binaryTreePathsIter2(head);
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Theory]
         [InlineData(new int[] { 2, 1, 3 }, 1, 3, 2)]
         [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2, 8, 6)]
         [InlineData(new int[] { 6, 2, 8, 0, 4, 7, 9, -666, -666, 3, 5 }, 2, 4, 2)]
