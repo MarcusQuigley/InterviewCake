@@ -161,22 +161,18 @@ namespace AmazonQuestions.Study
         {
             if (nums == null)
                 throw new ArgumentNullException(nameof(nums));
-            Array.Sort(nums);
-            return nums[nums.Length-k];
-            var q = new Queue<int>(k);
-            int max = 0;
+
+            SortedList<int, int> heap = new SortedList<int, int>(Comparer<int>.Create((x, y) => x == y ? 1 : x.CompareTo(y)));
             for (int i = 0; i < nums.Length; i++)
             {
-                var number = nums[i];
-                if (number >= max)
-                {
-                    max = number;
-                    q.Enqueue(max);
-                    if (q.Count == k + 1)
-                        q.Dequeue();
-                }
+                var current = nums[i];
+                
+                    heap.Add(i, current);
+                
+
             }
-            return q.Dequeue();
+            return -1;
+            
         }
 
     }
