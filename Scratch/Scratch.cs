@@ -14,8 +14,7 @@ namespace Scratch
                 throw new ArgumentNullException("Need a string to test");
             int checker = 0;
             //            var sum = s[0]-'a';
-            for (int i = 0; i < s.Length; i++)
-            {
+            for (int i = 0; i < s.Length; i++) {
                 int val = s[i] - 'a';
                 if ((checker & (1 << val)) > 0)
                     return true;
@@ -51,8 +50,7 @@ namespace Scratch
 
         private void helper(int index, char[] str)
         {
-            if (str == null || index >= str.Length)
-            {
+            if (str == null || index >= str.Length) {
                 return;
             }
             helper(index + 1, str);
@@ -73,13 +71,11 @@ namespace Scratch
             ListNode firstNode = head;
             ListNode secondNode;
             ListNode tempNode;
-            while (true)
-            {
+            while (true) {
                 secondNode = firstNode.next;
                 tempNode = secondNode.next;
                 secondNode.next = firstNode;
-                if (tempNode == null || tempNode.next == null)
-                {
+                if (tempNode == null || tempNode.next == null) {
                     firstNode.next = null;
                     break;
                 }
@@ -113,8 +109,7 @@ namespace Scratch
             ListNode current = head;
             ListNode prev = null;
             ListNode temp = null;
-            while (current != null)
-            {
+            while (current != null) {
                 temp = current.next;
                 current.next = prev;
                 prev = current;
@@ -140,21 +135,17 @@ namespace Scratch
             TreeNode result = null;
             Queue<TreeNode> q = new Queue<TreeNode>();
             q.Enqueue(root);
-            while (q.Count > 0)
-            {
+            while (q.Count > 0) {
                 var current = q.Dequeue();
-                if (current.val == val)
-                {
+                if (current.val == val) {
                     result = current;
                     break;
                 }
-                if (current.val > val)
-                {
+                if (current.val > val) {
                     if (current.left != null)
                         q.Enqueue(current.left);
                 }
-                else
-                {
+                else {
                     if (current.right != null)
                         q.Enqueue(current.right);
                 }
@@ -170,6 +161,29 @@ namespace Scratch
                 return SearchBstRecursion(root.left, k);
             else
                 return SearchBstRecursion(root.right, k);
+        }
+
+        public void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (n == 0)
+                return;
+            int currentIndex = m + n - 1;
+            while (n > 0 && m > 0) {
+                if (nums2[n - 1] >= nums1[m - 1]) {
+                    nums1[currentIndex] = nums2[n - 1];
+                    n--;
+                }
+                else {
+                    nums1[currentIndex] = nums1[m - 1];
+                    m--;
+                }
+                currentIndex--;
+            }
+            while (n > 0) {
+                nums1[currentIndex] = nums2[n - 1];
+                currentIndex--;
+                n--;
+            }
         }
     }
 }
