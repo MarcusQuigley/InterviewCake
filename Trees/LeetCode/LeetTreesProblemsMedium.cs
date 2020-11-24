@@ -75,5 +75,62 @@ namespace Trees.LeetCode
             }
             return list;
         }
+        //https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/
+
+        private TreeNode firstTTDL = null;
+        private TreeNode lastTTDL = null;
+        public TreeNode TreeToDoubleList(TreeNode root)
+        {
+            TreeToDoubleListWorker(root);
+            lastTTDL.right = firstTTDL;
+            firstTTDL.left = lastTTDL;
+            return firstTTDL;
+        }
+        private void TreeToDoubleListWorker(TreeNode root)
+        {
+            if (root == null) {
+                return;
+            }
+            TreeToDoubleListWorker(root.left);
+            if (firstTTDL == null) {
+                firstTTDL = root;
+
+            }
+            else {
+                lastTTDL.right = root;
+                root.left = lastTTDL;
+
+            }
+            lastTTDL = root;
+            TreeToDoubleListWorker(root.right);
+        }
+        public TreeNode TreeToDoubleListIter(TreeNode root)
+        {
+            if (root == null)
+                return root;
+            TreeNode result = null;
+            TreeNode prev = null;
+            TreeNode current = root;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            while (stack.Count > 0 || current != null) {
+                while (current != null) {
+                    stack.Push(current);
+                    current = current.left;
+                }
+                current = stack.Pop();
+                if (result == null)
+                    result = current;
+                else {
+                    prev.right = current;
+                    current.left = prev;
+                }
+                prev = current;
+                current = current.right;
+
+            }
+            result.left = prev;
+            prev.right = result;
+            return result;
+        }
     }
 }
