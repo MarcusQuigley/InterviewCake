@@ -132,5 +132,41 @@ namespace Trees.LeetCode
             prev.right = result;
             return result;
         }
+        //https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
+        public TreeNode BstFromPreorderIter(int[] preorder)
+        {
+            if (preorder == null || preorder.Length == 0)
+                return null;
+
+            TreeNode root = new TreeNode(preorder[0]);
+
+            for (int i = 1; i < preorder.Length; i++) {
+                TreeNode parent = null;
+                TreeNode current = root;
+                while (current != null) {
+                    parent = current;
+                    if (current.val < preorder[i])
+                        current = current.right;
+                    else
+                        current = current.left;
+                }
+                current = new TreeNode(preorder[i]);
+
+            }
+
+            for (int i = 0; i < 3; i++) {
+
+            }
+            return root;
+        }
+
+
+
+        //private TreeNode BstFromPreorderIterWorker(int[] preorder, int start, int end)
+        //{
+        //    if (preorder == null || preorder.Length == 0)
+        //        return null;
+        //    TreeNode node = new TreeNode(preorder[start]);
+        //}
     }
 }
